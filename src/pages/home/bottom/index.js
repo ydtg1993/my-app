@@ -1,6 +1,7 @@
 import React from 'react';
 import {
     BottomFloor,
+    Bottom
 } from './style';
 import {connect} from "react-redux";
 import anime from "animejs";
@@ -13,7 +14,9 @@ class TopComponent extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <BottomFloor></BottomFloor>
+                <BottomFloor>
+                    <Bottom/>
+                </BottomFloor>
             </React.Fragment>
         )
     }

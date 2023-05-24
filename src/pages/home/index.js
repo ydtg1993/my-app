@@ -5,7 +5,6 @@ import {
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 /*component*/
-import TopComponent from './top';
 import BottomComponent from './bottom'
 import BodyComponent from "./body";
 
@@ -20,7 +19,6 @@ class Home extends React.Component {
         return (
             <React.Fragment>
                 <HomeWrapper>
-                    <TopComponent />
                     <BodyComponent/>
                     <BottomComponent />
                 </HomeWrapper>
