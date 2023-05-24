@@ -1,9 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c9e617e2-a045-4076-a05d-e3172dc7886c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/component/loading/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/component/loading/loading.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/component/toast/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/component/toast/toast.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/component/toast/toast.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/loadable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/store/actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/store/reducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/style.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/top/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/home/top/style.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/font/heiguiti.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/font/langqing.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/home/bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/resource/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/reducer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/style.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="2Pfo3EHB5LyNKKAcM8Ott4oepDd" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/resource/home" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="E:\WebStorm 2019.3.5\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\server\www\my-app\src\resource\home" />
+      <recent name="E:\server\www\my-app\src\pages" />
+      <recent name="E:\server\www\my-app\src" />
+    </key>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c9e617e2-a045-4076-a05d-e3172dc7886c" name="Default Changelist" comment="" />
+      <created>1683857296030</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683857296030</updated>
+      <workItem from="1683857297922" duration="2814000" />
+      <workItem from="1683862605284" duration="2377000" />
+      <workItem from="1684217604857" duration="3109000" />
+      <workItem from="1684738688868" duration="233000" />
+      <workItem from="1684905022916" duration="4227000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="806" y="366" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1684220866647">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="806" y="366" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1684220866647" />
+    <state x="606" y="199" width="1061" height="707" key="DiffContextDialog" timestamp="1684905517250">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="606" y="199" width="1061" height="707" key="DiffContextDialog/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1684905517250" />
+    <state x="881" y="353" key="FileChooserDialogImpl" timestamp="1683857909593">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="881" y="353" key="FileChooserDialogImpl/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1683857909593" />
+    <state width="1223" height="319" key="GridCell.Tab.0.bottom" timestamp="1683875376353">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1223" height="319" key="GridCell.Tab.0.bottom/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1683875376353" />
+    <state width="1223" height="319" key="GridCell.Tab.0.center" timestamp="1683875376352">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1223" height="319" key="GridCell.Tab.0.center/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1683875376352" />
+    <state width="1223" height="319" key="GridCell.Tab.0.left" timestamp="1683875376352">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1223" height="319" key="GridCell.Tab.0.left/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1683875376352" />
+    <state width="1223" height="319" key="GridCell.Tab.0.right" timestamp="1683875376352">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1223" height="319" key="GridCell.Tab.0.right/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1683875376352" />
+    <state x="543" y="210" width="1061" height="707" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1684905517250">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="543" y="210" width="1061" height="707" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1684905517250" />
+    <state x="606" y="199" width="1061" height="707" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1684914453167">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="606" y="199" width="1061" height="707" key="com.intellij.history.integration.ui.views.FileHistoryDialog/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1684914453167" />
+    <state x="813" y="285" width="647" height="534" key="find.popup" timestamp="1684905166739">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="813" y="285" width="647" height="534" key="find.popup/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1684905166739" />
+    <state x="921" y="343" key="git4idea.merge.GitPullDialog" timestamp="1684915256503">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="921" y="343" key="git4idea.merge.GitPullDialog/1920.0.1600.860/0.0.1920.1040@0.0.1920.1040" timestamp="1684915256503" />
   </component>
 </project>
