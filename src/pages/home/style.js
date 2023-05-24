@@ -11,7 +11,7 @@ export const HomeWrapper = styled.div`
     background-size: cover;
     overflow:hidden;
     display: grid;
-    grid-template-rows: 7% 6% 11% 66% 10%;
+    grid-template-rows: 50px auto 50px;
     grid-template-columns:100%;
 `;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const TopFloor = styled.div`
+export const BottomFloor = styled.div`
     background: #282828;  
     background-size: 100% 100%;
     display:grid;
