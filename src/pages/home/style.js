@@ -6,8 +6,7 @@ export const HomeWrapper = styled.div`
     width: 100%;  
     position: absolute;  
     top: 0px;  
-    bottom: 0px;  
-    background: url('${img_home_bg}') no-repeat;  
+    bottom: 0px;   
     background-size: cover;
     overflow:hidden;
     display: grid;
