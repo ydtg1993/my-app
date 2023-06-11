@@ -5,7 +5,7 @@ import {
     NavigationTab, NavHome, NavMenu, NavSearch, NavRank, NavMe
 } from './style';
 import {connect} from "react-redux";
-import {Link} from "react-router-dom";
+import {BrowserRouter as Router,Link} from "react-router-dom";
 
 class NavComponent extends React.Component {
     constructor(props) {
@@ -18,6 +18,7 @@ class NavComponent extends React.Component {
 
     render() {
         return (
+            <Router>
             <BottomFloor>
                 <Bottom>
                     <Link to="/"><NavigationTab><NavHome></NavHome></NavigationTab></Link>
@@ -27,6 +28,7 @@ class NavComponent extends React.Component {
                     <Link to="/me"><NavigationTab><NavMe></NavMe></NavigationTab></Link>
                 </Bottom>
             </BottomFloor>
+            </Router>
         )
     }
 }
