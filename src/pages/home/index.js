@@ -5,8 +5,8 @@ import {
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 /*component*/
-import BottomComponent from './bottom'
-import BodyComponent from "./body";
+import BottomComponent from '../common/bottom'
+import BodyComponent from "../common/body";
 
 
 class Home extends React.Component {

@@ -2,7 +2,7 @@ import React from 'react';
 import {
     BottomFloor,
     Bottom,
-    Nav1, Nav2, Nav3, Nav4, Nav5
+    NavigationTab, NavHome, NavMenu, NavSearch, NavRank, NavMe
 } from './style';
 import {connect} from "react-redux";
 import anime from "animejs";
@@ -16,11 +16,11 @@ class TopComponent extends React.Component {
         return (
             <BottomFloor>
                 <Bottom>
-                    <Nav1></Nav1>
-                    <Nav2></Nav2>
-                    <Nav3></Nav3>
-                    <Nav4></Nav4>
-                    <Nav5></Nav5>
+                    <NavigationTab><NavHome></NavHome></NavigationTab>
+                    <NavigationTab><NavMenu></NavMenu></NavigationTab>
+                    <NavigationTab><NavSearch></NavSearch></NavigationTab>
+                    <NavigationTab><NavRank></NavRank></NavigationTab>
+                    <NavigationTab><NavMe></NavMe></NavigationTab>
                 </Bottom>
             </BottomFloor>
         )
