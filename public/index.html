@@ -24,8 +24,22 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>动漫汪</title>
   </head>
+  <script>
+    document.addEventListener('gesturestart', function(e) {
+      e.preventDefault();
+    });
+    document.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+    /*document.addEventListener('keydown', function(e) {
+      if (e.keyCode === 123) {
+        e.preventDefault();
+      }
+    });*/
+  </script>
   <body>
     <div id="root"></div>
     <!--

@@ -1,12 +1,17 @@
 import React from 'react';
 import {
-    Section
+    Section,
+    Block
 } from './style';
 
 class BodyComponent extends React.Component {
     render() {
         return (
-                <Section></Section>
+            <Section>
+                <Block>
+                    <p>首页推荐</p>
+                </Block>
+            </Section>
         )
     }
 }

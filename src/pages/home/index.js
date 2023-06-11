@@ -15,28 +15,21 @@ class Home extends React.Component {
     }
 
     render() {
-
         return (
-            <React.Fragment>
-                <HomeWrapper>
-                    <BodyComponent/>
-                    <BottomComponent />
-                </HomeWrapper>
-            </React.Fragment>
+            <HomeWrapper>
+                <BodyComponent/>
+                <BottomComponent/>
+            </HomeWrapper>
         )
     }
 }
 
 const mapStateToProps = (state) => {
-    return {
-
-    }
+    return {}
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
+    return {}
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home)

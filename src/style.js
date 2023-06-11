@@ -12,7 +12,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #faefde;
   font-weight: 300;
-
+  overflow: hidden;
+  touch-action: manipulation;
   @font-face {
      font-family: 'LangFont';
      src: url('${LangFont}');

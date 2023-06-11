@@ -5,7 +5,7 @@ import {img_search} from '../../../resource';
 import {img_books} from '../../../resource';
 import {img_me} from '../../../resource';
 export const BottomFloor = styled.div`
-    padding:5px;
+
 `;
 
 export const Bottom = styled.div`
