@@ -5,7 +5,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 /*router*/
-import Home from './pages/home/loadable';
+import Home from './pages/home/';
+import Menu from "./pages/menu/";
 
 
 class App extends React.Component {
@@ -16,6 +17,7 @@ class App extends React.Component {
                 <BrowserRouter>
                     <React.Fragment>
                         <Route exact path="/" component={Home}/>
+                        <Route exact path="/menu" component={Menu}/>
                     </React.Fragment>
                 </BrowserRouter>
             </Provider>

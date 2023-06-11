@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {img_nav} from '../../../resource';
+import {img_finn, img_nav} from '../../../resource';
 
 export const BottomFloor = styled.div`
 
@@ -33,6 +33,13 @@ export const NavHome = styled(NavImg)`
     object-fit: none; object-position: -10px -10px; width: 65px; height: 65px; transform: scale(0.692);
 `;
 
+export const NavHomeChecked = styled(NavImg).attrs({
+    src:`${img_finn}`
+})`
+    width: 45px;
+    height: 45px;
+`;
+
 export const NavMenu = styled(NavImg)`
     object-fit: none; object-position: -178px -10px; width: 65px; height: 65px; transform: scale(0.692);
 `;
@@ -47,6 +54,10 @@ export const NavSearch = styled(NavImg)`
 
 export const NavRank = styled(NavImg)`
     object-fit: none; object-position: -10px -94px; width: 65px; height: 65px; transform: scale(0.692);
+`;
+
+export const NavRankChecked = styled(NavImg)`
+    object-fit: none; object-position: -94px -94px; width: 65px; height: 65px; transform: scale(0.692);
 `;
 
 export const NavMe = styled(NavImg)`

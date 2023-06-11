@@ -5,11 +5,12 @@ import {
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 /*component*/
-import NavComponent from '../common/navigation'
+import BottomComponent from '../common/navigation'
 import BodyComponent from "../common/body";
+import {withRouter} from "react-router-dom";
 
 
-class Home extends React.Component {
+class Menu extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -18,7 +19,7 @@ class Home extends React.Component {
         return (
             <HomeWrapper>
                 <BodyComponent/>
-                <NavComponent/>
+                <BottomComponent/>
             </HomeWrapper>
         )
     }
@@ -32,4 +33,4 @@ const mapDispatchToProps = (dispatch) => {
     return {}
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Menu))
