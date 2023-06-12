@@ -5,7 +5,3 @@ export const Section = styled.div`
    padding: 5px;
 `;
 
-export const Block = styled.div`
-    display:flex;
-`;
-

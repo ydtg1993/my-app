@@ -1,22 +1,8 @@
 import React from 'react';
-import {
-    Section,
-    Block
-} from './style';
-import Skeleton from "react-loading-skeleton";
-import 'react-loading-skeleton/dist/skeleton.css'
+import { Section } from './style';
 
-class BodyComponent extends React.Component {
-    render() {
-        return (
-            <Section>
-                <Skeleton width={150}/>
-                <Skeleton variant="rect" height={240} />
-                <Skeleton width={150}/>
-                <Skeleton variant="rect" height={240} />
-            </Section>
-        )
-    }
-}
+const BodyComponent = ({ children }) => {
+    return <Section>{children}</Section>;
+};
 
-export default BodyComponent
+export default BodyComponent;
