@@ -3,7 +3,7 @@ import Toast from "../../component/toast";
 import {Host} from "../../../index";
 import React from "react";
 
-export const GetChargeInfo = () => {
+export const GetCategoryComics = () => {
     return (dispatch) => {
         /*axios.post(Host + 'three/finance/pay/pay_method', {}, ajaxHeaders()).then((res) => {
             let data = res.data;
