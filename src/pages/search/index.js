@@ -8,6 +8,7 @@ import * as actions from './store/actions';
 import BottomComponent from '../common/navigation'
 import BodyComponent from "../common/body";
 import {withRouter} from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 
 
 class Search extends React.Component {
@@ -18,7 +19,11 @@ class Search extends React.Component {
     render() {
         return (
             <HomeWrapper>
-                <BodyComponent/>
+                <BodyComponent>
+                    <Skeleton variant="rect" height={90}/>
+                    <Skeleton variant="rect" height={90}/>
+                    <Skeleton variant="rect" height={90}/>
+                </BodyComponent>
                 <BottomComponent/>
             </HomeWrapper>
         )

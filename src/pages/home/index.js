@@ -23,6 +23,8 @@ class Home extends React.Component {
                     <Skeleton variant="rect" height={240}/>
                     <Skeleton width={150}/>
                     <Skeleton variant="rect" height={240}/>
+                    <Skeleton width={150}/>
+                    <Skeleton variant="rect" height={240}/>
                 </BodyComponent>
                 <NavComponent/>
             </HomeWrapper>
