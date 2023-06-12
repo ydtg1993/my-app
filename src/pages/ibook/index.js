@@ -5,7 +5,7 @@ import {
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 /*component*/
-import BottomComponent from '../common/navigation'
+import NavComponent from '../common/navigation'
 import BodyComponent from "../common/body";
 import {withRouter} from "react-router-dom";
 
@@ -19,7 +19,7 @@ class IBook extends React.Component {
         return (
             <HomeWrapper>
                 <BodyComponent/>
-                <BottomComponent/>
+                <NavComponent/>
             </HomeWrapper>
         )
     }

@@ -7,6 +7,7 @@ import NavComponent from '../common/navigation'
 import BodyComponent from "../common/body";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
+import {withRouter} from "react-router-dom";
 
 class Home extends React.Component {
     constructor(props) {
@@ -19,9 +20,9 @@ class Home extends React.Component {
             <HomeWrapper>
                 <BodyComponent>
                     <Skeleton width={150}/>
-                    <Skeleton variant="rect" height={240} />
+                    <Skeleton variant="rect" height={240}/>
                     <Skeleton width={150}/>
-                    <Skeleton variant="rect" height={240} />
+                    <Skeleton variant="rect" height={240}/>
                 </BodyComponent>
                 <NavComponent/>
             </HomeWrapper>
@@ -41,4 +42,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home));

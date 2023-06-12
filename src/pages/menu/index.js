@@ -5,7 +5,7 @@ import {
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 /*component*/
-import BottomComponent from '../common/navigation'
+import NavComponent from '../common/navigation'
 import BodyComponent from "../common/body";
 import {withRouter} from "react-router-dom";
 
@@ -13,13 +13,16 @@ import {withRouter} from "react-router-dom";
 class Menu extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            bodyContent: <p>分类页</p>
+        };
     }
 
     render() {
         return (
             <HomeWrapper>
-                <BodyComponent/>
-                <BottomComponent/>
+                <BodyComponent children={this.state.bodyContent}/>
+                <NavComponent/>
             </HomeWrapper>
         )
     }
