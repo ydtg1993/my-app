@@ -6,12 +6,12 @@ import {
     NavHome,
     NavMenu,
     NavSearch,
-    NavRank,
+    NavIBook,
     NavMe,
-    NavHomeSelected, NavMenuSelected, NavSearchSelected, NavRankSelected, NavMeSelected
+    NavHomeSelected, NavMenuSelected, NavSearchSelected, NavIBookSelected, NavMeSelected
 } from './style';
 import {connect} from "react-redux";
-import {BrowserRouter as Router, Link, useLocation} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 class NavComponent extends React.Component {
     constructor(props) {
@@ -20,17 +20,15 @@ class NavComponent extends React.Component {
 
     render() {
         return (
-            <Router>
-                <BottomFloor>
-                    <Bottom>
-                        <NavLinkWithIcon to="/" exact iconSelected={<NavHomeSelected/>} icon={<NavHome/>}/>
-                        <NavLinkWithIcon to="/menu" exact iconSelected={<NavMenuSelected/>} icon={<NavMenu/>}/>
-                        <NavLinkWithIcon to="/search" exact iconSelected={<NavSearchSelected/>} icon={<NavSearch/>}/>
-                        <NavLinkWithIcon to="/rank" exact iconSelected={<NavRankSelected/>} icon={<NavRank/>}/>
-                        <NavLinkWithIcon to="/me" exact iconSelected={<NavMeSelected/>} icon={<NavMe/>}/>
-                    </Bottom>
-                </BottomFloor>
-            </Router>
+            <BottomFloor>
+                <Bottom>
+                    <NavLinkWithIcon to="/" exact iconSelected={<NavHomeSelected/>} icon={<NavHome/>}/>
+                    <NavLinkWithIcon to="/menu" exact iconSelected={<NavMenuSelected/>} icon={<NavMenu/>}/>
+                    <NavLinkWithIcon to="/search" exact iconSelected={<NavSearchSelected/>} icon={<NavSearch/>}/>
+                    <NavLinkWithIcon to="/ibook" exact iconSelected={<NavIBookSelected/>} icon={<NavIBook/>}/>
+                    <NavLinkWithIcon to="/me" exact iconSelected={<NavMeSelected/>} icon={<NavMe/>}/>
+                </Bottom>
+            </BottomFloor>
         )
     }
 }
@@ -58,7 +56,7 @@ const NavLinkWithIcon = ({to, iconSelected, icon}) => {
             selectedIcon = <NavSearchSelected/>;
             break;
         case "/rank":
-            selectedIcon = <NavRankSelected/>;
+            selectedIcon = <NavIBookSelected/>;
             break;
         case "/me":
             selectedIcon = <NavMeSelected/>;

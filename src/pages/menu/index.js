@@ -8,20 +8,23 @@ import * as actions from './store/actions';
 import NavComponent from '../common/navigation'
 import BodyComponent from "../common/body";
 import {withRouter} from "react-router-dom";
+import Skeleton from "react-loading-skeleton";
 
 
 class Menu extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            bodyContent: <p>分类页</p>
-        };
     }
 
     render() {
         return (
             <HomeWrapper>
-                <BodyComponent children={this.state.bodyContent}/>
+                <BodyComponent>
+                    <Skeleton/>
+                    <Skeleton/>
+                    <Skeleton/>
+                    <Skeleton/>
+                </BodyComponent>
                 <NavComponent/>
             </HomeWrapper>
         )

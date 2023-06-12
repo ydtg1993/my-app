@@ -60,11 +60,11 @@ export const NavSearchSelected = styled(NavImg).attrs({
     height: 45px;
 `;
 
-export const NavRank = styled(NavImg)`
+export const NavIBook = styled(NavImg)`
     object-fit: none; object-position: -10px -94px; width: 65px; height: 65px; transform: scale(0.692);
 `;
 
-export const NavRankSelected = styled(NavImg)`
+export const NavIBookSelected = styled(NavImg)`
     object-fit: none; object-position: -94px -94px; width: 65px; height: 65px; transform: scale(0.692);
 `;
 
