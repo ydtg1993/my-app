@@ -14,67 +14,61 @@ export const Bottom = styled.div`
 `;
 
 export const NavigationTab = styled.div`
-    width:45px;
-    height:45px;
+    width: 45px;
+    height: 45px;
     overflow: hidden;
-    display: flex; 
-    justify-content: center; 
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    background-repeat: no-repeat;
+    background-image: url(${img_nav});
+    
+    &.home{
+        background-position: -10px -10px;
+    }
+    
+    &.menu{
+        background-position: -10px -75px;
+    }
+    
+    &.menu-in{
+        background-position: -75px -75px;
+    }
+    
+    &.search{
+        background-position: -75px -10px;
+    }
+    
+    &.ibook{
+        background-position: -140px -10px;
+    }
+    
+    &.ibook-in{
+        background-position: -140px -75px;
+    }
+    
+    &.me{
+        background-position: -10px -140px;
+    }
+    
+    &.me-in{
+        background-position: -75px -140px;
+    }
+    
+    &.who{
+        background-position: -140px -140px;
+    }
 `;
 
-export const NavImg = styled.img.attrs({
-    src:`${img_nav}`
-})`
-    position:relative;
-    margin:0 auto;
-    transition: background-color 2s, color 2s;
-`;
-
-export const NavHome = styled(NavImg)`
-    object-fit: none; object-position: -10px -10px; width: 65px; height: 65px; transform: scale(0.692);
-`;
-
-export const NavHomeSelected = styled(NavImg).attrs({
-    src:`${gif_finn}`
-})`
-    width: 45px;
-    height: 45px;
-`;
-
-export const NavMenu = styled(NavImg)`
-    object-fit: none; object-position: -178px -10px; width: 65px; height: 65px; transform: scale(0.692);
-`;
-
-export const NavMenuSelected = styled(NavImg)`
-    object-fit: none; object-position: -178px -94px; width: 65px; height: 65px; transform: scale(0.692);
-`;
-
-export const NavSearch = styled(NavImg)`
-    object-fit: none; object-position: -94px -10px; width: 65px; height: 65px; transform: scale(0.692);
-`;
-
-export const NavSearchSelected = styled(NavImg).attrs({
-    src:`${gif_search}`
-})`
-    width: 45px;
-    height: 45px;
-`;
-
-export const NavIBook = styled(NavImg)`
-    object-fit: none; object-position: -10px -94px; width: 65px; height: 65px; transform: scale(0.692);
-`;
-
-export const NavIBookSelected = styled(NavImg)`
-    object-fit: none; object-position: -94px -94px; width: 65px; height: 65px; transform: scale(0.692);
-`;
-
-export const NavMe = styled(NavImg)`
-    object-fit: none; object-position: -10px -178px; width: 65px; height: 65px; transform: scale(0.692);
-`;
-
-export const NavMeSelected = styled(NavImg)`
-    object-fit: none; object-position: -94px -178px; width: 65px; height: 65px; transform: scale(0.692);
-`;
 
 
 

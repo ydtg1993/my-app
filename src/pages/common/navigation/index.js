@@ -1,40 +1,11 @@
 import React from 'react';
-import { BottomFloor, Bottom, NavigationTab, NavHome, NavMenu, NavSearch, NavIBook, NavMe, NavHomeSelected, NavMenuSelected, NavSearchSelected, NavIBookSelected, NavMeSelected } from './style';
-import { connect } from "react-redux";
-import { NavLink, useLocation } from "react-router-dom";
-
-const NavLinkWithIcon = React.memo(({ to, iconSelected, icon }) => {
-    const location = useLocation();
-    const isActive = (location.pathname === to);
-
-    let selectedIcon = null;
-
-    switch (to) {
-        case "/":
-            selectedIcon = <NavHomeSelected/>;
-            break;
-        case "/menu":
-            selectedIcon = <NavMenuSelected/>;
-            break;
-        case "/search":
-            selectedIcon = <NavSearchSelected/>;
-            break;
-        case "/ibook":
-            selectedIcon = <NavIBookSelected/>;
-            break;
-        case "/me":
-            selectedIcon = <NavMeSelected/>;
-            break;
-    }
-
-    return (
-        <NavLink to={to} exact replace={isActive}>
-            <NavigationTab activeClassName={isActive ? "active" : ""}>
-                {isActive ? (selectedIcon || iconSelected) : icon}
-            </NavigationTab>
-        </NavLink>
-    );
-});
+import {
+    BottomFloor,
+    Bottom,
+    NavigationTab,
+} from './style';
+import {connect} from "react-redux";
+import {NavLink, useLocation} from "react-router-dom";
 
 class NavComponent extends React.Component {
     constructor(props) {
@@ -45,11 +16,11 @@ class NavComponent extends React.Component {
         return (
             <BottomFloor>
                 <Bottom>
-                    <NavLinkWithIcon to="/" exact iconSelected={<NavHomeSelected/>} icon={<NavHome/>}/>
-                    <NavLinkWithIcon to="/menu" exact iconSelected={<NavMenuSelected/>} icon={<NavMenu/>}/>
-                    <NavLinkWithIcon to="/search" exact iconSelected={<NavSearchSelected/>} icon={<NavSearch/>}/>
-                    <NavLinkWithIcon to="/ibook" exact iconSelected={<NavIBookSelected/>} icon={<NavIBook/>}/>
-                    <NavLinkWithIcon to="/me" exact iconSelected={<NavMeSelected/>} icon={<NavMe/>}/>
+                    <NavLink to="/" exact><NavigationTab className={"home"} /></NavLink>
+                    <NavLink to="/menu" exact><NavigationTab className={"menu"} /></NavLink>
+                    <NavLink to="/search" exact><NavigationTab className={"search"} /></NavLink>
+                    <NavLink to="/ibook" exact><NavigationTab className={"ibook"} /></NavLink>
+                    <NavLink to="/me" exact><NavigationTab className={"me"} /></NavLink>
                 </Bottom>
             </BottomFloor>
         );
