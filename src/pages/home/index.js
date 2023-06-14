@@ -8,6 +8,7 @@ import BodyComponent from "../common/body";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {withRouter} from "react-router-dom";
+import {BodyWrapper} from "../common/body/style";
 
 class Home extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <HomeWrapper>
+            <BodyWrapper>
                 <BodyComponent>
                     <Skeleton width={150}/>
                     <Skeleton variant="rect" height={240}/>
@@ -27,7 +28,7 @@ class Home extends React.Component {
                     <Skeleton variant="rect" height={240}/>
                 </BodyComponent>
                 <NavComponent/>
-            </HomeWrapper>
+            </BodyWrapper>
         )
     }
 }

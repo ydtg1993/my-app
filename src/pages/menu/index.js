@@ -9,6 +9,7 @@ import NavComponent from '../common/navigation'
 import BodyComponent from "../common/body";
 import {withRouter} from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
+import {BodyWrapper} from "../common/body/style";
 
 
 class Menu extends React.Component {
@@ -18,7 +19,7 @@ class Menu extends React.Component {
 
     render() {
         return (
-            <HomeWrapper>
+            <BodyWrapper>
                 <BodyComponent>
                     <Skeleton/>
                     <Skeleton/>
@@ -26,7 +27,7 @@ class Menu extends React.Component {
                     <Skeleton/>
                 </BodyComponent>
                 <NavComponent/>
-            </HomeWrapper>
+            </BodyWrapper>
         )
     }
 }

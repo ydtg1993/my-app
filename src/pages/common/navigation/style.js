@@ -14,8 +14,8 @@ export const Bottom = styled.div`
 `;
 
 export const NavigationTab = styled.div`
-    width: 45px;
-    height: 45px;
+    width: 65px;
+    height: 65px;
     overflow: hidden;
     display: -webkit-box;
     display: -webkit-flex;
@@ -30,6 +30,7 @@ export const NavigationTab = styled.div`
     -ms-flex-align: center;
     align-items: center;
     background-repeat: no-repeat;
+    transform: scale(0.64);
     background-image: url(${img_nav});
     
     &.home{
@@ -37,35 +38,35 @@ export const NavigationTab = styled.div`
     }
     
     &.menu{
-        background-position: -10px -75px;
+        background-position: -178px -10px;
     }
     
     &.menu-in{
-        background-position: -75px -75px;
+        background-position: -178px -94px;
     }
     
     &.search{
-        background-position: -75px -10px;
+        background-position: -94px -10px;
     }
     
     &.ibook{
-        background-position: -140px -10px;
+        background-position: -10px -94px;
     }
     
     &.ibook-in{
-        background-position: -140px -75px;
+        background-position: -94px -94px;
     }
     
     &.me{
-        background-position: -10px -140px;
+        background-position: -10px -178px;
     }
     
     &.me-in{
-        background-position: -75px -140px;
+        background-position: -94px -178px;
     }
     
     &.who{
-        background-position: -140px -140px;
+        background-position: -178px -178px;
     }
 `;
 

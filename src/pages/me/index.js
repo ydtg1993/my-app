@@ -8,6 +8,7 @@ import * as actions from './store/actions';
 import NavComponent from '../common/navigation'
 import BodyComponent from "../common/body";
 import {withRouter} from "react-router-dom";
+import {BodyWrapper} from "../common/body/style";
 
 
 class Me extends React.Component {
@@ -17,10 +18,10 @@ class Me extends React.Component {
 
     render() {
         return (
-            <HomeWrapper>
+            <BodyWrapper>
                 <BodyComponent/>
                 <NavComponent/>
-            </HomeWrapper>
+            </BodyWrapper>
         )
     }
 }
