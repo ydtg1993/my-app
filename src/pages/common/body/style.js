@@ -14,7 +14,7 @@ export const BodyWrapper = styled.div`
     background-size: cover;
     overflow:hidden;
     display: grid;
-    grid-template-rows: auto 65px;
+    grid-template-rows: auto 60px;
     grid-template-columns:100%;
 `;
 
