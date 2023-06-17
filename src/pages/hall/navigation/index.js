@@ -5,16 +5,16 @@ import {
     NavigationTab,
 } from './style';
 import {connect} from "react-redux";
-import {NavLink} from "react-router-dom";
+import {NavLink,withRouter} from "react-router-dom";
 
 class NavComponent extends React.Component {
     constructor(props) {
         super(props);
-        console.log(this.props.currentPosition)
     }
 
     render() {
         let navStyle = {display:'flex',alignItems:'center',height:'58px'};
+
         return (
             <BottomFloor>
                 <Bottom>
@@ -35,4 +35,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, null)(NavComponent);
+export default connect(mapStateToProps, null)(withRouter(NavComponent));
