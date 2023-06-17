@@ -37,6 +37,10 @@ export const NavigationTab = styled.div`
         background-position: -10px -10px;
     }
     
+    &.home-in{
+        background-image: url(${gif_finn});
+    }
+    
     &.menu{
         background-position: -178px -10px;
     }
@@ -47,6 +51,10 @@ export const NavigationTab = styled.div`
     
     &.search{
         background-position: -94px -10px;
+    }
+    
+    &.search-in{
+        background-image: url(${gif_search});
     }
     
     &.ibook{

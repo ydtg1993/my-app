@@ -7,11 +7,13 @@ import BodyComponent from "../body";
 import {withRouter} from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import {BodyWrapper} from "../body/style";
+import {SetCurrentPosition} from "../store/actions";
 
 
 class Search extends React.Component {
     constructor(props) {
         super(props);
+        this.props.setCurrentPosition('search');
     }
 
     render() {
@@ -33,7 +35,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        setCurrentPosition(position){
+            dispatch(SetCurrentPosition(position))
+        }
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Search))

@@ -18,13 +18,11 @@ body {
      font-family: 'LangFont';
      src: url('${LangFont}');
   }
-  
-   @font-face {
+  @font-face {
      font-family: 'MyFont';
      src: url('${MyFont}');
   }
 }
-
 a {
   -webkit-tap-highlight-color: transparent;
 }

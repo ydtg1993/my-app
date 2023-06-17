@@ -18,9 +18,9 @@ class NavComponent extends React.Component {
         return (
             <BottomFloor>
                 <Bottom>
-                    <NavLink to="/" exact style={navStyle}><NavigationTab className={"home"} /></NavLink>
+                    <NavLink to="/" exact style={navStyle}><NavigationTab className={this.props.currentPosition === 'home' ? 'home-in' : 'home'} /></NavLink>
                     <NavLink to="/menu" exact style={navStyle}><NavigationTab className={this.props.currentPosition === 'menu' ? 'menu-in' : 'menu'} /></NavLink>
-                    <NavLink to="/search" exact style={navStyle}><NavigationTab className={"search"} /></NavLink>
+                    <NavLink to="/search" exact style={navStyle}><NavigationTab className={this.props.currentPosition === 'search' ? 'search-in' : 'search'} /></NavLink>
                     <NavLink to="/ibook" exact style={navStyle}><NavigationTab className={this.props.currentPosition === 'ibook' ? 'ibook-in' : 'ibook'} /></NavLink>
                     <NavLink to="/me" exact style={navStyle}><NavigationTab className={this.props.currentPosition === 'me' ? 'me-in' : 'me'} /></NavLink>
                 </Bottom>
