@@ -1,6 +1,5 @@
 import axios from 'axios';
-import Toast from "../../component/toast";
-import {Host} from "../../../index";
+import Toast from "../../../component/toast";
 import React from "react";
 
 export const HOME_PAGE_SERIES = 'home_page_series';

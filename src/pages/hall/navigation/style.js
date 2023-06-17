@@ -14,8 +14,8 @@ export const Bottom = styled.div`
 `;
 
 export const NavigationTab = styled.div`
-    width: 65px;
-    height: 65px;
+    width: 64px;
+    height: 64px;
     overflow: hidden;
     display: -webkit-box;
     display: -webkit-flex;

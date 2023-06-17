@@ -5,11 +5,11 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 /*router*/
-import Home from './pages/home/';
-import Menu from "./pages/menu/";
-import Search from "./pages/search/";
-import IBook from "./pages/ibook/";
-import Me from "./pages/me/";
+import Home from './pages/hall/home/';
+import Menu from "./pages/hall/menu/";
+import Search from "./pages/hall/search/";
+import IBook from "./pages/hall/ibook/";
+import Me from "./pages/hall/me/";
 class App extends React.Component {
     render() {
         return (

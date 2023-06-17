@@ -1,15 +1,12 @@
 import React from 'react';
-import {
-    HomeWrapper
-} from './style';
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 /*component*/
-import BottomComponent from '../common/navigation'
-import BodyComponent from "../common/body";
+import BottomComponent from '../navigation'
+import BodyComponent from "../body";
 import {withRouter} from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
-import {BodyWrapper} from "../common/body/style";
+import {BodyWrapper} from "../body/style";
 
 
 class Search extends React.Component {
