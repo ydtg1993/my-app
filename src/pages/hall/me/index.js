@@ -6,11 +6,13 @@ import NavComponent from '../navigation'
 import BodyComponent from "../body";
 import {withRouter} from "react-router-dom";
 import {BodyWrapper} from "../body/style";
+import {SetCurrentPosition} from "../store/actions";
 
 
 class Me extends React.Component {
     constructor(props) {
         super(props);
+        this.props.setCurrentPosition('me');
     }
 
     render() {
@@ -28,7 +30,11 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        setCurrentPosition(position){
+            dispatch(SetCurrentPosition(position))
+        }
+    }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Me))

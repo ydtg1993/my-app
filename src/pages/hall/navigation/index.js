@@ -5,7 +5,7 @@ import {
     NavigationTab,
 } from './style';
 import {connect} from "react-redux";
-import {NavLink, useLocation} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 class NavComponent extends React.Component {
     constructor(props) {
@@ -18,10 +18,10 @@ class NavComponent extends React.Component {
             <BottomFloor>
                 <Bottom>
                     <NavLink to="/" exact><NavigationTab className={"home"} /></NavLink>
-                    <NavLink to="/menu" exact><NavigationTab className={"menu"} /></NavLink>
+                    <NavLink to="/menu" exact><NavigationTab className={this.props.currentPosition === 'menu' ? 'menu-in' : 'menu'} /></NavLink>
                     <NavLink to="/search" exact><NavigationTab className={"search"} /></NavLink>
-                    <NavLink to="/ibook" exact><NavigationTab className={"ibook"} /></NavLink>
-                    <NavLink to="/me" exact><NavigationTab className={"me"} /></NavLink>
+                    <NavLink to="/ibook" exact><NavigationTab className={this.props.currentPosition === 'ibook' ? 'ibook-in' : 'ibook'} /></NavLink>
+                    <NavLink to="/me" exact><NavigationTab className={this.props.currentPosition === 'me' ? 'me-in' : 'me'} /></NavLink>
                 </Bottom>
             </BottomFloor>
         );
