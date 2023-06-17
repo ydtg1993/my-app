@@ -7,11 +7,13 @@ import BodyComponent from "../body";
 import {withRouter} from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import {BodyWrapper} from "../body/style";
+import {SetCurrentPosition} from "../store/actions";
 
 
 class Menu extends React.Component {
     constructor(props) {
         super(props);
+        this.props.setCurrentPosition('menu');
     }
 
     render() {
@@ -35,8 +37,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentPosition(){
-            dispatch()
+        setCurrentPosition(position){
+            dispatch(SetCurrentPosition(position))
         }
     }
 };

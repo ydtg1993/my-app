@@ -10,6 +10,7 @@ import {NavLink, useLocation} from "react-router-dom";
 class NavComponent extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props.currentPosition)
     }
 
     render() {
@@ -29,7 +30,7 @@ class NavComponent extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-
+        currentPosition:state.hall.get('currentPosition')
     };
 };
 
