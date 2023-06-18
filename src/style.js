@@ -26,4 +26,12 @@ body {
 a {
   -webkit-tap-highlight-color: transparent;
 }
+p{
+    display: block;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0;
+    margin-inline-end: 0;
+    height: fit-content;
+}
 `;
