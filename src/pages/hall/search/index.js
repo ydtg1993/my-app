@@ -4,10 +4,10 @@ import * as actions from './store/actions';
 /*component*/
 import BottomComponent from '../navigation'
 import BodyComponent from "../body";
-import {withRouter} from "react-router-dom";
 import Skeleton from "react-loading-skeleton";
 import {BodyWrapper} from "../body/style";
 import {SetCurrentPosition} from "../store/actions";
+import {SearchButton, SearchInput, TopPanel} from "./style";
 
 
 class Search extends React.Component {
@@ -18,12 +18,9 @@ class Search extends React.Component {
 
     render() {
         return (
-            <BodyWrapper>
-                <BodyComponent>
-                    <Skeleton variant="rect" height={90}/>
-                    <Skeleton variant="rect" height={90}/>
-                    <Skeleton variant="rect" height={90}/>
-                </BodyComponent>
+            <BodyWrapper style={{gridTemplateRows:"40px auto 60px"}}>
+                <TopPanel><SearchInput/><SearchButton/></TopPanel>
+                <BodyComponent></BodyComponent>
                 <BottomComponent/>
             </BodyWrapper>
         )
@@ -42,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Search))
+export default connect(mapStateToProps, mapDispatchToProps)(Search)
