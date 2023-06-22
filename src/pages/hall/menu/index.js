@@ -4,7 +4,7 @@ import * as actions from './store/actions';
 /*component*/
 import NavComponent from '../navigation'
 import BodyComponent from "../body";
-import {withRouter} from "react-router-dom";
+
 import Skeleton from "react-loading-skeleton";
 import {BodyWrapper} from "../body/style";
 import {SetCurrentPosition} from "../store/actions";
@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Menu))
+export default connect(mapStateToProps, mapDispatchToProps)(Menu)

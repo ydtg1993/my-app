@@ -46,7 +46,7 @@ class Home extends React.Component {
                                 placeholderSrc={gif_finn}
                             />
                         </div>
-                        <p className={"title"}>哈哈</p>
+                        <div className={"titleBox"}><span>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</span></div>
                     </ComicBox>
                     <ComicBox>
                         <div className={"imgBox"}>
@@ -57,7 +57,7 @@ class Home extends React.Component {
                                 placeholderSrc={gif_finn}
                             />
                         </div>
-                        <p className={"title"}>哈哈</p>
+                        <div className={"titleBox"}><span>哈哈</span></div>
                     </ComicBox>
                     <ComicBox>
                         <div className={"imgBox"}>
@@ -68,7 +68,7 @@ class Home extends React.Component {
                                 placeholderSrc={gif_finn}
                             />
                         </div>
-                        <p className={"title"}>哈哈</p>
+                        <div className={"titleBox"}><span>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</span></div>
                     </ComicBox>
                     <ComicBox>
                         <div className={"imgBox"}>
@@ -79,7 +79,7 @@ class Home extends React.Component {
                                 placeholderSrc={gif_finn}
                             />
                         </div>
-                        <p className={"title"}>哈哈</p>
+                        <div className={"titleBox"}><span>哈哈哈</span></div>
                     </ComicBox>
                     <ComicBox></ComicBox>
                     <ComicBox></ComicBox>

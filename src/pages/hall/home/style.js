@@ -10,12 +10,12 @@ export const SeriesLabel = styled.div`
 export const SeriesList = styled.div`
     display:flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
 `;
 
 export const ComicBox = styled.div`
     width:32%;
-    height:185px;
+    max-width:125px;
     background-color: rgb(255 255 255 / 64%);
     color: rgba(0, 0, 0, 0.87);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -26,9 +26,8 @@ export const ComicBox = styled.div`
     flex-wrap: wrap;
     
     & > .imgBox{
-        border-radius: 3px;
-        width:100%;
-        height:161px;
+        border-radius: 3px 3px 0 0;
+        height: ${props => props.width > 120 ? '162px' : '156px'};
         overflow: hidden;
         position: relative;
         width: 100%;
@@ -38,13 +37,20 @@ export const ComicBox = styled.div`
         width: 100%;
     }
     
-    & > .title{
-        font-size:12px;
+    & > .titleBox{
+        overflow: hidden;
+        width: 100%;
+        height:22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    & > .titleBox>span{
+        font-weight: 400;
+        font-size: 12px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
-        text-align: center;
-        font-weight: 400;
-        width: 100%;
     }
 `;
