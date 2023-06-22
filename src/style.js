@@ -10,7 +10,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #faefde;
   font-weight: 300;
   overflow: hidden;
   touch-action: manipulation;
@@ -33,5 +32,9 @@ p{
     margin-inline-start: 0;
     margin-inline-end: 0;
     height: fit-content;
+}
+#root{
+    display: flex;
+    justify-content: center;
 }
 `;

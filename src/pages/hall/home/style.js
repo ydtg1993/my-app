@@ -27,14 +27,15 @@ export const ComicBox = styled.div`
     
     & > .imgBox{
         border-radius: 3px 3px 0 0;
-        height: ${props => props.width > 120 ? '162px' : '156px'};
         overflow: hidden;
         position: relative;
         width: 100%;
+        max-height:162px;
     }
     
     & > .imgBox img {
         width: 100%;
+        max-height:162px;
     }
     
     & > .titleBox{
@@ -52,5 +53,19 @@ export const ComicBox = styled.div`
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+    }
+    
+    @media (min-width: 1024px) {
+        width:158px;
+        max-width:158px;
+        
+        & > .imgBox{
+            height: 211px;
+        }
+        
+        & > .imgBox img {
+            width: 100%;
+            max-height:211px;
+        }
     }
 `;
