@@ -12,11 +12,17 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import gif_finn from '../../../resource/home/finn.gif'
+import {GetSeries} from "./store/actions";
 
 class Home extends React.Component {
     constructor(props) {
         super(props);
         this.props.setCurrentPosition('home');
+        this.state = {
+            page: 1,
+            isLoading: false
+        };
+        this.props.getHomeSeries(this.state.page)
     }
 
     loadingAnimation() {
@@ -89,10 +95,13 @@ class Home extends React.Component {
     }
 
     render() {
+        const {series} = this.props;
         return (
             <BodyWrapper>
                 <BodyComponent>
-                    {this.content()}
+                    {series && series.map(function (data) {
+
+                    })}
                 </BodyComponent>
                 <NavComponent/>
             </BodyWrapper>
@@ -101,15 +110,18 @@ class Home extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        series:state.home.get('series')
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        //getHomePageSeries: () => dispatch(actions.GetHomePage()),
-        setCurrentPosition(position) {
-            dispatch(SetCurrentPosition(position))
-        }
+        getHomeSeries: (p) => {
+            dispatch(GetSeries(p));
+        },
+        setCurrentPosition:(position) => dispatch(SetCurrentPosition(position))
+
     };
 };
 
