@@ -11,6 +11,7 @@ export const SeriesList = styled.div`
     display:flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-bottom:14px;
 `;
 
 export const ComicBox = styled.div`

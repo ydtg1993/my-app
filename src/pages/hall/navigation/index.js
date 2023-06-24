@@ -7,7 +7,7 @@ const NavComponent = ({ currentPosition }) => {
     const navStyle = {
         display: 'flex',
         alignItems: 'center',
-        height: '58px',
+        height: '55px',
     };
 
     return (
