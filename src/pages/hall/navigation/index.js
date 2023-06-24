@@ -3,7 +3,7 @@ import { BottomFloor, Bottom, NavigationTab } from './style';
 import { connect } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
-const NavComponent = ({ currentPosition }) => {
+const NavComponent = React.memo(({ currentPosition }) => {
     const navStyle = {
         display: 'flex',
         alignItems: 'center',
@@ -31,7 +31,7 @@ const NavComponent = ({ currentPosition }) => {
             </Bottom>
         </BottomFloor>
     );
-};
+});
 
 const mapStateToProps = (state) => {
     return {

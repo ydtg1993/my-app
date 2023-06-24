@@ -10,11 +10,13 @@ import Menu from "./pages/hall/menu/";
 import Search from "./pages/hall/search/";
 import IBook from "./pages/hall/ibook/";
 import Me from "./pages/hall/me/";
+import ImagePreloader from "./pages/component/ImagePreloader";
 class App extends React.Component {
     render() {
         return (
             <Provider store={store}>
                 <GlobalStyle/>
+                <ImagePreloader />
                 <BrowserRouter>
                     <React.Fragment>
                         <Route exact path="/" component={Home}/>
