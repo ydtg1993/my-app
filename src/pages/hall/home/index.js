@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import {connect} from 'react-redux';
 /*component*/
 import NavComponent from '../navigation'
@@ -14,114 +14,85 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import gif_finn from '../../../resource/home/finn.gif'
 import {GetSeries} from "./store/actions";
 
-class Home extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props.setCurrentPosition('home');
-        this.state = {
-            page: 1,
-            isLoading: false
-        };
-        this.props.getHomeSeries(this.state.page)
-    }
+const Home = (props) => {
+    const { series, setCurrentPosition, getHomeSeries } = props;
+    const [page, setPage] = useState(0);
+    const [isLoading, setIsLoading] = useState(true);
 
-    loadingAnimation() {
+    const fetchData = async () => {
+        try {
+            await getHomeSeries(page);
+            setIsLoading(false);
+        } catch (error) {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        setCurrentPosition('home');
+        setIsLoading(true);
+        fetchData();
+    }, [setCurrentPosition, getHomeSeries, page]);
+
+    const loadingAnimation = () => {
         return (
             <>
-                <Skeleton width={150}/>
-                <Skeleton variant="rect" height={240}/>
-                <Skeleton width={150}/>
-                <Skeleton variant="rect" height={240}/>
-                <Skeleton width={150}/>
-                <Skeleton variant="rect" height={240}/>
+                <Skeleton width={150} />
+                <Skeleton variant="rect" height={240} />
+                <Skeleton width={150} />
+                <Skeleton variant="rect" height={240} />
+                <Skeleton width={150} />
+                <Skeleton variant="rect" height={240} />
             </>
-        )
-    }
+        );
+    };
 
-    content() {
+    const content = () => {
         return (
             <>
-                <SeriesLabel><b>首页推荐</b></SeriesLabel>
-                <SeriesList>
-                    <ComicBox>
-                        <div className={"imgBox"}>
-                            <LazyLoadImage
-                                src="https://resource.c36f6d7.com/resources/comic/2/98/i36HFEXQe.jpg"
-                                alt="Image"
-                                effect="blur"
-                                placeholderSrc={gif_finn}
-                            />
-                        </div>
-                        <div className={"titleBox"}><span>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</span></div>
-                    </ComicBox>
-                    <ComicBox>
-                        <div className={"imgBox"}>
-                            <LazyLoadImage
-                                src="https://resource.c36f6d7.com/resources/comic/2/98/i36HFEXQe.jpg"
-                                alt="Image"
-                                effect="blur"
-                                placeholderSrc={gif_finn}
-                            />
-                        </div>
-                        <div className={"titleBox"}><span>哈哈</span></div>
-                    </ComicBox>
-                    <ComicBox>
-                        <div className={"imgBox"}>
-                            <LazyLoadImage
-                                src="https://resource.c36f6d7.com/resources/comic/2/98/i36HFEXQe.jpg"
-                                alt="Image"
-                                effect="blur"
-                                placeholderSrc={gif_finn}
-                            />
-                        </div>
-                        <div className={"titleBox"}><span>哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</span></div>
-                    </ComicBox>
-                    <ComicBox>
-                        <div className={"imgBox"}>
-                            <LazyLoadImage
-                                src="https://resource.c36f6d7.com/resources/comic/2/71/QBANYQ2Yi.jpg"
-                                alt="Image"
-                                effect="blur"
-                                placeholderSrc={gif_finn}
-                            />
-                        </div>
-                        <div className={"titleBox"}><span>哈哈哈</span></div>
-                    </ComicBox>
-                    <ComicBox></ComicBox>
-                    <ComicBox></ComicBox>
-                </SeriesList>
+                {series.map((data) => (
+                    <React.Fragment key={data.id}>
+                        <SeriesLabel>
+                            <b>{data.title}</b>
+                        </SeriesLabel>
+                        <SeriesList>
+                            {data.comics.map((comic)=>(
+                                <ComicBox key={comic.id}>
+                                    <div className={'imgBox'}>
+                                        <LazyLoadImage src={comic.cover} alt="Image" effect="blur" placeholderSrc={gif_finn}/>
+                                    </div>
+                                    <div className={'titleBox'}>
+                                        <span>{comic.title}</span>
+                                    </div>
+                                </ComicBox>
+                            ))}
+                        </SeriesList>
+                    </React.Fragment>
+                    ))}
             </>
-        )
-    }
+        );
+    };
 
-    render() {
-        const {series} = this.props;
-        return (
-            <BodyWrapper>
-                <BodyComponent>
-                    {series && series.map(function (data) {
-
-                    })}
-                </BodyComponent>
-                <NavComponent/>
-            </BodyWrapper>
-        )
-    }
-}
+    return (
+        <BodyWrapper>
+            <BodyComponent>
+                {isLoading ? loadingAnimation() : content()}
+            </BodyComponent>
+            <NavComponent />
+        </BodyWrapper>
+    );
+};
 
 const mapStateToProps = (state) => {
     return {
-        series:state.home.get('series')
+        series: state.home.get('series'),
     };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getHomeSeries: (p) => {
-            dispatch(GetSeries(p));
-        },
-        setCurrentPosition:(position) => dispatch(SetCurrentPosition(position))
-
+        getHomeSeries: (p) => dispatch(GetSeries(p)),
+        setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };
 

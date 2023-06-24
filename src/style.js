@@ -37,4 +37,7 @@ p{
     display: flex;
     justify-content: center;
 }
+.goog-te-banner-frame {
+  display: none !important;
+}
 `;

@@ -30,7 +30,7 @@ export const ComicBox = styled.div`
         overflow: hidden;
         position: relative;
         width: 100%;
-        max-height:162px;
+        height:162px;
     }
     
     & > .imgBox img {
