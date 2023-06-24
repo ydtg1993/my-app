@@ -1,42 +1,35 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import * as actions from './store/actions';
-/*component*/
-import BottomComponent from '../navigation'
-import BodyComponent from "../body";
-import Skeleton from "react-loading-skeleton";
-import {BodyWrapper} from "../body/style";
-import {SetCurrentPosition} from "../store/actions";
-import {SearchButton, SearchInput, TopPanel} from "./style";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
+import { BodyWrapper } from '../body/style';
+import { SetCurrentPosition } from '../store/actions';
+import BottomComponent from '../navigation';
+import BodyComponent from '../body';
+import { SearchButton, SearchInput, TopPanel } from './style';
 
+const Search = (props) => {
+    const { setCurrentPosition } = props;
 
-class Search extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props.setCurrentPosition('search');
-    }
+    useEffect(() => {
+        setCurrentPosition('search');
+    }, [setCurrentPosition]);
 
-    render() {
-        return (
-            <BodyWrapper style={{gridTemplateRows:"40px auto 60px"}}>
-                <TopPanel><SearchInput/><SearchButton/></TopPanel>
-                <BodyComponent></BodyComponent>
-                <BottomComponent/>
-            </BodyWrapper>
-        )
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {}
+    return (
+        <BodyWrapper style={{ gridTemplateRows: '40px auto 60px' }}>
+            <TopPanel>
+                <SearchInput />
+                <SearchButton />
+            </TopPanel>
+            <BodyComponent></BodyComponent>
+            <BottomComponent />
+        </BodyWrapper>
+    );
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentPosition(position){
-            dispatch(SetCurrentPosition(position))
-        }
-    }
+        setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search)
+export default connect(null, mapDispatchToProps)(Search);

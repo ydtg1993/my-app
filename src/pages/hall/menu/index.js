@@ -1,46 +1,35 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import * as actions from './store/actions';
-/*component*/
-import NavComponent from '../navigation'
-import BodyComponent from "../body";
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
+import { BodyWrapper } from '../body/style';
+import { SetCurrentPosition } from '../store/actions';
+import NavComponent from '../navigation';
+import BodyComponent from '../body';
 
-import Skeleton from "react-loading-skeleton";
-import {BodyWrapper} from "../body/style";
-import {SetCurrentPosition} from "../store/actions";
+const Menu = (props) => {
+    const { setCurrentPosition } = props;
 
+    useEffect(() => {
+        setCurrentPosition('menu');
+    }, [setCurrentPosition]);
 
-class Menu extends React.Component {
-    constructor(props) {
-        super(props);
-        this.props.setCurrentPosition('menu');
-    }
-
-    render() {
-        return (
-            <BodyWrapper>
-                <BodyComponent>
-                    <Skeleton/>
-                    <Skeleton/>
-                    <Skeleton/>
-                    <Skeleton/>
-                </BodyComponent>
-                <NavComponent/>
-            </BodyWrapper>
-        )
-    }
-}
-
-const mapStateToProps = (state) => {
-    return {}
+    return (
+        <BodyWrapper>
+            <BodyComponent>
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+                <Skeleton />
+            </BodyComponent>
+            <NavComponent />
+        </BodyWrapper>
+    );
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setCurrentPosition(position){
-            dispatch(SetCurrentPosition(position))
-        }
-    }
+        setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
+    };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu)
+export default connect(null, mapDispatchToProps)(Menu);
