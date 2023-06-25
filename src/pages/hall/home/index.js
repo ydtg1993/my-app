@@ -18,33 +18,25 @@ const Home = (props) => {
     const {series, seriesEmpty, setCurrentPosition, getHomeSeries} = props;
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
 
     const fetchData = async (page) => {
-        try {
-            await getHomeSeries(page);
-            setIsLoading(false);
-        } catch (error) {
-            setIsLoading(false);
-        }
+        await getHomeSeries(page);
     };
 
     const loadMoreData = async () => {
-        if (!isLoadingMore && seriesEmpty !== 1) {
-            setIsLoadingMore(true);
+        if (!isLoading && seriesEmpty !== 1) {
             await fetchData(page + 1);
-            setTimeout(() => {
-                setPage((prevPage) => prevPage + 1);
-                setIsLoadingMore(false);
-            }, 3000);
+            setPage((prevPage) => prevPage + 1);
         }
     };
 
-    useEffect(() => {
+    useEffect(async () => {
         setCurrentPosition('home');
         if (isLoading) {
-            setIsLoading(true);
-            fetchData(page);
+            await fetchData(page);
+            setTimeout(()=>{
+                setIsLoading(false);
+            },600);
         }
     }, [setCurrentPosition, isLoading]);
 
@@ -71,7 +63,7 @@ const Home = (props) => {
                         </SeriesLabel>
                         <SeriesList>
                             {data.comics.map((comic) => (
-                                <ComicBox key={comic.id}>
+                                <ComicBox key={data.id+"-"+comic.id}>
                                     <div className={'imgBox'}>
                                         <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
                                                        placeholderSrc={gif_finn}/>

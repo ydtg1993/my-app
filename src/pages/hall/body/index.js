@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Section } from './style';
+import {LoadingIcon, LoadingSection, Section} from './style';
 
-const BodyComponent = ({children,loadMoreData}) => {
+const BodyComponent = ({ children, loadMoreData }) => {
     const [isBottom, setIsBottom] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const bodyRef = useRef(null);
 
     useEffect(() => {
@@ -22,12 +23,22 @@ const BodyComponent = ({children,loadMoreData}) => {
     }, []);
 
     useEffect(() => {
-        if (isBottom) {
-            loadMoreData();
+        if (isBottom && !isLoading) {
+            setIsLoading(true);
+            loadMoreData().finally(() => {
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 2000);
+            });
         }
-    }, [isBottom, loadMoreData]);
+    }, [isBottom, loadMoreData, isLoading]);
 
-    return <Section ref={bodyRef}>{children}</Section>;
+    return (
+        <Section ref={bodyRef}>
+            {children}
+            {isLoading && <LoadingSection><LoadingIcon /></LoadingSection>}
+        </Section>
+    );
 };
 
 export default BodyComponent;
