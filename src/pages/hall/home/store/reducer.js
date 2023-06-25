@@ -9,8 +9,11 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
     switch (action.type) {
         case Actions.SERIES:
-            return state.set('series',state.get('series').concat(action.data.series))
-                .set('seriesEmpty', action.data.empty);
+            if (action.data.empty === 1) {
+                return state.set('seriesEmpty', 1);
+            } else {
+                return state.set('series',state.get('series').concat(action.data.series));
+            }
         default:
             return state
     }

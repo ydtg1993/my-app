@@ -18,6 +18,7 @@ const Home = (props) => {
     const {series, seriesEmpty, setCurrentPosition, getHomeSeries} = props;
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [loadMoreEnd, setLoadMoreEnd] = useState(0);
 
     const fetchData = async (page) => {
         await getHomeSeries(page);
@@ -27,6 +28,8 @@ const Home = (props) => {
         if (!isLoading && seriesEmpty !== 1) {
             await fetchData(page + 1);
             setPage((prevPage) => prevPage + 1);
+        }else if(seriesEmpty === 1){
+            setLoadMoreEnd(1);
         }
     };
 
@@ -82,7 +85,7 @@ const Home = (props) => {
 
     return (
         <BodyWrapper>
-            <BodyComponent loadMoreData={loadMoreData}>
+            <BodyComponent loadMoreData={loadMoreData} loadMoreEnd={loadMoreEnd}>
                 {isLoading ? loadingAnimation() : content()}
             </BodyComponent>
             <NavComponent/>

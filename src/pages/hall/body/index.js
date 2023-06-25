@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {LoadingIcon, LoadingSection, Section} from './style';
 
-const BodyComponent = ({ children, loadMoreData }) => {
+const BodyComponent = ({ children, loadMoreData,loadMoreEnd }) => {
     const [isBottom, setIsBottom] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const bodyRef = useRef(null);
@@ -10,7 +10,6 @@ const BodyComponent = ({ children, loadMoreData }) => {
         const handleScroll = () => {
             const { scrollTop, clientHeight, scrollHeight } = bodyRef.current;
             const isBottom = scrollTop + clientHeight + 20 >= scrollHeight;
-
             setIsBottom(isBottom);
         };
 
@@ -22,21 +21,35 @@ const BodyComponent = ({ children, loadMoreData }) => {
         };
     }, []);
 
-    useEffect(() => {
+    useEffect(async () => {
+        if(loadMoreEnd === 1){
+            return;
+        }
         if (isBottom && !isLoading) {
             setIsLoading(true);
-            loadMoreData().finally(() => {
+            await new Promise((resolve) => {
                 setTimeout(() => {
-                    setIsLoading(false);
-                }, 2000);
+                    resolve();
+                }, 1500);
+            });
+            loadMoreData().finally(() => {
+                setIsLoading(false);
             });
         }
-    }, [isBottom, loadMoreData, isLoading]);
+    }, [isBottom, loadMoreData,loadMoreEnd, isLoading]);
+
+    const loadingAnimation = () => {
+        if(isLoading){
+            return (<LoadingSection><LoadingIcon /></LoadingSection>);
+        }else if(loadMoreEnd === 1){
+            return (<LoadingSection>-END-</LoadingSection>);
+        }
+    };
 
     return (
         <Section ref={bodyRef}>
             {children}
-            {isLoading && <LoadingSection><LoadingIcon /></LoadingSection>}
+            {loadingAnimation()}
         </Section>
     );
 };
