@@ -10,7 +10,7 @@ export const SeriesLabel = styled.div`
 export const SeriesList = styled.div`
     display:flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-bottom:14px;
 `;
 

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {connect} from 'react-redux';
 /*component*/
 import NavComponent from '../navigation'
@@ -15,11 +15,12 @@ import gif_finn from '../../../resource/home/finn.gif'
 import {GetSeries} from "./store/actions";
 
 const Home = (props) => {
-    const { series, setCurrentPosition, getHomeSeries } = props;
+    const {series, seriesEmpty, setCurrentPosition, getHomeSeries} = props;
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingMore, setIsLoadingMore] = useState(false);
 
-    const fetchData = async () => {
+    const fetchData = async (page) => {
         try {
             await getHomeSeries(page);
             setIsLoading(false);
@@ -28,21 +29,34 @@ const Home = (props) => {
         }
     };
 
+    const loadMoreData = async () => {
+        if (!isLoadingMore && seriesEmpty !== 1) {
+            setIsLoadingMore(true);
+            await fetchData(page + 1);
+            setTimeout(() => {
+                setPage((prevPage) => prevPage + 1);
+                setIsLoadingMore(false);
+            }, 3000);
+        }
+    };
+
     useEffect(() => {
         setCurrentPosition('home');
-        setIsLoading(true);
-        fetchData();
-    }, [setCurrentPosition, getHomeSeries, page]);
+        if (isLoading) {
+            setIsLoading(true);
+            fetchData(page);
+        }
+    }, [setCurrentPosition, isLoading]);
 
     const loadingAnimation = () => {
         return (
             <>
-                <Skeleton width={150} />
-                <Skeleton variant="rect" height={240} />
-                <Skeleton width={150} />
-                <Skeleton variant="rect" height={240} />
-                <Skeleton width={150} />
-                <Skeleton variant="rect" height={240} />
+                <Skeleton width={150}/>
+                <Skeleton variant="rect" height={240}/>
+                <Skeleton width={150}/>
+                <Skeleton variant="rect" height={240}/>
+                <Skeleton width={150}/>
+                <Skeleton variant="rect" height={240}/>
             </>
         );
     };
@@ -56,10 +70,11 @@ const Home = (props) => {
                             <b>{data.title}</b>
                         </SeriesLabel>
                         <SeriesList>
-                            {data.comics.map((comic)=>(
+                            {data.comics.map((comic) => (
                                 <ComicBox key={comic.id}>
                                     <div className={'imgBox'}>
-                                        <LazyLoadImage src={comic.cover} alt="Image" effect="blur" placeholderSrc={gif_finn}/>
+                                        <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
+                                                       placeholderSrc={gif_finn}/>
                                     </div>
                                     <div className={'titleBox'}>
                                         <span>{comic.title}</span>
@@ -68,17 +83,17 @@ const Home = (props) => {
                             ))}
                         </SeriesList>
                     </React.Fragment>
-                    ))}
+                ))}
             </>
         );
     };
 
     return (
         <BodyWrapper>
-            <BodyComponent>
+            <BodyComponent loadMoreData={loadMoreData}>
                 {isLoading ? loadingAnimation() : content()}
             </BodyComponent>
-            <NavComponent />
+            <NavComponent/>
         </BodyWrapper>
     );
 };
@@ -86,6 +101,7 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
     return {
         series: state.home.get('series'),
+        seriesEmpty: state.home.get('seriesEmpty')
     };
 };
 
