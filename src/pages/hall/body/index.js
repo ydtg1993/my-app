@@ -27,12 +27,18 @@ const BodyComponent = ({ children, loadMoreData,loadMoreEnd }) => {
         }
         if (isBottom && !isLoading) {
             setIsLoading(true);
+            setIsBottom(false);
             await new Promise((resolve) => {
                 setTimeout(() => {
                     resolve();
                 }, 1500);
             });
-            loadMoreData().finally(() => {
+            loadMoreData().finally(async () => {
+                await new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve();
+                    }, 3000);
+                });
                 setIsLoading(false);
             });
         }
