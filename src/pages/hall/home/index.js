@@ -15,7 +15,7 @@ import gif_finn from '../../../resource/home/finn.gif'
 import {GetSeries} from "./store/actions";
 
 const Home = (props) => {
-    const {series, seriesEmpty, setCurrentPosition, getHomeSeries} = props;
+    const {series, seriesEmpty,seriesPage, setCurrentPosition, getHomeSeries} = props;
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
     const [loadMoreEnd, setLoadMoreEnd] = useState(0);
@@ -26,22 +26,27 @@ const Home = (props) => {
 
     const loadMoreData = async () => {
         if (!isLoading && seriesEmpty !== 1) {
-            await fetchData(page + 1);
+            await fetchData(page+1);
             setPage((prevPage) => prevPage + 1);
         }else if(seriesEmpty === 1){
             setLoadMoreEnd(1);
         }
     };
 
-    useEffect(async () => {
+    useEffect(() => {
         setCurrentPosition('home');
         if (isLoading) {
-            await fetchData(page);
-            setTimeout(()=>{
-                setIsLoading(false);
-            },600);
+            if(seriesPage < page) {
+                fetchData(page)
+                    .then(() => setIsLoading(false))
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }else {
+                setIsLoading(false)
+            }
         }
-    }, [setCurrentPosition, isLoading]);
+    }, [setCurrentPosition, seriesPage,isLoading]);
 
     const loadingAnimation = () => {
         return (
@@ -96,6 +101,7 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
     return {
         series: state.home.get('series'),
+        seriesPage : state.home.get('seriesPage'),
         seriesEmpty: state.home.get('seriesEmpty')
     };
 };

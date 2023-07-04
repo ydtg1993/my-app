@@ -5,6 +5,7 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
     const [isBottom, setIsBottom] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const bodyRef = useRef(null);
+    const isMounted = useRef(true);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -18,6 +19,7 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
 
         return () => {
             bodyElement.removeEventListener('scroll', handleScroll);
+            isMounted.current = false;
         };
     }, []);
 
@@ -29,12 +31,15 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
             setIsLoading(true);
             setTimeout(() => {
                 setIsBottom(false);
-                loadMoreData().finally(async () => {
-                    setTimeout(() => {
-                        setIsLoading(false);
-                    }, 2000);
-                });
-            }, 1000);
+                loadMoreData()
+                    .finally(async () => {
+                        if (isMounted.current) {
+                            setTimeout(() => {
+                                setIsLoading(false);
+                            }, 1000);
+                        }
+                    });
+            }, 500);
         }
     }, [isBottom, loadMoreData, loadMoreEnd, isLoading]);
 

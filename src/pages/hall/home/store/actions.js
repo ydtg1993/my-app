@@ -13,7 +13,8 @@ export const GetSeries = (p)=>{
             if(data.code === 0){
                 dispatch({
                     type:SERIES,
-                    data:data.data
+                    data:data.data,
+                    page:p,
                 })
             }else {
                 Toast.info(data.message);
