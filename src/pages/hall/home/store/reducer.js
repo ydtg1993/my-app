@@ -4,14 +4,13 @@ import { fromJS } from 'immutable';
 const defaultState = fromJS({
     series:[],
     seriesPage:-1,
-    seriesEmpty:0
 });
 
 export default (state = defaultState, action) => {
     switch (action.type) {
         case Actions.SERIES:
             if (action.data.empty === 1) {
-                return state.set('seriesEmpty', 1);
+                return state.set('seriesPage',action.page + 1);
             } else {
                 return state
                     .set('seriesPage',action.page)

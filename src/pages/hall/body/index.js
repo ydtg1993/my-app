@@ -24,7 +24,7 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
     }, []);
 
     useEffect(() => {
-        if (loadMoreEnd === 1) {
+        if (loadMoreEnd === true) {
             return;
         }
         if (isBottom && !isLoading) {
@@ -44,7 +44,7 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
     }, [isBottom, loadMoreData, loadMoreEnd, isLoading]);
 
     const loadingAnimation = () => {
-        if (loadMoreEnd === 1) {
+        if (loadMoreEnd === true) {
             return (<LoadingSection>-END-</LoadingSection>);
         }
         if (isLoading) {

@@ -15,21 +15,18 @@ import gif_finn from '../../../resource/home/finn.gif'
 import {GetSeries} from "./store/actions";
 
 const Home = (props) => {
-    const {series, seriesEmpty,seriesPage, setCurrentPosition, getHomeSeries} = props;
+    const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
     const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
-    const [loadMoreEnd, setLoadMoreEnd] = useState(0);
 
     const fetchData = async (page) => {
         await getHomeSeries(page);
     };
 
     const loadMoreData = async () => {
-        if (!isLoading && seriesEmpty !== 1) {
+        if (!isLoading && (seriesPage <= page)) {
             await fetchData(page+1);
             setPage((prevPage) => prevPage + 1);
-        }else if(seriesEmpty === 1){
-            setLoadMoreEnd(1);
         }
     };
 
@@ -90,7 +87,7 @@ const Home = (props) => {
 
     return (
         <BodyWrapper>
-            <BodyComponent loadMoreData={loadMoreData} loadMoreEnd={loadMoreEnd}>
+            <BodyComponent loadMoreData={loadMoreData} loadMoreEnd={(seriesPage > page) ? true:false}>
                 {isLoading ? loadingAnimation() : content()}
             </BodyComponent>
             <NavComponent/>
