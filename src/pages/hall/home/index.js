@@ -24,8 +24,8 @@ const Home = (props) => {
     };
 
     const loadMoreData = async () => {
-        if (!isLoading && (seriesPage <= page)) {
-            await fetchData(page+1);
+        if (!isLoading && (seriesPage < page) ) {
+            await fetchData(page);
             setPage((prevPage) => prevPage + 1);
         }
     };
@@ -33,17 +33,20 @@ const Home = (props) => {
     useEffect(() => {
         setCurrentPosition('home');
         if (isLoading) {
-            if(seriesPage < page) {
+            if (seriesPage < page) {
                 fetchData(page)
-                    .then(() => setIsLoading(false))
+                    .then(() => {
+                        setPage((prevPage) => prevPage + 1);
+                        setIsLoading(false)
+                    })
                     .catch((error) => {
                         console.error(error);
                     });
-            }else {
+            } else {
                 setIsLoading(false)
             }
         }
-    }, [setCurrentPosition, seriesPage,isLoading]);
+    }, [setCurrentPosition, seriesPage, isLoading]);
 
     const loadingAnimation = () => {
         return (
@@ -68,7 +71,7 @@ const Home = (props) => {
                         </SeriesLabel>
                         <SeriesList>
                             {data.comics.map((comic) => (
-                                <ComicBox key={data.id+"-"+comic.id}>
+                                <ComicBox key={data.id + "-" + comic.id}>
                                     <div className={'imgBox'}>
                                         <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
                                                        placeholderSrc={gif_finn}/>
@@ -87,7 +90,7 @@ const Home = (props) => {
 
     return (
         <BodyWrapper>
-            <BodyComponent loadMoreData={loadMoreData} loadMoreEnd={(seriesPage > page) ? true:false}>
+            <BodyComponent loadMoreData={loadMoreData} loadMoreEnd={(seriesPage > page) ? true : false}>
                 {isLoading ? loadingAnimation() : content()}
             </BodyComponent>
             <NavComponent/>
@@ -98,8 +101,7 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
     return {
         series: state.home.get('series'),
-        seriesPage : state.home.get('seriesPage'),
-        seriesEmpty: state.home.get('seriesEmpty')
+        seriesPage: state.home.get('seriesPage')
     };
 };
 

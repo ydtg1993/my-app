@@ -1,17 +1,25 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useMemo, useState, useEffect, useRef} from 'react';
 import {LoadingIcon, LoadingSection, Section} from './style';
 
 const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
-    const [isBottom, setIsBottom] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const bodyRef = useRef(null);
     const isMounted = useRef(true);
 
     useEffect(() => {
+        if (loadMoreEnd === true) {
+            return;
+        }
         const handleScroll = () => {
             const {scrollTop, clientHeight, scrollHeight} = bodyRef.current;
-            const isBottom = scrollTop + clientHeight + 20 >= scrollHeight;
-            setIsBottom(isBottom);
+            const isAtBottom = scrollTop + clientHeight + 10 >= scrollHeight;
+            if (isAtBottom && !isLoading) {
+                setIsLoading(true);
+                loadMoreData()
+                    .finally(() => {
+                        setTimeout(()=>setIsLoading(false),1500);
+                    });
+            }
         };
 
         const bodyElement = bodyRef.current;
@@ -21,41 +29,22 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
             bodyElement.removeEventListener('scroll', handleScroll);
             isMounted.current = false;
         };
-    }, []);
+    }, [loadMoreData, isLoading, loadMoreEnd]);
 
-    useEffect(() => {
-        if (loadMoreEnd === true) {
-            return;
-        }
-        if (isBottom && !isLoading) {
-            setIsLoading(true);
-            setTimeout(() => {
-                setIsBottom(false);
-                loadMoreData()
-                    .finally(async () => {
-                        if (isMounted.current) {
-                            setTimeout(() => {
-                                setIsLoading(false);
-                            }, 1000);
-                        }
-                    });
-            }, 500);
-        }
-    }, [isBottom, loadMoreData, loadMoreEnd, isLoading]);
-
-    const loadingAnimation = () => {
-        if (loadMoreEnd === true) {
+    const loadingAnimation = useMemo(() => {
+        if (loadMoreEnd) {
             return (<LoadingSection>-END-</LoadingSection>);
         }
         if (isLoading) {
             return (<LoadingSection><LoadingIcon/></LoadingSection>);
         }
-    };
+        return null;
+    }, [isLoading, loadMoreEnd]);
 
     return (
         <Section ref={bodyRef}>
             {children}
-            {loadingAnimation()}
+            {loadingAnimation}
         </Section>
     );
 };

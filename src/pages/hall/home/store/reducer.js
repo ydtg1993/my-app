@@ -10,7 +10,7 @@ export default (state = defaultState, action) => {
     switch (action.type) {
         case Actions.SERIES:
             if (action.data.empty === 1) {
-                return state.set('seriesPage',action.page + 1);
+                return state.set('seriesPage',action.page + 10);
             } else {
                 return state
                     .set('seriesPage',action.page)
