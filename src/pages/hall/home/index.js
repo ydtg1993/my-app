@@ -16,7 +16,6 @@ import {GetSeries} from "./store/actions";
 
 const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
-    const [page, setPage] = useState(0);
     const [isLoading, setIsLoading] = useState(true);
 
     const fetchData = async (page) => {
@@ -24,19 +23,17 @@ const Home = (props) => {
     };
 
     const loadMoreData = async () => {
-        if (!isLoading && (seriesPage < page) ) {
-            await fetchData(page);
-            setPage((prevPage) => prevPage + 1);
+        if (!isLoading && (seriesPage > -1)) {
+            await fetchData(seriesPage);
         }
     };
 
     useEffect(() => {
         setCurrentPosition('home');
         if (isLoading) {
-            if (seriesPage < page) {
-                fetchData(page)
+            if (seriesPage === 0) {
+                fetchData(seriesPage)
                     .then(() => {
-                        setPage((prevPage) => prevPage + 1);
                         setIsLoading(false)
                     })
                     .catch((error) => {
@@ -90,7 +87,7 @@ const Home = (props) => {
 
     return (
         <BodyWrapper>
-            <BodyComponent loadMoreData={loadMoreData} loadMoreEnd={(seriesPage > page) ? true : false}>
+            <BodyComponent loadMoreData={loadMoreData} loadMoreEnd={(seriesPage === -1) ? true : false}>
                 {isLoading ? loadingAnimation() : content()}
             </BodyComponent>
             <NavComponent/>
