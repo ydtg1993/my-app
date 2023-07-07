@@ -26,12 +26,10 @@ const Home = (props) => {
 
     useEffect(() => {
         setCurrentPosition('home');
-        if (isLoading) {
-            if (seriesPage === 0) {
-                getHomeSeries(seriesPage);
-            }
-            setTimeout(() => setIsLoading(false), 700);
+        if (seriesPage === 0) {
+            getHomeSeries(seriesPage);
         }
+        setTimeout(() => setIsLoading(false), 300);
     }, []);
 
     const loadingAnimation = () => {
@@ -76,8 +74,7 @@ const Home = (props) => {
 
     return (
         <BodyWrapper>
-            <BodyComponent loadMoreData={loadMoreData} loading={isLoading}
-                           loadMoreEnd={(seriesPage === -1) ? true : false}>
+            <BodyComponent loadMoreData={loadMoreData} loadMorePage={seriesPage}>
                 {isLoading ? loadingAnimation() : content()}
             </BodyComponent>
             <NavComponent/>

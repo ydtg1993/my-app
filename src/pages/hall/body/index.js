@@ -1,12 +1,12 @@
 import React, {useMemo, useState, useEffect, useRef} from 'react';
 import {LoadingIcon, LoadingSection, Section} from './style';
 
-const BodyComponent = ({children, loadMoreData, loadMoreEnd, loading}) => {
+const BodyComponent = ({children, loadMoreData, loadMorePage}) => {
     const [isLoading, setIsLoading] = useState(false);
     const bodyRef = useRef(null);
 
     useEffect(() => {
-        if (loadMoreEnd === true || loading) {
+        if (loadMorePage < 1) {
             return;
         }
         const handleScroll = async () => {
@@ -27,17 +27,17 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd, loading}) => {
         return () => {
             bodyElement.removeEventListener('scroll', handleScroll);
         };
-    }, [loading, loadMoreEnd, isLoading]);
+    }, [loadMorePage, isLoading]);
 
     const loadingAnimation = useMemo(() => {
-        if (loadMoreEnd) {
+        if (loadMorePage === -1) {
             return (<LoadingSection>-END-</LoadingSection>);
         }
         if (isLoading) {
             return (<LoadingSection><LoadingIcon/></LoadingSection>);
         }
         return null;
-    }, [isLoading, loadMoreEnd]);
+    }, [isLoading, loadMorePage]);
 
     return (
         <Section ref={bodyRef}>
