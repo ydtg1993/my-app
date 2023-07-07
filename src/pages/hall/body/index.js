@@ -16,7 +16,9 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd, loading}) => {
             if (isAtBottom && !isLoading) {
                 setIsLoading(true);
                 await loadMoreData();
-                setIsLoading(false)
+                setTimeout(() => {
+                    setIsLoading(false);
+                }, 700);
             }
         };
 
@@ -27,7 +29,7 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd, loading}) => {
             bodyElement.removeEventListener('scroll', handleScroll);
             isMounted.current = false;
         };
-    }, [loading, loadMoreEnd]);
+    }, [loading, loadMoreEnd, isLoading]);
 
     const loadingAnimation = useMemo(() => {
         if (loadMoreEnd) {
