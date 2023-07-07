@@ -18,13 +18,9 @@ const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
     const [isLoading, setIsLoading] = useState(true);
 
-    const fetchData = async (page) => {
-        await getHomeSeries(page);
-    };
-
-    const loadMoreData = async () => {
-        if (!isLoading && (seriesPage > -1)) {
-            await fetchData(seriesPage);
+    const loadMoreData = () => {
+        if (seriesPage > -1) {
+            getHomeSeries(seriesPage);
         }
     };
 
@@ -32,18 +28,11 @@ const Home = (props) => {
         setCurrentPosition('home');
         if (isLoading) {
             if (seriesPage === 0) {
-                fetchData(seriesPage)
-                    .then(() => {
-                        setIsLoading(false)
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-            } else {
-                setIsLoading(false)
+                getHomeSeries(seriesPage);
             }
+            setTimeout(() => setIsLoading(false), 700);
         }
-    }, [setCurrentPosition, seriesPage, isLoading]);
+    }, []);
 
     const loadingAnimation = () => {
         return (
@@ -87,7 +76,8 @@ const Home = (props) => {
 
     return (
         <BodyWrapper>
-            <BodyComponent loadMoreData={loadMoreData} loadMoreEnd={(seriesPage === -1) ? true : false}>
+            <BodyComponent loadMoreData={loadMoreData} loading={isLoading}
+                           loadMoreEnd={(seriesPage === -1) ? true : false}>
                 {isLoading ? loadingAnimation() : content()}
             </BodyComponent>
             <NavComponent/>

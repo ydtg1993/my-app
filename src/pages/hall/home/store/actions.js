@@ -14,8 +14,8 @@ export const GetSeries = (p)=>{
                 dispatch({
                     type:SERIES,
                     data:data.data,
-                    page:p,
-                })
+                    page:p+1,
+                });
             }else {
                 Toast.info(data.message);
             }

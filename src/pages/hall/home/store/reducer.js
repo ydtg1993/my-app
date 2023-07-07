@@ -13,7 +13,7 @@ export default (state = defaultState, action) => {
                 return state.set('seriesPage',-1);
             } else {
                 return state
-                    .set('seriesPage',action.page+1)
+                    .set('seriesPage',action.page)
                     .set('series',state.get('series').concat(action.data.series));
             }
         default:

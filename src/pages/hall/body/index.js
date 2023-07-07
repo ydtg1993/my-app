@@ -1,24 +1,22 @@
 import React, {useMemo, useState, useEffect, useRef} from 'react';
 import {LoadingIcon, LoadingSection, Section} from './style';
 
-const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
+const BodyComponent = ({children, loadMoreData, loadMoreEnd, loading}) => {
     const [isLoading, setIsLoading] = useState(false);
     const bodyRef = useRef(null);
     const isMounted = useRef(true);
 
     useEffect(() => {
-        if (loadMoreEnd === true) {
+        if (loadMoreEnd === true || loading) {
             return;
         }
-        const handleScroll = () => {
+        const handleScroll = async () => {
             const {scrollTop, clientHeight, scrollHeight} = bodyRef.current;
             const isAtBottom = scrollTop + clientHeight + 10 >= scrollHeight;
             if (isAtBottom && !isLoading) {
                 setIsLoading(true);
-                loadMoreData()
-                    .finally(() => {
-                        setTimeout(()=>setIsLoading(false),1500);
-                    });
+                await loadMoreData();
+                setIsLoading(false)
             }
         };
 
@@ -29,7 +27,7 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd}) => {
             bodyElement.removeEventListener('scroll', handleScroll);
             isMounted.current = false;
         };
-    }, [loadMoreData, isLoading, loadMoreEnd]);
+    }, [loading, loadMoreEnd]);
 
     const loadingAnimation = useMemo(() => {
         if (loadMoreEnd) {
