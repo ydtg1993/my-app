@@ -4,7 +4,6 @@ import {LoadingIcon, LoadingSection, Section} from './style';
 const BodyComponent = ({children, loadMoreData, loadMoreEnd, loading}) => {
     const [isLoading, setIsLoading] = useState(false);
     const bodyRef = useRef(null);
-    const isMounted = useRef(true);
 
     useEffect(() => {
         if (loadMoreEnd === true || loading) {
@@ -27,7 +26,6 @@ const BodyComponent = ({children, loadMoreData, loadMoreEnd, loading}) => {
 
         return () => {
             bodyElement.removeEventListener('scroll', handleScroll);
-            isMounted.current = false;
         };
     }, [loading, loadMoreEnd, isLoading]);
 
