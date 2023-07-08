@@ -18,18 +18,22 @@ const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
     const [isLoading, setIsLoading] = useState(true);
 
-    const loadMoreData = () => {
+    const loadMoreData = async () => {
         if (seriesPage > -1) {
-            getHomeSeries(seriesPage);
+            await getHomeSeries(seriesPage);
         }
     };
 
     useEffect(() => {
         setCurrentPosition('home');
         if (seriesPage === 0) {
-            getHomeSeries(seriesPage);
+            (async () => {
+                await getHomeSeries(seriesPage);
+                setTimeout(() => setIsLoading(false), 300);
+            })();
+        } else {
+            setTimeout(() => setIsLoading(false), 300);
         }
-        setTimeout(() => setIsLoading(false), 300);
     }, []);
 
     const loadingAnimation = () => {
@@ -91,7 +95,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getHomeSeries: (p) => dispatch(GetSeries(p)),
+        getHomeSeries: async (p) => {
+            await dispatch(GetSeries(p));
+        },
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };

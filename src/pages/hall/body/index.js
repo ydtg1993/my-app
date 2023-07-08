@@ -16,15 +16,15 @@ const BodyComponent = ({children, loadMoreData, loadMorePage}) => {
         if (loadMorePage < 1) {
             return;
         }
-        const handleScroll = () => {
+        const handleScroll = async () => {
             const {scrollTop, clientHeight, scrollHeight} = bodyRef.current;
             const isAtBottom = scrollTop + clientHeight + 10 >= scrollHeight;
             if (isAtBottom && !isLoading) {
                 setIsLoading(true);
-                loadMoreData();
+                await loadMoreData();
                 setTimeout(() => {
                     isMountedRef.current && setIsLoading(false);
-                }, 700);
+                }, 300);
             }
         };
 
