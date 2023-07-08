@@ -1,7 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import Skeleton from 'react-loading-skeleton';
-import {BackIcon,HomeIcon, BodyWrapper, TitleBox, TopPanel} from './style';
+import {BackIcon, HomeIcon, BodyWrapper, TitleBox, TopPanel, ContentPanel} from './style';
+/*other component*/
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import {Link, useHistory} from 'react-router-dom';
 
 const Comic = (props) => {
@@ -14,6 +18,16 @@ const Comic = (props) => {
         history.goBack();
     };
 
+    const loadingAnimation = () => {
+        return (
+            <>
+                <Skeleton variant="rect" height={200}/>
+                <Skeleton width={150}/>
+                <Skeleton variant="rect" height={200}/>
+            </>
+        );
+    };
+
     return (
         <BodyWrapper>
             <TopPanel>
@@ -21,6 +35,9 @@ const Comic = (props) => {
                 <TitleBox><span>ccc</span></TitleBox>
                 <Link to="/"><HomeIcon/></Link>
             </TopPanel>
+            <ContentPanel>
+                {loadingAnimation()}
+            </ContentPanel>
         </BodyWrapper>
     );
 };

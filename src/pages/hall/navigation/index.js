@@ -7,7 +7,7 @@ const NavComponent = React.memo(({ currentPosition }) => {
     const navStyle = {
         display: 'flex',
         alignItems: 'center',
-        height: '55px',
+        height: '80%',
     };
 
     return (

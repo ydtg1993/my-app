@@ -76,6 +76,10 @@ export const NavigationTab = styled.div`
     &.who{
         background-position: -178px -178px;
     }
+    
+    @media (max-width: 320px) {
+        transform: scale(0.42);
+    }
 `;
 
 

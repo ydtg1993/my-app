@@ -7,7 +7,26 @@ export const TopPanel = styled.div`
     align-items: center;
     justify-content: space-around;
     background:white;
-    padding:5px 10px 5px 10px;
+    padding:0 10px 0 10px;
+`;
+
+export const ContentPanel = styled.div`
+   overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0);
+    }
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  scrollbar-width: thin;
+  scrollbar-color: transparent;
 `;
 
 export const BodyWrapper = styled.div`
@@ -19,7 +38,7 @@ export const BodyWrapper = styled.div`
     background-size: cover;
     overflow:hidden;
     display: grid;
-    grid-template-rows: 32px auto;
+    grid-template-rows: 40px auto;
     grid-template-columns:100%;
     background: #faefde;
  
