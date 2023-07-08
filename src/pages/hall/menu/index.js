@@ -11,7 +11,7 @@ const Menu = (props) => {
 
     useEffect(() => {
         setCurrentPosition('menu');
-    }, [setCurrentPosition]);
+    }, []);
 
     return (
         <BodyWrapper>
@@ -26,10 +26,16 @@ const Menu = (props) => {
     );
 };
 
+const mapStateToProps = (state) => {
+    return {
+
+    };
+};
+
 const mapDispatchToProps = (dispatch) => {
     return {
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };
 
-export default connect(null, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

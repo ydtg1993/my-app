@@ -4,20 +4,27 @@ import {LoadingIcon, LoadingSection, Section} from './style';
 const BodyComponent = ({children, loadMoreData, loadMorePage}) => {
     const [isLoading, setIsLoading] = useState(false);
     const bodyRef = useRef(null);
+    const isMountedRef = useRef(true);
+
+    useEffect(() => {
+        return () => {
+            isMountedRef.current = false; // 组件卸载时更新isMountedRef的值
+        };
+    }, []);
 
     useEffect(() => {
         if (loadMorePage < 1) {
             return;
         }
-        const handleScroll = async () => {
+        const handleScroll = () => {
             const {scrollTop, clientHeight, scrollHeight} = bodyRef.current;
             const isAtBottom = scrollTop + clientHeight + 10 >= scrollHeight;
             if (isAtBottom && !isLoading) {
                 setIsLoading(true);
-                await loadMoreData();
+                loadMoreData();
                 setTimeout(() => {
-                    setIsLoading(false);
-                }, 700);
+                    isMountedRef.current && setIsLoading(false);
+                }, 800);
             }
         };
 

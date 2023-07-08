@@ -85,7 +85,7 @@ const Home = (props) => {
 const mapStateToProps = (state) => {
     return {
         series: state.home.get('series'),
-        seriesPage: state.home.get('seriesPage')
+        seriesPage: state.home.get('seriesPage'),
     };
 };
 
