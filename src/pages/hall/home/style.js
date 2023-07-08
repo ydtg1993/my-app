@@ -48,7 +48,7 @@ export const ComicBox = styled.div`
         justify-content: center;
     }
     
-    & > .titleBox>span{
+    & > .titleBox span{
         font-weight: 400;
         font-size: 12px;
         overflow: hidden;

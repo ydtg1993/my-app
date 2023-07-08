@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react';
-import {img_nav, gif_finn, gif_search, svg_loading} from '../../resource'
+import {img_nav, gif_finn, gif_search, svg_loading, img_back} from '../../resource'
 
 const ImagePreloader = () => {
     useEffect(() => {
         // 在此处加载所需的图片
         const imageUrls = [
             svg_loading,
+            img_back,
             img_nav,
             gif_finn,
             gif_search

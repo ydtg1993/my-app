@@ -24,6 +24,8 @@ body {
 }
 a {
   -webkit-tap-highlight-color: transparent;
+   text-decoration: none;
+    color: inherit;
 }
 p{
     display: block;

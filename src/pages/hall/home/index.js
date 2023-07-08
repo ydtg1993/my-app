@@ -11,8 +11,9 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import gif_finn from '../../../resource/home/finn.gif'
+import gif_finn from '../../../resource/pics/finn.gif'
 import {GetSeries} from "./store/actions";
+import { useHistory } from 'react-router-dom';
 
 const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
@@ -32,7 +33,7 @@ const Home = (props) => {
                 setTimeout(() => setIsLoading(false), 300);
             })();
         } else {
-            setTimeout(() => setIsLoading(false), 300);
+            setIsLoading(false);
         }
     }, []);
 
@@ -49,6 +50,11 @@ const Home = (props) => {
         );
     };
 
+    const history = useHistory();
+    const handleComicClick = (comicId) => {
+        history.push(`/comic/${comicId}`);
+    };
+
     const content = () => {
         return (
             <>
@@ -59,7 +65,7 @@ const Home = (props) => {
                         </SeriesLabel>
                         <SeriesList>
                             {data.comics.map((comic) => (
-                                <ComicBox key={data.id + "-" + comic.id}>
+                                <ComicBox key={data.id + "-" + comic.id} onClick={() => handleComicClick(comic.id)}>
                                     <div className={'imgBox'}>
                                         <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
                                                        placeholderSrc={gif_finn}/>

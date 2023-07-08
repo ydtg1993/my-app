@@ -10,7 +10,9 @@ import Menu from "./pages/hall/menu/";
 import Search from "./pages/hall/search/";
 import IBook from "./pages/hall/ibook/";
 import Me from "./pages/hall/me/";
+import Comic from "./pages/comic";
 import ImagePreloader from "./pages/component/ImagePreloader";
+
 class App extends React.Component {
     render() {
         return (
@@ -24,6 +26,7 @@ class App extends React.Component {
                         <Route path="/search" component={Search}/>
                         <Route path="/ibook" component={IBook}/>
                         <Route path="/me" component={Me}/>
+                        <Route exact path="/comic/:comic_id" component={Comic}/>
                     </React.Fragment>
                 </BrowserRouter>
             </Provider>
