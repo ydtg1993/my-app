@@ -24,7 +24,7 @@ const BodyComponent = ({children, loadMoreData, loadMorePage}) => {
                 loadMoreData();
                 setTimeout(() => {
                     isMountedRef.current && setIsLoading(false);
-                }, 800);
+                }, 700);
             }
         };
 
