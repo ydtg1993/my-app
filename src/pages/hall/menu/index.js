@@ -19,7 +19,9 @@ const Menu = (props) => {
                 <Skeleton />
                 <Skeleton />
                 <Skeleton />
-                <Skeleton />
+                <Skeleton variant="rect" height={135}/>
+                <Skeleton variant="rect" height={135}/>
+                <Skeleton variant="rect" height={135}/>
             </BodyComponent>
             <NavComponent />
         </BodyWrapper>
