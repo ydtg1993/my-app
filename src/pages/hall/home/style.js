@@ -16,7 +16,6 @@ export const SeriesList = styled.div`
 
 export const ComicBox = styled.div`
     width:32%;
-    max-width:122px;
     background-color: rgb(255 255 255 / 64%);
     color: rgba(0, 0, 0, 0.87);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -31,7 +30,7 @@ export const ComicBox = styled.div`
         overflow: hidden;
         position: relative;
         width: 100%;
-        height:162px;
+        aspect-ratio: 3/4;
     }
     
     & > .imgBox > span {
@@ -61,24 +60,9 @@ export const ComicBox = styled.div`
     
     @media (max-width: 320px) {
         width:48%;
-        max-width:130px;
-        & > .imgBox{
-            height: 173px;
-        }
     }
     
-    @media (max-width: 360px) {
-        & > .imgBox{
-            height: 145px;
-        }
-    }
-    
-    @media (min-width: 1024px) {
-        width:158px;
-        max-width:158px;
-        
-        & > .imgBox{
-            height: 211px;
-        }
+    @media (min-width: 760px) {
+        width:16.3%;
     }
 `;
