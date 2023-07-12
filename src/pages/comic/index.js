@@ -6,11 +6,15 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {Link, useHistory} from 'react-router-dom';
+import {Link, useHistory, useParams} from 'react-router-dom';
+import {GetComic} from "./store/actions";
 
 const Comic = (props) => {
-    useEffect(() => {
+    const { comic_id } = useParams();
+    const { getComic } = props;
 
+    useEffect(() => {
+        getComic(comic_id);
     }, []);
 
     const history = useHistory();
@@ -42,10 +46,18 @@ const Comic = (props) => {
     );
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapStateToProps = (state) => {
     return {
-
+        comic: state.comic.get('comic'),
     };
 };
 
-export default connect(null, mapDispatchToProps)(Comic);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getComic: async (id) => {
+            await dispatch(GetComic(id));
+        },
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comic);
