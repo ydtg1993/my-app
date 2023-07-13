@@ -1,6 +1,24 @@
 import styled from 'styled-components';
 import {gif_finn, img_back} from "../../resource";
 
+export const BodyWrapper = styled.div`
+    height: 100%;  
+    width: 100%;
+    position: absolute;  
+    top: 0px;  
+    bottom: 0px;   
+    background-size: cover;
+    overflow:hidden;
+    display: grid;
+    grid-template-rows: 40px auto;
+    grid-template-columns:100%;
+    background: #faefde;
+ 
+    @media (min-width: 1024px) {
+        width: 1024px;
+    }
+`;
+
 export const TopPanel = styled.div`
     display:flex;
     height: 100%;
@@ -29,24 +47,6 @@ export const ContentPanel = styled.div`
   scrollbar-color: transparent;
 `;
 
-export const BodyWrapper = styled.div`
-    height: 100%;  
-    width: 100%;
-    position: absolute;  
-    top: 0px;  
-    bottom: 0px;   
-    background-size: cover;
-    overflow:hidden;
-    display: grid;
-    grid-template-rows: 40px auto;
-    grid-template-columns:100%;
-    background: #faefde;
- 
-    @media (min-width: 1024px) {
-        width: 1024px;
-    }
-`;
-
 export const BackIcon = styled.img.attrs({
     src:`${img_back}`
 })`
@@ -73,4 +73,21 @@ export const TitleBox = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+`;
+
+export const ComicInfoBox = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 220px;
+    background-repeat: no-repeat;
+    background: -webkit-linear-gradient(60deg,rgb(46 73 160 / 80%),transparent),-webkit-radial-gradient(91% 89%,ellipse closest-corner,rgb(146 17 87 / 40%),transparent 280%),-webkit-radial-gradient(left center,ellipse farthest-side,rgb(255 245 222 / 80%) 0%,transparent 100%),-webkit-radial-gradient(10% 90%,ellipse closest-corner,rgb(222 255 165 / 80%) 0%,transparent 100%),-webkit-radial-gradient(center right,ellipse cover,rgb(255 226 180),transparent),-webkit-radial-gradient(10% 10%,circle farthest-side,rgb(54 72 42 / 50%),transparent),-webkit-linear-gradient(140deg,rgb(40 176 180 / 90%),transparent),-webkit-radial-gradient(rgb(228 58 58 / 90%),transparent);
+`;
+
+export const ChapterBox = styled.div`
+    margin:3px;
+    border-radius: 5px;
+    height: 460px;
+    background:#ffe2b4;
 `;

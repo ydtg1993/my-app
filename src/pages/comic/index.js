@@ -1,20 +1,33 @@
-import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
-import {BackIcon, HomeIcon, BodyWrapper, TitleBox, TopPanel, ContentPanel} from './style';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {
+    BackIcon,
+    HomeIcon,
+    BodyWrapper,
+    TitleBox,
+    TopPanel,
+    ContentPanel,
+    ChapterBox,
+    ComicInfoBox
+} from './style';
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {Link, useHistory, useParams} from 'react-router-dom';
-import {GetComic} from "./store/actions";
+import {ClearComic, GetComic} from "./store/actions";
 
 const Comic = (props) => {
-    const { comic_id } = useParams();
-    const { getComic } = props;
+    const {comic_id} = useParams();
+    const {comic, getComic, clearComic} = props;
 
     useEffect(() => {
         getComic(comic_id);
+
+        return () => {
+            clearComic();
+        };
     }, []);
 
     const history = useHistory();
@@ -26,8 +39,18 @@ const Comic = (props) => {
         return (
             <>
                 <Skeleton variant="rect" height={200}/>
-                <Skeleton width={150}/>
-                <Skeleton variant="rect" height={200}/>
+                <Skeleton/>
+                <Skeleton/>
+                <Skeleton/>
+            </>
+        );
+    };
+
+    const loadedComic = () => {
+        return (
+            <>
+                <ComicInfoBox/>
+                <ChapterBox/>
             </>
         );
     };
@@ -35,12 +58,12 @@ const Comic = (props) => {
     return (
         <BodyWrapper>
             <TopPanel>
-                <BackIcon onClick={handleGoBack} />
-                <TitleBox><span>ccc</span></TitleBox>
+                <BackIcon onClick={handleGoBack}/>
+                <TitleBox><span>{comic.title}</span></TitleBox>
                 <Link to="/"><HomeIcon/></Link>
             </TopPanel>
             <ContentPanel>
-                {loadingAnimation()}
+                {comic.title ? loadedComic() : loadingAnimation()}
             </ContentPanel>
         </BodyWrapper>
     );
@@ -57,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
         getComic: async (id) => {
             await dispatch(GetComic(id));
         },
+        clearComic: () => dispatch(ClearComic())
     };
 };
 

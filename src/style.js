@@ -13,7 +13,7 @@ body {
   font-weight: 300;
   overflow: hidden;
   touch-action: manipulation;
-  background: #f5dfbd;
+  background: #fff6e8;
   @font-face {
      font-family: 'LangFont';
      src: url('${LangFont}');

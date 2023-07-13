@@ -5,6 +5,7 @@ import {Host} from "../../../index";
 import Toast from "../../component/toast";
 
 export const COMIC_DETAIL = 'comic_detail';
+export const COMIC_DETAIL_CLEAR = 'comic_detail_clear';
 
 export const GetComic = (id)=>{
     return async (dispatch) => {
@@ -24,5 +25,9 @@ export const GetComic = (id)=>{
         }
     };
 };
+
+export const ClearComic = ()=>({
+    type:COMIC_DETAIL_CLEAR
+});
 
 
