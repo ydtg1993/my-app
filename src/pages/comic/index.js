@@ -8,7 +8,7 @@ import {
     TopPanel,
     ContentPanel,
     ChapterBox,
-    ComicInfoBox
+    ComicInfoBox, CoverPart, InfoPart
 } from './style';
 /*other component*/
 import Skeleton from "react-loading-skeleton";
@@ -17,6 +17,7 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {ClearComic, GetComic} from "./store/actions";
+import gif_finn from "../../resource/pics/finn.gif";
 
 const Comic = (props) => {
     const {comic_id} = useParams();
@@ -35,23 +36,48 @@ const Comic = (props) => {
         history.goBack();
     };
 
-    const loadingAnimation = () => {
+    const loadedComic = (loaded) => {
+        if (loaded === false) {
+            return (
+                <>
+                    <Skeleton variant="rect" height={200}/>
+                </>
+            );
+        }
         return (
             <>
-                <Skeleton variant="rect" height={200}/>
-                <Skeleton/>
-                <Skeleton/>
-                <Skeleton/>
+                <ComicInfoBox>
+                    <CoverPart>
+                        <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
+                                       placeholderSrc={gif_finn}/>
+                    </CoverPart>
+                    <InfoPart>
+                        <li className={"title"}>{comic.title}</li>
+                        <li><label>作 者</label>{comic.author}</li>
+                        <li><label>热 度</label>{comic.popularity}</li>
+                        <li><label>标 签</label>{Object.entries(comic.label).map(([id, value]) => (
+                            <span className={"tag"} key={"tag-"+id}>{value}</span>
+                        ))}</li>
+                        <li><div className={"description"}>{comic.description}</div></li>
+                    </InfoPart>
+                </ComicInfoBox>
             </>
         );
     };
 
-    const loadedComic = () => {
+    const loadedChapter = (loaded) => {
+        if (loaded === false) {
+            return (
+                <>
+                    <Skeleton />
+                    <Skeleton />
+                    <Skeleton />
+                </>
+            );
+        }
+
         return (
-            <>
-                <ComicInfoBox/>
-                <ChapterBox/>
-            </>
+            <ChapterBox/>
         );
     };
 
@@ -62,8 +88,9 @@ const Comic = (props) => {
                 <TitleBox><span>{comic.title}</span></TitleBox>
                 <Link to="/"><HomeIcon/></Link>
             </TopPanel>
+            {comic.title ? loadedComic(true) : loadedComic(false)}
             <ContentPanel>
-                {comic.title ? loadedComic() : loadingAnimation()}
+                {comic.title ? loadedChapter(true) : loadedChapter(false)}
             </ContentPanel>
         </BodyWrapper>
     );
