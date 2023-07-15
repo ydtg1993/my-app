@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 /*component*/
 import NavComponent from '../navigation'
 import BodyComponent from "../body";
-import {BodyWrapper} from "../../style";
+import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 import {ComicBox, SeriesLabel, SeriesList} from "./style";
 /*other component*/
@@ -83,12 +83,12 @@ const Home = (props) => {
     };
 
     return (
-        <BodyWrapper>
+        <HallStruct>
             <BodyComponent loadMoreData={loadMoreData} loadMorePage={seriesPage}>
                 {isLoading ? loadingAnimation() : content()}
             </BodyComponent>
             <NavComponent/>
-        </BodyWrapper>
+        </HallStruct>
     );
 };
 

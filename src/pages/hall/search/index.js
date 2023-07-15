@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
-import { BodyWrapper } from '../../style';
+import { HallStruct } from '../../style';
 import { SetCurrentPosition } from '../store/actions';
 import BottomComponent from '../navigation';
 import BodyComponent from '../body';
@@ -15,14 +15,14 @@ const Search = (props) => {
     }, [setCurrentPosition]);
 
     return (
-        <BodyWrapper style={{ gridTemplateRows: '40px auto 60px' }}>
+        <HallStruct style={{ gridTemplateRows: '40px auto 60px' }}>
             <TopPanel>
                 <SearchInput />
                 <SearchButton />
             </TopPanel>
             <BodyComponent></BodyComponent>
             <BottomComponent />
-        </BodyWrapper>
+        </HallStruct>
     );
 };
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
-import { BodyWrapper } from '../../style';
+import { HallStruct } from '../../style';
 import { SetCurrentPosition } from '../store/actions';
 import NavComponent from '../navigation';
 import BodyComponent from '../body';
@@ -14,7 +14,7 @@ const Menu = (props) => {
     }, []);
 
     return (
-        <BodyWrapper>
+        <HallStruct>
             <BodyComponent>
                 <Skeleton />
                 <Skeleton />
@@ -24,7 +24,7 @@ const Menu = (props) => {
                 <Skeleton variant="rect" height={135}/>
             </BodyComponent>
             <NavComponent />
-        </BodyWrapper>
+        </HallStruct>
     );
 };
 

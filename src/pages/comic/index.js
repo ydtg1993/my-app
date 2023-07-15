@@ -1,11 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {
-    BackIcon,
-    HomeIcon,
-    BodyWrapper,
     TitleBox,
-    TopPanel,
     ChapterList,
     ComicInfoBox, CoverPart, InfoPart
 } from './style';
@@ -20,6 +16,7 @@ import gif_finn from "../../resource/pics/finn.gif";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from '@mui/material/Button';
+import {TopNavPanel, BackIcon, HomeIcon, DetailStruct} from "../style";
 
 const Comic = (props) => {
     const {comic_id} = useParams();
@@ -131,15 +128,15 @@ const Comic = (props) => {
     };
 
     return (
-        <BodyWrapper>
-            <TopPanel>
+        <DetailStruct>
+            <TopNavPanel>
                 <BackIcon onClick={handleGoBack}/>
                 <TitleBox><span>{comic.title}</span></TitleBox>
                 <Link to="/"><HomeIcon/></Link>
-            </TopPanel>
+            </TopNavPanel>
             {comic.title ? loadedComic(true) : loadedComic(false)}
             {comic.title ? loadedChapter(true) : loadedChapter(false)}
-        </BodyWrapper>
+        </DetailStruct>
     );
 };
 

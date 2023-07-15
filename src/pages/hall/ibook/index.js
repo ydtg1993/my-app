@@ -4,7 +4,7 @@ import * as actions from './store/actions';
 /*component*/
 import NavComponent from '../navigation'
 import BodyComponent from "../body";
-import {BodyWrapper} from "../../style";
+import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 
 
@@ -16,10 +16,10 @@ const IBook = (props) => {
     }, [setCurrentPosition]);
 
     return (
-        <BodyWrapper>
+        <HallStruct>
             <BodyComponent />
             <NavComponent />
-        </BodyWrapper>
+        </HallStruct>
     );
 };
 
