@@ -1,24 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 /*other component*/
-import Skeleton from "react-loading-skeleton";
-import 'react-loading-skeleton/dist/skeleton.css'
-import {LazyLoadImage} from 'react-lazy-load-image-component';
+import {LazyLoadImage, trackWindowScroll} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {Link, useHistory, useParams} from 'react-router-dom';
-import {BackIcon, DetailStruct, HomeIcon, TopNavPanel} from "../style";
+import {BackIcon, HomeIcon, TopNavPanel} from "../style";
 import {TitleBox} from "../comic/style";
 import {ClearChapter, GetChapter} from "./store/actions";
+import {ChapterImageList, ImageBox, ReaderStruct} from "./style";
+import gif_finn from "../../resource/pics/finn.gif";
 
 const Chapter = (props) => {
     const {chapter_id} = useParams();
-    const {chapter, getChapter, clearChapter} = props;
+    const {chapter, getChapter, clearChapter, scrollPosition} = props;
+    const [containerWidth, setContainerWidth] = useState(window.innerWidth);
 
     useEffect(() => {
+        const handleResize = () => {
+            setContainerWidth(window.innerWidth);
+        };
+        window.addEventListener('resize', handleResize);
         getChapter(chapter_id);
 
         return () => {
             clearChapter();
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
@@ -27,15 +33,40 @@ const Chapter = (props) => {
         history.goBack();
     };
 
+    const SetImg = (img, index) => {
+        let height;
+        if (containerWidth >= 1024) {
+            height = `${(1024 / img.w) * img.h}px`;
+        } else {
+            height = `${(containerWidth / img.w) * img.h}px`;
+        }
+        return (
+            <ImageBox key={index} style={{ height }}>
+                <LazyLoadImage
+                    src={img.f}
+                    alt="Image"
+                    effect="blur"
+                    placeholderSrc={gif_finn}
+                    scrollPosition={scrollPosition}
+                />
+            </ImageBox>
+        );
+    };
+
 
     return (
-        <DetailStruct>
+        <ReaderStruct>
             <TopNavPanel>
                 <BackIcon onClick={handleGoBack}/>
                 <TitleBox><span>{chapter.title}</span></TitleBox>
                 <Link to="/"><HomeIcon/></Link>
             </TopNavPanel>
-        </DetailStruct>
+            <ChapterImageList>
+                {chapter.source ? chapter.source.map((img,index) => (
+                    SetImg(img,index)
+                )) : ''}
+            </ChapterImageList>
+        </ReaderStruct>
     );
 };
 
@@ -54,4 +85,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Chapter);
+export default connect(mapStateToProps, mapDispatchToProps)(trackWindowScroll(Chapter));
