@@ -11,6 +11,7 @@ import Search from "./pages/hall/search/";
 import IBook from "./pages/hall/ibook/";
 import Me from "./pages/hall/me/";
 import Comic from "./pages/comic";
+import Chapter from "./pages/chapter";
 import ImagePreloader from "./pages/component/ImagePreloader";
 
 class App extends React.Component {
@@ -27,6 +28,7 @@ class App extends React.Component {
                         <Route path="/ibook" component={IBook}/>
                         <Route path="/me" component={Me}/>
                         <Route exact path="/comic/:comic_id" component={Comic}/>
+                        <Route exact path="/comic/:comic_id/:chapter_id" component={Chapter}/>
                     </React.Fragment>
                 </BrowserRouter>
             </Provider>

@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {gif_finn, img_back} from "../../resource";
+import {ScrollType} from "../style";
 
 export const BodyWrapper = styled.div`
     height: 100%;  
@@ -25,25 +26,6 @@ export const TopPanel = styled.div`
     justify-content: space-around;
     background:white;
     padding:0 10px 0 10px;
-`;
-
-export const ContentPanel = styled.div`
-   overflow-y: scroll;
-    &::-webkit-scrollbar {
-        width: 0;
-    }
-    
-    &::-webkit-scrollbar-track {
-        background-color: transparent;
-    }
-    
-    &::-webkit-scrollbar-thumb {
-        background-color: rgba(0, 0, 0, 0);
-    }
-  scrollbar-width: thin;
-  scrollbar-color: transparent transparent;
-  scrollbar-width: thin;
-  scrollbar-color: transparent;
 `;
 
 export const BackIcon = styled.img.attrs({
@@ -109,7 +91,6 @@ export const CoverPart = styled.div`
 
 export const InfoPart = styled.ul`
     flex:0.96;
-    list-style-type: none;
     color:white;
     font-size:12px;
     margin: 0;
@@ -155,9 +136,22 @@ export const InfoPart = styled.ul`
     }
 `;
 
-export const ChapterBox = styled.div`
+export const ChapterList = styled(ScrollType)`
     margin:3px;
     border-radius: 5px;
     height: 100%;
     background:#ffe2b4;
+    padding:0;
+    display: flex;
+    flex-direction: column;
+    
+    & > button {
+        background: #faefde;
+        margin: 5px 5px 0;
+        font-size: 14px;
+        color: #000000;
+        border: solid 1px #85c9f6;
+        border-radius: 2px;
+        align-items: center;
+    }
 `;

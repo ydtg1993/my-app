@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {
     BackIcon,
@@ -6,8 +6,7 @@ import {
     BodyWrapper,
     TitleBox,
     TopPanel,
-    ContentPanel,
-    ChapterBox,
+    ChapterList,
     ComicInfoBox, CoverPart, InfoPart
 } from './style';
 /*other component*/
@@ -18,10 +17,14 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {ClearComic, GetComic} from "./store/actions";
 import gif_finn from "../../resource/pics/finn.gif";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Button from '@mui/material/Button';
 
 const Comic = (props) => {
     const {comic_id} = useParams();
     const {comic, getComic, clearComic} = props;
+    const [tab, setTab] = useState(0);
 
     useEffect(() => {
         getComic(comic_id);
@@ -34,6 +37,14 @@ const Comic = (props) => {
     const history = useHistory();
     const handleGoBack = () => {
         history.goBack();
+    };
+
+    const handleChapterClick = (chapterId) => {
+        history.push(`/comic/${comic_id}/${chapterId}`);
+    };
+
+    const handleTabChange = (event, newValue) => {
+        setTab(newValue);
     };
 
     const loadedComic = (loaded) => {
@@ -56,9 +67,11 @@ const Comic = (props) => {
                         <li><label>作 者</label>{comic.author}</li>
                         <li><label>热 度</label>{comic.popularity}</li>
                         <li><label>标 签</label>{Object.entries(comic.label).map(([id, value]) => (
-                            <span className={"tag"} key={"tag-"+id}>{value}</span>
+                            <span className={"tag"} key={"tag-" + id}>{value}</span>
                         ))}</li>
-                        <li><div className={"description"}>{comic.description}</div></li>
+                        <li>
+                            <div className={"description"}>{comic.description}</div>
+                        </li>
                     </InfoPart>
                 </ComicInfoBox>
             </>
@@ -69,15 +82,51 @@ const Comic = (props) => {
         if (loaded === false) {
             return (
                 <>
-                    <Skeleton />
-                    <Skeleton />
-                    <Skeleton />
+                    <Skeleton variant="rect" height={50}/>
+                    {[...Array(5)].map((_, index) => (
+                        <div key={index} style={{display: "grid", gridTemplateColumns: "1fr 1fr 1fr"}}>
+                            {[...Array(3)].map((_, index) => (
+                                <div key={index} style={{margin: "0 5px 0"}}>
+                                    <Skeleton/>
+                                </div>
+                            ))}
+                        </div>
+                    ))}
                 </>
             );
         }
 
+        const itemsPerPage = 20;
+        const totalPages = Math.ceil(comic.chapters.length / itemsPerPage);
+
+        const newPaginatedChapters = [];
+        for (let i = 0; i < totalPages; i++) {
+            const startIndex = i * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const pageChapters = [...comic.chapters].slice(startIndex, endIndex);
+            newPaginatedChapters.push(pageChapters);
+        }
+
         return (
-            <ChapterBox/>
+            <>
+                <Tabs
+                    value={tab}
+                    onChange={handleTabChange}
+                    variant="scrollable"
+                    scrollButtons
+                    allowScrollButtonsMobile
+                    aria-label="scrollable auto tabs example"
+                >
+                    {newPaginatedChapters.map((page, index) => (
+                        <Tab key={index} label={`序 ${index * itemsPerPage + 1} - ${(index + 1) * itemsPerPage}`}/>
+                    ))}
+                </Tabs>
+                <ChapterList>
+                    {newPaginatedChapters[tab].map((chapter) => (
+                        <Button key={chapter.id} variant="outlined" onClick={() => handleChapterClick(chapter.id)}>{chapter.title}</Button>
+                    ))}
+                </ChapterList>
+            </>
         );
     };
 
@@ -89,9 +138,7 @@ const Comic = (props) => {
                 <Link to="/"><HomeIcon/></Link>
             </TopPanel>
             {comic.title ? loadedComic(true) : loadedComic(false)}
-            <ContentPanel>
-                {comic.title ? loadedChapter(true) : loadedChapter(false)}
-            </ContentPanel>
+            {comic.title ? loadedChapter(true) : loadedChapter(false)}
         </BodyWrapper>
     );
 };

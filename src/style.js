@@ -28,13 +28,16 @@ a {
    text-decoration: none;
     color: inherit;
 }
-p{
+p {
     display: block;
     margin-block-start: 0;
     margin-block-end: 0;
     margin-inline-start: 0;
     margin-inline-end: 0;
     height: fit-content;
+}
+ul {
+    list-style-type: none;
 }
 #root{
     display: flex;

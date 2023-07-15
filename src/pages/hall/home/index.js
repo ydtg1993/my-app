@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 /*component*/
 import NavComponent from '../navigation'
 import BodyComponent from "../body";
-import {BodyWrapper} from "../body/style";
+import {BodyWrapper} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 import {ComicBox, SeriesLabel, SeriesList} from "./style";
 /*other component*/

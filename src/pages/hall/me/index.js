@@ -4,7 +4,7 @@ import * as actions from './store/actions';
 /*component*/
 import NavComponent from '../navigation'
 import BodyComponent from "../body";
-import {BodyWrapper} from "../body/style";
+import {BodyWrapper} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 
 
