@@ -115,12 +115,14 @@ const Comic = (props) => {
                     aria-label="scrollable auto tabs example"
                 >
                     {newPaginatedChapters.map((page, index) => (
-                        <Tab key={index} label={`序 ${index * itemsPerPage + 1} - ${(index + 1) * itemsPerPage}`}/>
+                        <Tab key={index} label={`序${index * itemsPerPage + 1} - ${(index + 1) * itemsPerPage}`}/>
                     ))}
                 </Tabs>
                 <ChapterList>
                     {newPaginatedChapters[tab].map((chapter) => (
-                        <Button key={chapter.id} variant="outlined" onClick={() => handleChapterClick(chapter.id)}>{chapter.title}</Button>
+                        <Button key={chapter.id} variant="outlined" onClick={() => handleChapterClick(chapter.id)}>
+                            <span>{chapter.title}</span>
+                        </Button>
                     ))}
                 </ChapterList>
             </>

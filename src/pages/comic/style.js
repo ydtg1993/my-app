@@ -105,14 +105,45 @@ export const ChapterList = styled(ScrollType)`
     padding:0;
     display: flex;
     flex-direction: column;
+    padding-bottom:7px;
+    height:300px;
     
     & > button {
         background: #faefde;
-        margin: 5px 5px 0;
+        margin: 7px 7px 0;
         font-size: 14px;
         color: #000000;
         border: solid 1px #85c9f6;
         border-radius: 2px;
         align-items: center;
+        max-height:45px;
+    } 
+    
+    & > button>span{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    
+    @media (min-width: 540px) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      & > button {
+         margin: 7px 0 0;
+         width: 48%;
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      & > button {
+         margin: 7px 0 0;
+         width: 24%;
+      }
     }
 `;
