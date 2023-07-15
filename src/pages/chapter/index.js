@@ -44,8 +44,8 @@ const Chapter = (props) => {
             <ImageBox key={index} style={{ height }}>
                 <LazyLoadImage
                     src={img.f}
-                    alt="Image"
                     effect="blur"
+                    alt={chapter.title}
                     placeholderSrc={gif_finn}
                     scrollPosition={scrollPosition}
                 />
