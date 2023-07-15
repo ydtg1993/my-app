@@ -105,12 +105,12 @@ export const ChapterList = styled(ScrollType)`
     padding:0;
     display: flex;
     flex-direction: column;
-    padding-bottom:7px;
+    padding:7px;
     height:300px;
     
     & > button {
         background: #faefde;
-        margin: 7px 7px 0;
+        margin: 0 7px 7px;
         font-size: 14px;
         color: #000000;
         border: solid 1px #85c9f6;
@@ -131,7 +131,7 @@ export const ChapterList = styled(ScrollType)`
       flex-wrap: wrap;
       justify-content: space-evenly;
       & > button {
-         margin: 7px 0 0;
+         margin: 0 0 7px;
          width: 48%;
       }
     }
@@ -140,10 +140,10 @@ export const ChapterList = styled(ScrollType)`
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
-      justify-content: space-evenly;
+      justify-content: start;
       & > button {
-         margin: 7px 0 0;
-         width: 24%;
+         margin: 0 7px 0 0;
+         width: 23%;
       }
     }
 `;
