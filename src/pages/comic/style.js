@@ -94,6 +94,19 @@ export const InfoPart = styled.ul`
         overflow-y: scroll;
         height: 60px;
         white-space: normal;
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0);
+        }
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        scrollbar-width: thin;
+        scrollbar-color: transparent;
     }
 `;
 

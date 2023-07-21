@@ -104,6 +104,10 @@ const Comic = (props) => {
             newPaginatedChapters.push(pageChapters);
         }
 
+        if(newPaginatedChapters.length == 0){
+            return (<></>);
+        }
+
         return (
             <>
                 <Tabs

@@ -24,7 +24,11 @@ export const ChapterImageList = styled(ScrollType)`
 
 export const ImageBox = styled.div`
     width:100%;
-    
+    display: flex;
+    justify-content: center;
+    & > span {
+        width:100%;
+    }
     & img {
         width:100%;
     }

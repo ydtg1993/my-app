@@ -35,15 +35,18 @@ const Chapter = (props) => {
 
     const SetImg = (img, index) => {
         let height;
+        let width;
+        let rate = Math.round(img.w / img.h * 1000) / 1000;
         if (containerWidth >= 1024) {
-            height = `${(1024 / img.w) * img.h}px`;
+            width = `1024`;
         } else {
-            height = `${(containerWidth / img.w) * img.h}px`;
+            width = containerWidth;
         }
+        height = `${width / rate - 2}`;
         return (
-            <ImageBox key={index} style={{ height }}>
+            <ImageBox key={index} style={{width:width+"px",height:height+"px"}}>
                 <LazyLoadImage
-                    src={img.f}
+                    src={img.s}
                     effect="blur"
                     alt={chapter.title}
                     placeholderSrc={gif_finn}
