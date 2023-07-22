@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {NavigationTab} from "../navigation/style";
 
 export const TopPanel = styled.div`
     display:flex;
@@ -30,5 +31,13 @@ export const SearchButton = styled.div`
     height:32px;
     border: 2px solid #9b7eaa;
     border-radius: 0 40px 40px 0;
-    background-color: #9b7eaa;
+    background-color: #e3cbcb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const SearchIcon = styled(NavigationTab)`
+    transform: scale(0.42);
+    background-position: -94px -10px;
 `;

@@ -1,5 +1,5 @@
 import React from 'react';
-import {GlobalStyle} from './style'
+import { GlobalStyle } from './style'
 import { BrowserRouter, Route } from 'react-router-dom';
 /*redux*/
 import { Provider } from 'react-redux';

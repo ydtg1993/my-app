@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 import {gif_finn, img_back} from "../resource";
+import {NavigationTab} from "./hall/navigation/style";
 
 export const ScrollType = styled.div`
     overflow-y: scroll;
@@ -62,6 +63,12 @@ export const TopNavPanel = styled.div`
     justify-content: space-around;
     background:white;
     padding:0 10px 0 10px;
+    
+    & > a {
+        display: flex;
+        align-items: center;
+        height: 32px;
+    }
 `;
 
 export const BackIcon = styled.img.attrs({
@@ -70,9 +77,8 @@ export const BackIcon = styled.img.attrs({
     width:24px;
 `;
 
-export const HomeIcon = styled.img.attrs({
-    src:`${gif_finn}`
-})`
-    width:30px;
+export const HomeIcon = styled(NavigationTab)`
+    transform: scale(0.42);
+    background-position: -10px -10px;
 `;
 

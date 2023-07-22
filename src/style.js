@@ -26,7 +26,7 @@ body {
 a {
   -webkit-tap-highlight-color: transparent;
    text-decoration: none;
-    color: inherit;
+   color: inherit;
 }
 p {
     display: block;
@@ -42,8 +42,5 @@ ul {
 #root{
     display: flex;
     justify-content: center;
-}
-.goog-te-banner-frame {
-  display: none !important;
 }
 `;
