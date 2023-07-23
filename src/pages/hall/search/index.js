@@ -6,15 +6,15 @@ import { SetCurrentPosition } from '../store/actions';
 import BottomComponent from '../navigation';
 import BodyComponent from '../body';
 import {SearchButton, SearchIcon, SearchInput, TopPanel,ComicInfoBox, CoverPart, InfoPart} from './style';
-import {GetSearch} from "./store/actions";
+import {ClearSearchList, GetSearch} from "./store/actions";
 import debounce from 'lodash/debounce';
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import gif_finn from "../../../resource/pics/finn.gif";
 
 const Search = (props) => {
-    const {searchResult, searchPage, setCurrentPosition,getSearchResult } = props;
+    const {searchResult, searchPage, setCurrentPosition,getSearchResult,clearSearch } = props;
     const [isLoading, setIsLoading] = useState(true);
-    const debouncedGetSearchResult = debounce(getSearchResult, 700);
+    const debouncedGetSearchResult = debounce(getSearchResult, 1000);
     const searchInputRef = useRef(null);
 
     useEffect(() => {
@@ -29,9 +29,12 @@ const Search = (props) => {
         }
     }, []);
 
-    const handleSearchButtonClick = () => {
+    const handleSearchButtonClick = async () => {
         const keyword = searchInputRef.current.value;
-        debouncedGetSearchResult(keyword,0);
+        clearSearch();
+        setIsLoading(true);
+        await debouncedGetSearchResult(keyword, 0);
+        setTimeout(()=>setIsLoading(false),700);
     };
 
     const loadingAnimation = () => {
@@ -96,6 +99,7 @@ const mapDispatchToProps = (dispatch) => {
         getSearchResult: async (keyword,page) => {
             await dispatch(GetSearch(keyword,page));
         },
+        clearSearch:() => dispatch(ClearSearchList()),
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };

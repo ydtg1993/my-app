@@ -1,15 +1,20 @@
 import * as Actions from './actions';
-import { fromJS } from 'immutable';
+import { fromJS,List } from 'immutable';
 
 const defaultState = fromJS({
     searchWords:"",
-    searchResult:[],
+    searchResult:List(),
     searchPage:0
 });
 
 export default (state = defaultState, action) => {
     switch (action.type) {
         case Actions.SEARCH_RESULT:
+            return state
+                .set('searchPage',action.page)
+                .set('searchResult',state.get('searchResult').concat(action.data.comics));
+
+        case Actions.SEARCH_RESULT_MORE:
             if (action.data.empty === 1) {
                 return state.set('searchPage',-1);
             } else {
@@ -17,8 +22,12 @@ export default (state = defaultState, action) => {
                     .set('searchPage',action.page)
                     .set('searchResult',state.get('searchResult').concat(action.data.comics));
             }
+
+        case Actions.CLEAR_SEARCH_LIST:
+            return state
+                .set('searchPage',0)
+                .set('searchResult',List());
         default:
             return state
     }
 };
-
