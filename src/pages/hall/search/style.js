@@ -41,3 +41,97 @@ export const SearchIcon = styled(NavigationTab)`
     transform: scale(0.42);
     background-position: -94px -10px;
 `;
+
+export const ComicInfoBox = styled.div`
+    display:flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    padding:5px 0 5px 0;
+    border-radius:5px;
+    margin-bottom:5px;
+    background: #5e94b6d1;
+`;
+
+export const CoverPart = styled.div`
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 3/4;
+    width:24%;
+    box-shadow: rgba(0,0,0,0.2) 0px 4px 2px -2px, rgba(0,0,0,0.14) 0px 2px 2px 1px, rgba(0,0,0,0.12) 0px 2px 5px 1px;
+    margin:0 5px 0 5px;
+    
+    & img {
+        width: 100%;
+    }
+    
+    @media (min-width: 540px) {
+        width:17%;
+    }
+    
+    @media (min-width: 1024px) {
+        width:12%;
+    }
+`;
+
+export const InfoPart = styled.ul`
+    flex:0.96;
+    color:white;
+    font-size:12px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    
+    & > li {
+        margin:5px 0 5px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;   
+    }
+    
+    & > li.title{
+        font-size: 14px;
+        color: #ffebd1;
+    }
+    
+    & > li > label{
+        padding: 2px;
+        background: #151515eb;
+        display: inline-flex;
+        border-radius: 2px;
+        align-items: center;
+        justify-content: center;
+        margin-right: 5px;
+    }
+    
+    & > li > .tag{
+        padding: 2px;
+        margin-right: 4px;
+        background: rgb(146 17 87 / 40%);
+        display: inline-flex;
+        border-radius: 2px;
+        align-items: center;
+        justify-content: center;
+    }
+    
+     & > li > .description{
+        overflow-y: scroll;
+        height: 60px;
+        white-space: normal;
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0);
+        }
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        scrollbar-width: thin;
+        scrollbar-color: transparent;
+    }
+`;
