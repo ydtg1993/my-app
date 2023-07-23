@@ -12,7 +12,7 @@ import {LazyLoadImage} from "react-lazy-load-image-component";
 import gif_finn from "../../../resource/pics/finn.gif";
 
 const Search = (props) => {
-    const {searchResult, searchPage, setCurrentPosition,getSearchResult,clearSearch } = props;
+    const {searchResult, searchPage,searchWords, setCurrentPosition,getSearchResult,clearSearch } = props;
     const [isLoading, setIsLoading] = useState(true);
     const debouncedGetSearchResult = debounce(getSearchResult, 1000);
     const searchInputRef = useRef(null);
@@ -31,6 +31,8 @@ const Search = (props) => {
 
     const handleSearchButtonClick = async () => {
         const keyword = searchInputRef.current.value;
+        if(keyword.trim() === searchWords)return ;
+        if(keyword.trim() === "")return ;
         clearSearch();
         setIsLoading(true);
         await debouncedGetSearchResult(keyword, 0);
@@ -91,6 +93,7 @@ const mapStateToProps = (state) => {
     return {
         searchResult: state.search.get('searchResult'),
         searchPage: state.search.get('searchPage'),
+        searchWords: state.search.get('searchWords'),
     };
 };
 

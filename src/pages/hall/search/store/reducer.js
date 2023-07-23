@@ -12,6 +12,7 @@ export default (state = defaultState, action) => {
         case Actions.SEARCH_RESULT:
             return state
                 .set('searchPage',action.page)
+                .set('searchWords',action.words)
                 .set('searchResult',state.get('searchResult').concat(action.data.comics));
 
         case Actions.SEARCH_RESULT_MORE:

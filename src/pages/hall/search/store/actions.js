@@ -26,11 +26,13 @@ export const GetSearch = (keyword,p,loadMore=false)=>{
                     type: SEARCH_RESULT,
                     data: data.data,
                     page: p + 1,
+                    words:keyword,
                 });
             } else {
                 Toast.info(data.message);
             }
         } catch (error) {
+            console.log(error)
             Toast.error('服务器开小差了', 1000);
         }
     };
