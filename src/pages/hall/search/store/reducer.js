@@ -10,8 +10,12 @@ const defaultState = fromJS({
 export default (state = defaultState, action) => {
     switch (action.type) {
         case Actions.SEARCH_RESULT:
+            let p = action.page;
+            if(action.data.empty === 1){
+                p = -1;
+            }
             return state
-                .set('searchPage',action.page)
+                .set('searchPage',p)
                 .set('searchWords',action.words)
                 .set('searchResult',state.get('searchResult').concat(action.data.comics));
 

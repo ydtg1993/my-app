@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {gif_finn} from '../../../resource';
 
 export const SeriesLabel = styled.div`
     display:flex;
@@ -31,6 +32,9 @@ export const ComicBox = styled.div`
         position: relative;
         width: 100%;
         aspect-ratio: 3/4;
+        background-image: url(${gif_finn});
+        background-repeat: no-repeat;
+        background-position: center center; 
     }
     
     & > .imgBox > span {

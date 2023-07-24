@@ -48,8 +48,8 @@ export const ComicInfoBox = styled.div`
     align-items: flex-start;
     justify-content: flex-start;
     width: 100%;
-    padding:5px 0 5px 0;
-    border-radius:5px;
+    padding:3px 0 3px 0;
+    border-radius:3px;
     margin-bottom:5px;
     background: #5e94b6d1;
 `;
@@ -61,7 +61,7 @@ export const CoverPart = styled.div`
     aspect-ratio: 3/4;
     width:24%;
     box-shadow: rgba(0,0,0,0.2) 0px 4px 2px -2px, rgba(0,0,0,0.14) 0px 2px 2px 1px, rgba(0,0,0,0.12) 0px 2px 5px 1px;
-    margin:0 5px 0 5px;
+    margin:0 3px 0 3px;
     
     & img {
         width: 100%;

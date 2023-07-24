@@ -19,12 +19,6 @@ const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
     const [isLoading, setIsLoading] = useState(true);
 
-    const loadMoreData = async () => {
-        if (seriesPage > -1) {
-            await getHomeSeries(seriesPage);
-        }
-    };
-
     useEffect(() => {
         setCurrentPosition('home');
         if (seriesPage === 0) {
@@ -50,6 +44,12 @@ const Home = (props) => {
         );
     };
 
+    const loadMoreData = async () => {
+        if (seriesPage > -1) {
+            await getHomeSeries(seriesPage);
+        }
+    };
+
     const history = useHistory();
     const handleComicClick = (comicId) => {
         history.push(`/comic/${comicId}`);
@@ -67,8 +67,7 @@ const Home = (props) => {
                             {data.comics.map((comic) => (
                                 <ComicBox key={data.id + "-" + comic.id} onClick={() => handleComicClick(comic.id)}>
                                     <div className={'imgBox'}>
-                                        <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
-                                                       placeholderSrc={gif_finn}/>
+                                        <LazyLoadImage src={comic.cover} alt="Image" effect="blur"/>
                                     </div>
                                     <div className={'titleBox'}>
                                         <span>{comic.title}</span>

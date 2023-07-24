@@ -10,6 +10,7 @@ import {ClearSearchList, GetSearch} from "./store/actions";
 import debounce from 'lodash/debounce';
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import gif_finn from "../../../resource/pics/finn.gif";
+import {useHistory} from "react-router-dom";
 
 const Search = (props) => {
     const {searchResult, searchPage,searchWords, setCurrentPosition,getSearchResult,clearSearch } = props;
@@ -21,13 +22,24 @@ const Search = (props) => {
         setCurrentPosition('search');
         if (searchPage === 0) {
             (async () => {
-                await getSearchResult(searchPage);
+                await getSearchResult(searchWords,searchPage);
                 setTimeout(() => setIsLoading(false), 300);
             })();
         } else {
             setIsLoading(false);
         }
     }, []);
+
+    const loadMoreData = async () => {
+        if (searchPage > -1) {
+            await getSearchResult(searchWords,searchPage,true);
+        }
+    };
+
+    const history = useHistory();
+    const handleComicClick = (comicId) => {
+        history.push(`/comic/${comicId}`);
+    };
 
     const handleSearchButtonClick = async () => {
         const keyword = searchInputRef.current.value;
@@ -54,7 +66,7 @@ const Search = (props) => {
             <>
                 {searchResult.map((comic) => (
                     <React.Fragment key={comic.id}>
-                        <ComicInfoBox>
+                        <ComicInfoBox onClick={() => handleComicClick(comic.id)}>
                             <CoverPart>
                                 <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
                                                placeholderSrc={gif_finn}/>
@@ -81,7 +93,7 @@ const Search = (props) => {
                     <SearchIcon/>
                 </SearchButton>
             </TopPanel>
-            <BodyComponent>
+            <BodyComponent  loadMoreData={loadMoreData} loadMorePage={searchPage}>
                 {isLoading ? loadingAnimation() : loadedContent()}
             </BodyComponent>
             <BottomComponent />

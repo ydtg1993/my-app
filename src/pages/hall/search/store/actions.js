@@ -32,7 +32,6 @@ export const GetSearch = (keyword,p,loadMore=false)=>{
                 Toast.info(data.message);
             }
         } catch (error) {
-            console.log(error)
             Toast.error('服务器开小差了', 1000);
         }
     };
