@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {NavigationTab} from "../navigation/style";
-import {img_box} from "../../../resource";
+import {img_box,gif_finn} from "../../../resource";
 
 export const TopPanel = styled.div`
     display:flex;
@@ -63,6 +63,10 @@ export const CoverPart = styled.div`
     width:24%;
     box-shadow: rgba(0,0,0,0.2) 0px 4px 2px -2px, rgba(0,0,0,0.14) 0px 2px 2px 1px, rgba(0,0,0,0.12) 0px 2px 5px 1px;
     margin:0 3px 0 3px;
+    background-color:white;
+    background-image: url(${gif_finn});
+    background-repeat: no-repeat;
+    background-position: center center;
     
     & img {
         width: 100%;

@@ -32,6 +32,7 @@ export const ComicBox = styled.div`
         position: relative;
         width: 100%;
         aspect-ratio: 3/4;
+        background-color:white;
         background-image: url(${gif_finn});
         background-repeat: no-repeat;
         background-position: center center; 
