@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {NavigationTab} from "../navigation/style";
+import {img_box} from "../../../resource";
 
 export const TopPanel = styled.div`
     display:flex;
@@ -51,7 +52,7 @@ export const ComicInfoBox = styled.div`
     padding:3px 0 3px 0;
     border-radius:3px;
     margin-bottom:5px;
-    background: #5e94b6d1;
+    background: #d0c16f82;
 `;
 
 export const CoverPart = styled.div`
@@ -93,7 +94,7 @@ export const InfoPart = styled.ul`
     
     & > li.title{
         font-size: 14px;
-        color: #ffebd1;
+        color: #444444;
     }
     
     & > li > label{
@@ -109,29 +110,18 @@ export const InfoPart = styled.ul`
     & > li > .tag{
         padding: 2px;
         margin-right: 4px;
-        background: rgb(146 17 87 / 40%);
+        background: rgb(42 55 150 / 65%);
         display: inline-flex;
         border-radius: 2px;
         align-items: center;
         justify-content: center;
     }
-    
-     & > li > .description{
-        overflow-y: scroll;
-        height: 60px;
-        white-space: normal;
-        &::-webkit-scrollbar {
-            width: 0;
-        }
-        &::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
-        &::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0);
-        }
-        scrollbar-width: thin;
-        scrollbar-color: transparent transparent;
-        scrollbar-width: thin;
-        scrollbar-color: transparent;
-    }
+`;
+
+export const EmptyBox = styled.img.attrs({
+    src:`${img_box}`
+})`
+        width:120px;
+        margin: 10px auto;
+        display: flex;
 `;

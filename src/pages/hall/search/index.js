@@ -5,7 +5,7 @@ import { HallStruct } from '../../style';
 import { SetCurrentPosition } from '../store/actions';
 import BottomComponent from '../navigation';
 import BodyComponent from '../body';
-import {SearchButton, SearchIcon, SearchInput, TopPanel,ComicInfoBox, CoverPart, InfoPart} from './style';
+import {SearchButton, SearchIcon, SearchInput, TopPanel, ComicInfoBox, CoverPart, InfoPart, EmptyBox} from './style';
 import {ClearSearchList, GetSearch} from "./store/actions";
 import debounce from 'lodash/debounce';
 import {LazyLoadImage} from "react-lazy-load-image-component";
@@ -62,6 +62,9 @@ const Search = (props) => {
     };
 
     const loadedContent = () => {
+        if(searchPage === -1 && searchResult.isEmpty()){
+            return (<EmptyBox/>)
+        }
         return (
             <>
                 {searchResult.map((comic) => (

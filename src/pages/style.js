@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-import {gif_finn, img_back} from "../resource";
+import styled from 'styled-components';
+import {img_back} from "../resource";
 import {NavigationTab} from "./hall/navigation/style";
 
 export const ScrollType = styled.div`
@@ -78,7 +78,7 @@ export const BackIcon = styled.img.attrs({
 `;
 
 export const HomeIcon = styled(NavigationTab)`
-    transform: scale(0.42);
-    background-position: -10px -10px;
+    transform: scale(0.48);
+    background-position: 0 -10px;
 `;
 
