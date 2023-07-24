@@ -1,9 +1,8 @@
 import * as Actions from './actions';
-import { fromJS} from 'immutable';
-import {CHAPTER_DETAIL} from "./actions";
+import { fromJS,List} from 'immutable';
 
 const defaultState = fromJS({
-    chapter:[]
+    chapter:List()
 });
 
 export default (state = defaultState, action) => {
@@ -11,9 +10,8 @@ export default (state = defaultState, action) => {
         case Actions.CHAPTER_DETAIL:
             return state.set('chapter',action.data);
         case Actions.CHAPTER_DETAIL_CLEAR:
-            return state.set('chapter',fromJS([]));
+            return state.set('chapter',List());
         default:
             return state
     }
 };
-
