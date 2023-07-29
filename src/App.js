@@ -1,39 +1,42 @@
-import React from 'react';
-import { GlobalStyle } from './style'
+import React, { Suspense, lazy, useEffect } from 'react';
+import { GlobalStyle } from './style';
 import { BrowserRouter, Route } from 'react-router-dom';
-/*redux*/
-import { Provider } from 'react-redux';
+import { Provider, useSelector, useDispatch } from 'react-redux';
 import store from './store';
-/*router*/
-import Home from './pages/hall/home/';
-import Menu from "./pages/hall/menu/";
-import Search from "./pages/hall/search/";
-import IBook from "./pages/hall/ibook/";
-import Me from "./pages/hall/me/";
-import Comic from "./pages/comic";
-import Chapter from "./pages/chapter";
-import ImagePreloader from "./pages/component/ImagePreloader";
+import ImagePreloader from './pages/component/ImagePreloader';
 
-class App extends React.Component {
-    render() {
-        return (
-            <Provider store={store}>
-                <GlobalStyle/>
-                <ImagePreloader />
-                <BrowserRouter>
-                    <React.Fragment>
-                        <Route exact path="/" component={Home}/>
-                        <Route path="/menu" component={Menu}/>
-                        <Route path="/search" component={Search}/>
-                        <Route path="/ibook" component={IBook}/>
-                        <Route path="/me" component={Me}/>
-                        <Route exact path="/comic/:comic_id" component={Comic}/>
-                        <Route exact path="/comic/:comic_id/:chapter_id" component={Chapter}/>
-                    </React.Fragment>
-                </BrowserRouter>
-            </Provider>
-        )
-    }
-}
+const Home = lazy(() => import('./pages/hall/home/'));
+const Menu = lazy(() => import('./pages/hall/menu/'));
+const Search = lazy(() => import('./pages/hall/search/'));
+const IBook = lazy(() => import('./pages/hall/ibook/'));
+const Me = lazy(() => import('./pages/hall/me/'));
+const Comic = lazy(() => import('./pages/comic'));
+const Chapter = lazy(() => import('./pages/chapter'));
+
+const App = () => {
+    useEffect(() => {
+
+    }, []);
+
+    return (
+        <Provider store={store}>
+            <GlobalStyle />
+            <ImagePreloader />
+            <BrowserRouter>
+                <React.Fragment>
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/menu" component={Menu} />
+                        <Route path="/search" component={Search} />
+                        <Route path="/ibook" component={IBook} />
+                        <Route path="/me" component={Me} />
+                        <Route exact path="/comic/:comic_id" component={Comic} />
+                        <Route exact path="/comic/:comic_id/:chapter_id" component={Chapter} />
+                    </Suspense>
+                </React.Fragment>
+            </BrowserRouter>
+        </Provider>
+    );
+};
 
 export default App;
