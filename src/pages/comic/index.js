@@ -31,7 +31,7 @@ const Comic = (props) => {
         return () => {
             clearComic();
         };
-    }, []);
+    }, [comic_id,getComic,clearComic]);
 
     const history = useHistory();
     const handleGoBack = () => {
@@ -106,7 +106,7 @@ const Comic = (props) => {
             newPaginatedChapters.push(pageChapters);
         }
 
-        if (newPaginatedChapters.length == 0) {
+        if (newPaginatedChapters.length === 0) {
             return (<></>);
         }
 

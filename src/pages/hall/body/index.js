@@ -34,7 +34,7 @@ const BodyComponent = ({children, loadMoreData, loadMorePage}) => {
         return () => {
             bodyElement.removeEventListener('scroll', handleScroll);
         };
-    }, [loadMorePage, isLoading]);
+    }, [loadMorePage, isLoading,loadMoreData]);
 
     const loadingAnimation = useMemo(() => {
         if (loadMorePage === -1) {

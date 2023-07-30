@@ -26,7 +26,7 @@ const Chapter = (props) => {
             clearChapter();
             window.removeEventListener('resize', handleResize);
         };
-    }, []);
+    }, [chapter_id, clearChapter, getChapter]);
 
     const history = useHistory();
     const handleGoBack = () => {

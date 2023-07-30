@@ -11,7 +11,6 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import gif_finn from '../../../resource/pics/finn.gif'
 import {GetSeries} from "./store/actions";
 import { useHistory } from 'react-router-dom';
 
@@ -29,7 +28,7 @@ const Home = (props) => {
         } else {
             setIsLoading(false);
         }
-    }, []);
+    }, [setCurrentPosition,getHomeSeries,seriesPage]);
 
     const loadingAnimation = () => {
         return (

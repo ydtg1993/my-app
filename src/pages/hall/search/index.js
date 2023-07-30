@@ -30,7 +30,7 @@ const Search = (props) => {
         } else {
             setIsLoading(false);
         }
-    }, []);
+    }, [setCurrentPosition,getSearchResult,searchPage,searchWords]);
 
     const loadMoreData = async () => {
         if (searchPage > -1) {
