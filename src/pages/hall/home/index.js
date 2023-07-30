@@ -12,7 +12,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {GetSeries} from "./store/actions";
-import { useHistory } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
@@ -28,7 +28,7 @@ const Home = (props) => {
         } else {
             setIsLoading(false);
         }
-    }, [setCurrentPosition,getHomeSeries,seriesPage]);
+    }, [setCurrentPosition, getHomeSeries, seriesPage]);
 
     const loadingAnimation = () => {
         return (
@@ -49,11 +49,6 @@ const Home = (props) => {
         }
     };
 
-    const history = useHistory();
-    const handleComicClick = (comicId) => {
-        history.push(`/comic/${comicId}`);
-    };
-
     const content = () => {
         return (
             <>
@@ -64,13 +59,15 @@ const Home = (props) => {
                         </SeriesLabel>
                         <SeriesList>
                             {data.comics.map((comic) => (
-                                <ComicBox key={data.id + "-" + comic.id} onClick={() => handleComicClick(comic.id)}>
-                                    <div className={'imgBox'}>
-                                        <LazyLoadImage src={comic.cover} alt="Image" effect="blur"/>
-                                    </div>
-                                    <div className={'titleBox'}>
-                                        <span>{comic.title}</span>
-                                    </div>
+                                <ComicBox key={data.id + "-" + comic.id}>
+                                    <Link to={`/comic/${comic.id}`}>
+                                        <div className={'imgBox'}>
+                                            <LazyLoadImage src={comic.cover} alt="Image" effect="blur"/>
+                                        </div>
+                                        <div className={'titleBox'}>
+                                            <span>{comic.title}</span>
+                                        </div>
+                                    </Link>
                                 </ComicBox>
                             ))}
                         </SeriesList>

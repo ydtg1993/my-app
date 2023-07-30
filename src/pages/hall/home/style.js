@@ -26,7 +26,11 @@ export const ComicBox = styled.div`
     display:flex;
     flex-wrap: wrap;
     
-    & > .imgBox{
+    & > a {
+        display: contents;
+    }
+    
+    & .imgBox{
         border-radius: 3px 3px 0 0;
         overflow: hidden;
         position: relative;
@@ -38,15 +42,15 @@ export const ComicBox = styled.div`
         background-position: center center; 
     }
     
-    & > .imgBox > span {
+    & .imgBox > span {
         height: 100%;
     }
     
-    & > .imgBox img {
+    & .imgBox img {
         width: 100%;
     }
     
-    & > .titleBox{
+    & .titleBox{
         overflow: hidden;
         width: 100%;
         height:22px;
@@ -55,7 +59,7 @@ export const ComicBox = styled.div`
         justify-content: center;
     }
     
-    & > .titleBox span{
+    & .titleBox > span{
         font-weight: 400;
         font-size: 12px;
         overflow: hidden;
