@@ -1,8 +1,8 @@
 import React, {useEffect, useState, useRef} from 'react';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Skeleton from 'react-loading-skeleton';
-import { HallStruct } from '../../style';
-import { SetCurrentPosition } from '../store/actions';
+import {HallStruct} from '../../style';
+import {SetCurrentPosition} from '../store/actions';
 import BottomComponent from '../navigation';
 import BodyComponent from '../body';
 import {SearchButton, SearchIcon, SearchInput, TopPanel, ComicInfoBox, CoverPart, InfoPart, EmptyBox} from './style';
@@ -11,9 +11,11 @@ import debounce from 'lodash/debounce';
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import gif_finn from "../../../resource/pics/finn.gif";
 import {useHistory} from "react-router-dom";
+import {WebHost} from "../../../index";
+import {Helmet} from "react-helmet";
 
 const Search = (props) => {
-    const {searchResult, searchPage,searchWords, setCurrentPosition,getSearchResult,clearSearch } = props;
+    const {searchResult, searchPage, searchWords, setCurrentPosition, getSearchResult, clearSearch} = props;
     const [isLoading, setIsLoading] = useState(true);
     const debouncedGetSearchResult = debounce(getSearchResult, 1000);
     const searchInputRef = useRef(null);
@@ -22,7 +24,7 @@ const Search = (props) => {
         setCurrentPosition('search');
         if (searchPage === 0) {
             (async () => {
-                await getSearchResult(searchWords,searchPage);
+                await getSearchResult(searchWords, searchPage);
                 setTimeout(() => setIsLoading(false), 300);
             })();
         } else {
@@ -32,7 +34,7 @@ const Search = (props) => {
 
     const loadMoreData = async () => {
         if (searchPage > -1) {
-            await getSearchResult(searchWords,searchPage,true);
+            await getSearchResult(searchWords, searchPage, true);
         }
     };
 
@@ -43,12 +45,12 @@ const Search = (props) => {
 
     const handleSearchButtonClick = async () => {
         const keyword = searchInputRef.current.value;
-        if(keyword.trim() === searchWords)return ;
-        if(keyword.trim() === "")return ;
+        if (keyword.trim() === searchWords) return;
+        if (keyword.trim() === "") return;
         clearSearch();
         setIsLoading(true);
         await debouncedGetSearchResult(keyword, 0);
-        setTimeout(()=>setIsLoading(false),700);
+        setTimeout(() => setIsLoading(false), 700);
     };
 
     const loadingAnimation = () => {
@@ -62,7 +64,7 @@ const Search = (props) => {
     };
 
     const loadedContent = () => {
-        if(searchPage === -1 && searchResult.isEmpty()){
+        if (searchPage === -1 && searchResult.isEmpty()) {
             return (<EmptyBox/>)
         }
         return (
@@ -89,18 +91,25 @@ const Search = (props) => {
     };
 
     return (
-        <HallStruct style={{ gridTemplateRows: '40px auto 60px' }}>
-            <TopPanel>
-                <SearchInput placeholder="请输入搜索关键字" ref={searchInputRef}/>
-                <SearchButton onClick={handleSearchButtonClick}>
-                    <SearchIcon/>
-                </SearchButton>
-            </TopPanel>
-            <BodyComponent  loadMoreData={loadMoreData} loadMorePage={searchPage}>
-                {isLoading ? loadingAnimation() : loadedContent()}
-            </BodyComponent>
-            <BottomComponent />
-        </HallStruct>
+        <>
+            <Helmet>
+                <title>搜索页 - 动漫汪</title>
+                <meta name="description" content="搜索在线漫画,日漫,韩漫,国漫,漫画图片,漫画头像,二次元,同人漫画,漫画推荐,漫画排行榜,条漫大赛,漫画小说"/>
+                <link rel="canonical" href={WebHost+"search"}/>
+            </Helmet>
+            <HallStruct style={{gridTemplateRows: '40px auto 60px'}}>
+                <TopPanel>
+                    <SearchInput placeholder="请输入搜索关键字" ref={searchInputRef}/>
+                    <SearchButton onClick={handleSearchButtonClick}>
+                        <SearchIcon/>
+                    </SearchButton>
+                </TopPanel>
+                <BodyComponent loadMoreData={loadMoreData} loadMorePage={searchPage}>
+                    {isLoading ? loadingAnimation() : loadedContent()}
+                </BodyComponent>
+                <BottomComponent/>
+            </HallStruct>
+        </>
     );
 };
 
@@ -114,10 +123,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getSearchResult: async (keyword,page) => {
-            await dispatch(GetSearch(keyword,page));
+        getSearchResult: async (keyword, page) => {
+            await dispatch(GetSearch(keyword, page));
         },
-        clearSearch:() => dispatch(ClearSearchList()),
+        clearSearch: () => dispatch(ClearSearchList()),
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };

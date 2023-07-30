@@ -17,6 +17,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from '@mui/material/Button';
 import {TopNavPanel, BackIcon, HomeIcon, DetailStruct} from "../style";
+import {Helmet} from "react-helmet";
+import {WebHost} from "../../index";
 
 const Comic = (props) => {
     const {comic_id} = useParams();
@@ -104,7 +106,7 @@ const Comic = (props) => {
             newPaginatedChapters.push(pageChapters);
         }
 
-        if(newPaginatedChapters.length == 0){
+        if (newPaginatedChapters.length == 0) {
             return (<></>);
         }
 
@@ -134,15 +136,22 @@ const Comic = (props) => {
     };
 
     return (
-        <DetailStruct>
-            <TopNavPanel>
-                <BackIcon onClick={handleGoBack}/>
-                <TitleBox><span>{comic.title}</span></TitleBox>
-                <Link to="/"><HomeIcon/></Link>
-            </TopNavPanel>
-            {comic.title ? loadedComic(true) : loadedComic(false)}
-            {comic.title ? loadedChapter(true) : loadedChapter(false)}
-        </DetailStruct>
+        <>
+            <Helmet>
+                <title>{comic.title ? comic.title+" 漫画详情":"漫画详情"} - 动漫汪</title>
+                <meta name="description" content={comic.title ? `《${comic.title}》, 《${comic.title}》全集,${comic.description}` :""}/>
+                <link rel="canonical" href={WebHost + "comic/" + comic_id}/>
+            </Helmet>
+            <DetailStruct>
+                <TopNavPanel>
+                    <BackIcon onClick={handleGoBack}/>
+                    <TitleBox><span>{comic.title}</span></TitleBox>
+                    <Link to="/"><HomeIcon/></Link>
+                </TopNavPanel>
+                {comic.title ? loadedComic(true) : loadedComic(false)}
+                {comic.title ? loadedChapter(true) : loadedChapter(false)}
+            </DetailStruct>
+        </>
     );
 };
 
