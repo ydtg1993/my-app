@@ -62,7 +62,7 @@ const Home = (props) => {
                                 <ComicBox key={data.id + "-" + comic.id}>
                                     <Link to={`/comic/${comic.id}`}>
                                         <div className={'imgBox'}>
-                                            <LazyLoadImage src={comic.cover} alt="Image" effect="blur"/>
+                                            <LazyLoadImage src={comic.cover} alt={comic.title} effect="blur"/>
                                         </div>
                                         <div className={'titleBox'}>
                                             <span>{comic.title}</span>

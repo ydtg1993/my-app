@@ -73,7 +73,7 @@ const Search = (props) => {
                     <React.Fragment key={comic.id}>
                         <ComicInfoBox onClick={() => handleComicClick(comic.id)}>
                             <CoverPart>
-                                <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
+                                <LazyLoadImage src={comic.cover} alt={comic.title} effect="blur"
                                                placeholderSrc={gif_finn}/>
                             </CoverPart>
                             <InfoPart>
