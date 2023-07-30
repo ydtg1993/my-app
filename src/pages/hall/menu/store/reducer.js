@@ -1,12 +1,25 @@
 import * as Actions from './actions';
-import { fromJS } from 'immutable';
+import { fromJS ,List } from 'immutable';
 
 const defaultState = fromJS({
-
+    genreList:List(),
+    genrePage:0,
 });
 
 export default (state = defaultState, action) => {
     switch (action.type) {
+        case Actions.MENU_LIST:
+            if (action.data.empty === 1) {
+                return state.set('genrePage',-1);
+            } else {
+                return state
+                    .set('genrePage',action.page)
+                    .set('genreList',state.get('genreList').concat(action.data.comics));
+            }
+        case Actions.CHANGE_MENU_LIST:
+            return state
+                .set('genrePage',action.page)
+                .set('genreList',action.data.comics);
         default:
             return state
     }

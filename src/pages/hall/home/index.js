@@ -11,7 +11,7 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import {GetSeries} from "./store/actions";
+import {GetHomeSeries} from "./store/actions";
 import {Link} from 'react-router-dom';
 
 const Home = (props) => {
@@ -49,7 +49,7 @@ const Home = (props) => {
         }
     };
 
-    const content = () => {
+    const loadedContent = () => {
         return (
             <>
                 {series.map((data) => (
@@ -80,7 +80,7 @@ const Home = (props) => {
     return (
         <HallStruct>
             <BodyComponent loadMoreData={loadMoreData} loadMorePage={seriesPage}>
-                {isLoading ? loadingAnimation() : content()}
+                {isLoading ? loadingAnimation() : loadedContent()}
             </BodyComponent>
             <NavComponent/>
         </HallStruct>
@@ -97,7 +97,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getHomeSeries: async (p) => {
-            await dispatch(GetSeries(p));
+            await dispatch(GetHomeSeries(p));
         },
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };

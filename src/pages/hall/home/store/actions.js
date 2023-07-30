@@ -4,7 +4,7 @@ import Toast from '../../../component/toast';
 
 export const SERIES = 'series';
 
-export const GetSeries = (p)=>{
+export const GetHomeSeries = (p)=>{
     return async (dispatch) => {
         try {
             const res = await axios.post(Host + 'series', { p: p });

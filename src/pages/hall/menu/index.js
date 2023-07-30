@@ -1,19 +1,24 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import Skeleton from 'react-loading-skeleton';
-import {HallStruct} from '../../style';
+import {MenuList, MenuStruct} from './style';
 import {SetCurrentPosition} from '../store/actions';
 import NavComponent from '../navigation';
 import BodyComponent from '../body';
 import {List} from 'immutable';
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import {styled} from "@mui/material/styles";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../../index";
+import {ChangeMenuList, GetMenuList} from "./store/actions";
+import {ComicBox} from "../home/style";
+import {Link} from "react-router-dom";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 const Menu = (props) => {
-    const {setCurrentPosition} = props;
+    const {genreList, genrePage, setCurrentPosition, getMenuList,changeMenuList} = props;
     const [isLoading, setIsLoading] = useState(true);
     const [tagTab, setTagTab] = useState(0);
     const [tagMenu] = useState(List(
@@ -120,7 +125,7 @@ const Menu = (props) => {
     ));
 
     const CustomTabs = styled(Tabs)(({theme}) => ({
-        backgroundColor: "#ffffffcc",
+        backgroundColor: "#fff6e7",
         borderRadius: theme.shape.borderRadius,
         padding: '4px',
     }));
@@ -138,10 +143,58 @@ const Menu = (props) => {
 
     useEffect(() => {
         setCurrentPosition('menu');
-    }, []);
+        if (genrePage === 0) {
+            (async () => {
+                await getMenuList(genrePage, 0);
+                setTimeout(() => setIsLoading(false), 300);
+            })();
+        } else {
+            setIsLoading(false);
+        }
+    }, [genrePage, setCurrentPosition, getMenuList]);
+
+    const loadMoreData = async () => {
+        if (genrePage > -1) {
+            await getMenuList(genrePage);
+        }
+    };
 
     const handleTagClick = (event, newValue) => {
         setTagTab(newValue);
+        setIsLoading(true);
+        changeMenuList(newValue);
+        setTimeout(()=> setIsLoading(false),700);
+    };
+
+    const loadingAnimation = () => {
+        return (
+            <>
+                <Skeleton variant="rect" height={135}/>
+                <Skeleton variant="rect" height={135}/>
+                <Skeleton variant="rect" height={135}/>
+            </>
+        );
+    };
+
+    const loadedContent = () => {
+        return (
+            <>
+                <MenuList>
+                    {genreList.map((comic) => (
+                        <ComicBox key={tagTab + "-" + comic.id}>
+                            <Link to={`/comic/${comic.id}`}>
+                                <div className={'imgBox'}>
+                                    <LazyLoadImage src={comic.cover} alt={comic.title} effect="blur"/>
+                                </div>
+                                <div className={'titleBox'}>
+                                    <span>{comic.title}</span>
+                                </div>
+                            </Link>
+                        </ComicBox>
+                    ))}
+                </MenuList>
+            </>
+        );
     };
 
     return (
@@ -149,36 +202,43 @@ const Menu = (props) => {
             <Helmet>
                 <title>分类页 - 动漫汪</title>
                 <meta name="description" content="搜索在线漫画,日漫,韩漫,国漫,漫画图片,漫画头像,二次元,同人漫画,漫画推荐,漫画排行榜,条漫大赛,漫画小说"/>
-                <link rel="canonical" href={WebHost+"menu"}/>
+                <link rel="canonical" href={WebHost + "menu"}/>
             </Helmet>
-            <HallStruct>
-                <BodyComponent>
-                    <CustomTabs
-                        value={tagTab}
-                        onChange={handleTagClick}
-                        variant="scrollable"
-                        scrollButtons
-                        allowScrollButtonsMobile>
-                        {tagMenu.map((tag, index) => (
-                            <CustomTab key={index} label={tag.title}/>
-                        ))}
-                    </CustomTabs>
-                    <Skeleton variant="rect" height={135}/>
-                    <Skeleton variant="rect" height={135}/>
-                    <Skeleton variant="rect" height={135}/>
+            <MenuStruct>
+                <CustomTabs
+                    value={tagTab}
+                    onChange={handleTagClick}
+                    variant="scrollable"
+                    scrollButtons
+                    allowScrollButtonsMobile>
+                    {tagMenu.map((tag, index) => (
+                        <CustomTab key={index} label={tag.title}/>
+                    ))}
+                </CustomTabs>
+                <BodyComponent loadMoreData={loadMoreData} loadMorePage={genrePage}>
+                    {isLoading ? loadingAnimation() : loadedContent()}
                 </BodyComponent>
                 <NavComponent/>
-            </HallStruct>
+            </MenuStruct>
         </>
     );
 };
 
 const mapStateToProps = (state) => {
-    return {};
+    return {
+        genreList: state.menu.get('genreList'),
+        genrePage: state.menu.get('genrePage'),
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getMenuList: async (p, category) => {
+            await dispatch(GetMenuList(p, category));
+        },
+        changeMenuList: async (category) => {
+            await dispatch(ChangeMenuList(category));
+        },
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };
