@@ -26,7 +26,7 @@ const Menu = (props) => {
     ));
 
     const CustomTabs = styled(Tabs)(({theme}) => ({
-        backgroundColor: "#fff6e7",
+        backgroundColor: "rgb(255 255 255 / 90%)",
         borderRadius: theme.shape.borderRadius,
         padding: '4px',
     }));
