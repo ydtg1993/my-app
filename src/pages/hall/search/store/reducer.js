@@ -17,7 +17,7 @@ export default (state = defaultState, action) => {
             return state
                 .set('searchPage',p)
                 .set('searchWords',action.words)
-                .set('searchResult',state.get('searchResult').concat(action.data.comics));
+                .set('searchResult',List(action.data.comics));
 
         case Actions.SEARCH_RESULT_MORE:
             if (action.data.empty === 1) {
@@ -27,11 +27,6 @@ export default (state = defaultState, action) => {
                     .set('searchPage',action.page)
                     .set('searchResult',state.get('searchResult').concat(action.data.comics));
             }
-
-        case Actions.CLEAR_SEARCH_LIST:
-            return state
-                .set('searchPage',0)
-                .set('searchResult',List());
         default:
             return state
     }

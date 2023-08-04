@@ -41,9 +41,11 @@ const Menu = (props) => {
         minWidth: "auto",
     }));
 
-
     useEffect(() => {
         setCurrentPosition('menu');
+    }, []);
+
+    useEffect(() => {
         if (genrePage === 0) {
             (async () => {
                 await getMenuList(genrePage, 0);

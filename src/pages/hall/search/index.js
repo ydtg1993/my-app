@@ -6,22 +6,26 @@ import {SetCurrentPosition} from '../store/actions';
 import BottomComponent from '../navigation';
 import BodyComponent from '../body';
 import {SearchButton, SearchIcon, SearchInput, TopPanel, ComicInfoBox, CoverPart, InfoPart, EmptyBox} from './style';
-import {ClearSearchList, GetSearch} from "./store/actions";
+import {GetSearch} from "./store/actions";
 import debounce from 'lodash/debounce';
 import {LazyLoadImage} from "react-lazy-load-image-component";
+import 'react-loading-skeleton/dist/skeleton.css'
 import gif_finn from "../../../resource/pics/finn.gif";
 import {useHistory} from "react-router-dom";
 import {WebHost} from "../../../index";
 import {Helmet} from "react-helmet";
 
 const Search = (props) => {
-    const {searchResult, searchPage, searchWords, setCurrentPosition, getSearchResult, clearSearch} = props;
+    const {searchResult, searchPage, searchWords, setCurrentPosition, getSearchResult} = props;
     const [isLoading, setIsLoading] = useState(true);
     const debouncedGetSearchResult = debounce(getSearchResult, 1000);
     const searchInputRef = useRef(null);
 
     useEffect(() => {
         setCurrentPosition('search');
+    }, []);
+
+    useEffect(() => {
         if (searchPage === 0) {
             (async () => {
                 await getSearchResult(searchWords, searchPage);
@@ -30,7 +34,7 @@ const Search = (props) => {
         } else {
             setIsLoading(false);
         }
-    }, [setCurrentPosition,getSearchResult,searchPage,searchWords]);
+    }, [getSearchResult,searchPage,searchWords]);
 
     const loadMoreData = async () => {
         if (searchPage > -1) {
@@ -43,14 +47,18 @@ const Search = (props) => {
         history.push(`/comic/${comicId}`);
     };
 
-    const handleSearchButtonClick = async () => {
+    const handleSearchButtonClick = () => {
         const keyword = searchInputRef.current.value;
         if (keyword.trim() === searchWords) return;
         if (keyword.trim() === "") return;
-        clearSearch();
         setIsLoading(true);
-        await debouncedGetSearchResult(keyword, 0);
-        setTimeout(() => setIsLoading(false), 700);
+        (async function s() {
+            await new Promise((resolve) => {
+                debouncedGetSearchResult(keyword, 0);
+                resolve();
+            });
+            setTimeout(()=> setIsLoading(false),1200);
+        })();
     };
 
     const loadingAnimation = () => {
@@ -126,7 +134,6 @@ const mapDispatchToProps = (dispatch) => {
         getSearchResult: async (keyword, page) => {
             await dispatch(GetSearch(keyword, page));
         },
-        clearSearch: () => dispatch(ClearSearchList()),
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };

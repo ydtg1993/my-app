@@ -20,6 +20,9 @@ const Home = (props) => {
 
     useEffect(() => {
         setCurrentPosition('home');
+    }, []);
+
+    useEffect(() => {
         if (seriesPage === 0) {
             (async () => {
                 await getHomeSeries(seriesPage);
@@ -28,7 +31,7 @@ const Home = (props) => {
         } else {
             setIsLoading(false);
         }
-    }, [setCurrentPosition, getHomeSeries, seriesPage]);
+    }, [getHomeSeries, seriesPage]);
 
     const loadingAnimation = () => {
         return (

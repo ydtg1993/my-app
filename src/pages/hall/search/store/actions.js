@@ -6,7 +6,6 @@ import Toast from "../../../component/toast";
 
 export const SEARCH_RESULT = 'search_result';
 export const SEARCH_RESULT_MORE = 'search_result_more';
-export const CLEAR_SEARCH_LIST = 'clear_search_list';
 
 export const GetSearch = (keyword,p,loadMore=false)=>{
     return async (dispatch) => {
@@ -36,7 +35,3 @@ export const GetSearch = (keyword,p,loadMore=false)=>{
         }
     };
 };
-
-export const ClearSearchList = ()=>({
-    type:CLEAR_SEARCH_LIST
-});
