@@ -34,7 +34,7 @@ const Search = (props) => {
         } else {
             setIsLoading(false);
         }
-    }, [getSearchResult,searchPage,searchWords]);
+    }, [getSearchResult, searchPage, searchWords]);
 
     const loadMoreData = async () => {
         if (searchPage > -1) {
@@ -57,7 +57,7 @@ const Search = (props) => {
                 debouncedGetSearchResult(keyword, 0);
                 resolve();
             });
-            setTimeout(()=> setIsLoading(false),1200);
+            setTimeout(() => setIsLoading(false), 1200);
         })();
     };
 
@@ -103,7 +103,7 @@ const Search = (props) => {
             <Helmet>
                 <title>搜索页 - 动漫汪</title>
                 <meta name="description" content="搜索在线漫画,日漫,韩漫,国漫,漫画图片,漫画头像,二次元,同人漫画,漫画推荐,漫画排行榜,条漫大赛,漫画小说"/>
-                <link rel="canonical" href={WebHost+"search"}/>
+                <link rel="canonical" href={WebHost + "search"}/>
             </Helmet>
             <HallStruct style={{gridTemplateRows: '40px auto 60px'}}>
                 <TopPanel>
@@ -131,8 +131,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getSearchResult: async (keyword, page) => {
-            await dispatch(GetSearch(keyword, page));
+        getSearchResult: async (keyword, page, loadMore = false) => {
+            await dispatch(GetSearch(keyword, page, loadMore));
         },
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
