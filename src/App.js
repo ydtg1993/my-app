@@ -4,6 +4,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
 import ImagePreloader from './pages/component/ImagePreloader';
+import NoFound from "./pages/404";
 
 const Home = lazy(() => import('./pages/hall/home/'));
 const Menu = lazy(() => import('./pages/hall/menu/'));
@@ -56,6 +57,7 @@ const App = () => {
                         <Route path="/me" component={Me} />
                         <Route exact path="/comic/:comic_id" component={Comic} />
                         <Route exact path="/comic/:comic_id/:chapter_id" component={Chapter} />
+                        <Route component={NoFound} />
                     </Suspense>
                 </React.Fragment>
             </BrowserRouter>
