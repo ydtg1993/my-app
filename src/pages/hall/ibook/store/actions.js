@@ -9,8 +9,8 @@ export const GetReadHistoryList = ()=>{
         try {
             const db = await openDB(DB_NAME, DB_VERSION);
 
-            const transaction = db.transaction(DB_NAME, 'readonly');
-            const store = transaction.objectStore(DB_NAME);
+            const transaction = db.transaction(READ_HISTORY_LIST, 'readonly');
+            const store = transaction.objectStore(READ_HISTORY_LIST);
 
             const data = await store.getAll();
             dispatch({

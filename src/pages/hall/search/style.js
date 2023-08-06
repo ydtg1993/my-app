@@ -52,7 +52,7 @@ export const ComicInfoBox = styled.div`
     padding:3px 0 3px 0;
     border-radius:3px;
     margin-bottom:5px;
-    background: #d0c16f82;
+    background: #dbcb7263;
 `;
 
 export const CoverPart = styled.div`
@@ -98,6 +98,7 @@ export const InfoPart = styled.ul`
     
     & > li.title{
         font-size: 14px;
+        font-weight:600;
         color: #444444;
     }
     
@@ -119,6 +120,26 @@ export const InfoPart = styled.ul`
         border-radius: 2px;
         align-items: center;
         justify-content: center;
+    }
+    
+    & > li > .description{
+        overflow-y: scroll;
+        height: 60px;
+        white-space: normal;
+        color: #1c006f;
+        &::-webkit-scrollbar {
+            width: 0;
+        }
+        &::-webkit-scrollbar-track {
+            background-color: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0);
+        }
+        scrollbar-width: thin;
+        scrollbar-color: transparent transparent;
+        scrollbar-width: thin;
+        scrollbar-color: transparent;
     }
 `;
 

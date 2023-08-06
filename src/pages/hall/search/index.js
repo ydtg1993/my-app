@@ -86,10 +86,14 @@ const Search = (props) => {
                             </CoverPart>
                             <InfoPart>
                                 <li className={"title"}>{comic.title}</li>
-                                <li><label>热 度</label>{comic.popularity}</li>
+                                <li><label>作 者</label><span style={{color:'black'}}>{comic.author}</span></li>
+                                <li><label>热 度</label><span style={{color:'rgb(68 63 117)'}}>{comic.popularity}</span></li>
                                 <li><label>标 签</label>{Object.entries(comic.label).map(([id, value]) => (
                                     <span className={"tag"} key={"tag-" + id}>{value}</span>
                                 ))}</li>
+                                <li>
+                                    <div className={"description"}>{comic.description}</div>
+                                </li>
                             </InfoPart>
                         </ComicInfoBox>
                     </React.Fragment>
