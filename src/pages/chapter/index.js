@@ -10,7 +10,6 @@ import {ClearChapter, GetChapter} from "./store/actions";
 import {ChapterImageList, ImageBox, ReaderStruct} from "./style";
 import gif_finn from "../../resource/pics/finn.gif";
 import {RecordReadHistory} from "../hall/ibook/store/actions";
-import {Map} from 'immutable';
 
 const Chapter = (props) => {
     const {chapter_id} = useParams();
