@@ -47,7 +47,7 @@ const IBook = (props) => {
                                 <li><label>书 签</label><span style={{color:'#1b73c0'}}>{record.chapter_title}</span></li>
                                 <li><label>时 间</label><span style={{color:'#1b73c0'}}>{record.time}</span></li>
                                 <li>
-                                    <Button style={{background:'#feea9b',margin:'10px'}}
+                                    <Button style={{background:'#feea9b',marginLeft:'14px'}}
                                             variant="outlined" size="small" href="#contained-buttons"
                                             onClick={() => handleChapterClick(record.comic_id,record.chapter_id)}>
                                         <span>继续阅读</span>
