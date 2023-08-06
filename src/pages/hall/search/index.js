@@ -91,9 +91,6 @@ const Search = (props) => {
                                 <li><label>标 签</label>{Object.entries(comic.label).map(([id, value]) => (
                                     <span className={"tag"} key={"tag-" + id}>{value}</span>
                                 ))}</li>
-                                <li>
-                                    <div className={"description"}>{comic.description}</div>
-                                </li>
                             </InfoPart>
                         </ComicInfoBox>
                     </React.Fragment>
