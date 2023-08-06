@@ -6,10 +6,11 @@ import NavComponent from '../navigation'
 import BodyComponent from "../body";
 import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
+import {GetReadHistoryList} from "./store/actions";
 
 
 const IBook = (props) => {
-    const { setCurrentPosition } = props;
+    const {readHistoryList,getReadHistory, setCurrentPosition } = props;
 
     useEffect(() => {
         setCurrentPosition('ibook');
@@ -25,8 +26,17 @@ const IBook = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        getReadHistory:async ()=>{
+            await dispatch(GetReadHistoryList());
+        },
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };
 
-export default connect(null, mapDispatchToProps)(IBook);
+const mapStateToProps = (state) => {
+    return {
+        readHistoryList: state.iBook.get('readHistoryList'),
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IBook);

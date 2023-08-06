@@ -9,10 +9,12 @@ import {TitleBox} from "../comic/style";
 import {ClearChapter, GetChapter} from "./store/actions";
 import {ChapterImageList, ImageBox, ReaderStruct} from "./style";
 import gif_finn from "../../resource/pics/finn.gif";
+import {RecordReadHistory} from "../hall/ibook/store/actions";
+import {Map} from 'immutable';
 
 const Chapter = (props) => {
     const {chapter_id} = useParams();
-    const {chapter, getChapter, clearChapter, scrollPosition} = props;
+    const {chapter, getChapter, clearChapter, recordReadHistory, scrollPosition} = props;
     const [containerWidth, setContainerWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -26,7 +28,13 @@ const Chapter = (props) => {
             clearChapter();
             window.removeEventListener('resize', handleResize);
         };
-    }, [chapter_id, clearChapter, getChapter]);
+    }, [chapter_id, clearChapter, getChapter, recordReadHistory]);
+
+    useEffect(() => {
+        if (chapter.size > 0) {
+            recordReadHistory(chapter);
+        }
+    }, [chapter]);
 
     const history = useHistory();
     const handleGoBack = () => {
@@ -44,11 +52,11 @@ const Chapter = (props) => {
         }
         height = `${width / rate - 2}`;
         return (
-            <ImageBox key={index} style={{width:width+"px",height:height+"px"}}>
+            <ImageBox key={index} style={{width: width + "px", height: height + "px"}}>
                 <LazyLoadImage
                     src={img.s}
                     effect="blur"
-                    alt={chapter.title}
+                    alt={chapter.get('title')}
                     placeholderSrc={gif_finn}
                     scrollPosition={scrollPosition}
                 />
@@ -61,12 +69,12 @@ const Chapter = (props) => {
         <ReaderStruct>
             <TopNavPanel>
                 <BackIcon onClick={handleGoBack}/>
-                <TitleBox><span>{chapter.title}</span></TitleBox>
+                <TitleBox><span>{chapter.get('title')}</span></TitleBox>
                 <Link to="/"><HomeIcon/></Link>
             </TopNavPanel>
             <ChapterImageList>
-                {chapter.source ? chapter.source.map((img,index) => (
-                    SetImg(img,index)
+                {chapter.get('source') ? chapter.get('source').map((img, index) => (
+                    SetImg(img, index)
                 )) : ''}
             </ChapterImageList>
         </ReaderStruct>
@@ -75,7 +83,7 @@ const Chapter = (props) => {
 
 const mapStateToProps = (state) => {
     return {
-        chapter:state.chapter.get('chapter'),
+        chapter: state.chapter.get('chapter'),
     };
 };
 
@@ -83,6 +91,27 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getChapter: async (id) => {
             await dispatch(GetChapter(id));
+        },
+        recordReadHistory: (chapter) => {
+            let record = {
+                comic_id: chapter.get('comic_id'),
+                comic_title: chapter.get('comic_title'),
+                comic_cover: chapter.get('comic_cover'),
+                comic_author: chapter.get('comic_author'),
+                comic_finish: chapter.get('comic_finish'),
+                chapter_id: chapter.get('id'),
+                chapter_title: chapter.get('title'),
+                time: new Date().toLocaleString('zh-CN', {
+                    timeZone: 'Asia/Shanghai',
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                })
+            };
+            dispatch(RecordReadHistory(record));
         },
         clearChapter: () => dispatch(ClearChapter())
     };

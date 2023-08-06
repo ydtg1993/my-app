@@ -1,6 +1,4 @@
 import axios from 'axios';
-
-import React from "react";
 import {Host} from "../../../../index";
 import Toast from "../../../component/toast";
 

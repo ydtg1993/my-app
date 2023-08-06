@@ -52,7 +52,7 @@ const Search = (props) => {
         if (keyword.trim() === searchWords) return;
         if (keyword.trim() === "") return;
         setIsLoading(true);
-        (async function s() {
+        (async function() {
             await new Promise((resolve) => {
                 debouncedGetSearchResult(keyword, 0);
                 resolve();
