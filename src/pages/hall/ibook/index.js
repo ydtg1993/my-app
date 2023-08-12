@@ -7,11 +7,11 @@ import BodyComponent from "../body";
 import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 import {GetReadHistoryList} from "./store/actions";
-import {ComicInfoBox, CoverPart, InfoPart} from "../search/style";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import gif_finn from "../../../resource/pics/finn.gif";
 import {useHistory} from "react-router-dom";
-import {Section} from "./style";
+import {ComicInfoBox, CoverPart} from '../../style';
+import {Section, InfoPart} from "./style";
 import Button from '@mui/material/Button';
 
 const IBook = (props) => {
@@ -46,8 +46,8 @@ const IBook = (props) => {
                                 <li><label>作 者</label><span style={{color:'black'}}>{record.comic_author}</span></li>
                                 <li><label>书 签</label><span style={{color:'#1b73c0'}}>{record.chapter_title}</span></li>
                                 <li><label>时 间</label><span style={{color:'#1b73c0'}}>{record.time}</span></li>
-                                <li>
-                                    <Button style={{background:'#feea9b',marginLeft:'14px'}}
+                                <li className={"btn"}>
+                                    <Button style={{background:'#feea9b',marginRight:'5px'}}
                                             variant="outlined" size="small" href="#contained-buttons"
                                             onClick={() => handleChapterClick(record.comic_id,record.chapter_id)}>
                                         <span>继续阅读</span>

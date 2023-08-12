@@ -13,7 +13,7 @@ import {styled} from "@mui/material/styles";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../../index";
 import {ChangeMenuList, GetMenuList} from "./store/actions";
-import {ComicBox} from "../home/style";
+import {ComicBox} from "../../style";
 import {Link} from "react-router-dom";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 

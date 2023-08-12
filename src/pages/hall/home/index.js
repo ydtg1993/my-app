@@ -5,7 +5,8 @@ import NavComponent from '../navigation'
 import BodyComponent from "../body";
 import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
-import {ComicBox, SeriesLabel, SeriesList} from "./style";
+import {ComicBox} from "../../style"
+import { SeriesLabel, SeriesList} from "./style";
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
