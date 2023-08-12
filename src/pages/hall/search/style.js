@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import {NavigationTab} from "../navigation/style";
-import {img_box,gif_finn} from "../../../resource";
+import {dog_issue} from "../../../resource";
 
 export const TopPanel = styled.div`
     display:flex;
@@ -44,9 +44,9 @@ export const SearchIcon = styled(NavigationTab)`
 `;
 
 export const EmptyBox = styled.img.attrs({
-    src:`${img_box}`
+    src:`${dog_issue}`
 })`
-        width:120px;
-        margin: 10px auto;
+        width:240px;
+        margin: 30px auto;
         display: flex;
 `;
