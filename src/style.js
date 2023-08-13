@@ -42,5 +42,6 @@ ul {
 #root{
     display: flex;
     justify-content: center;
+    height: calc(100vh);
 }
 `;

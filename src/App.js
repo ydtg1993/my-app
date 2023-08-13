@@ -1,6 +1,6 @@
 import React, {Suspense, lazy, useEffect} from 'react';
 import {GlobalStyle} from './style';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './store';
 import ImagePreloader from './pages/component/ImagePreloader';
@@ -45,20 +45,20 @@ const App = () => {
         <Provider store={store}>
             <GlobalStyle/>
             <ImagePreloader/>
-            <BrowserRouter>
-                <React.Fragment>
-                    <Suspense fallback={<div style={{display: 'flex', justifyContent: 'center'}}>...LOADING...</div>}>
+            <Router>
+                <Suspense fallback={<div style={{display: 'flex', justifyContent: 'center'}}>...LOADING...</div>}>
+                    <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route path="/menu" component={Menu}/>
-                        <Route path="/search" component={Search}/>
-                        <Route path="/ibook" component={IBook}/>
-                        <Route path="/me" component={Me}/>
+                        <Route exact path="/menu" component={Menu}/>
+                        <Route exact path="/search" component={Search}/>
+                        <Route exact path="/ibook" component={IBook}/>
+                        <Route exact path="/me" component={Me}/>
                         <Route exact path="/comic/:comic_id" component={Comic}/>
                         <Route exact path="/comic/:comic_id/:chapter_id" component={Chapter}/>
-                        <Route component={NoFound}/>
-                    </Suspense>
-                </React.Fragment>
-            </BrowserRouter>
+                        <Route path="*" component={NoFound}/>
+                    </Switch>
+                </Suspense>
+            </Router>
         </Provider>
     );
 };
