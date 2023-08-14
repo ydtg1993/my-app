@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {
     TitleBox,
     ChapterList,
+    TopNavPanel, BackIcon, HomeIcon,
     ComicInfoBox, CoverPart, InfoPart
 } from './style';
 /*other component*/
@@ -16,7 +17,7 @@ import gif_finn from "../../resource/pics/finn.gif";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from '@mui/material/Button';
-import {TopNavPanel, BackIcon, HomeIcon, DetailStruct} from "../style";
+import {DetailStruct} from "../style";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../index";
 
@@ -140,7 +141,7 @@ const Comic = (props) => {
             <Helmet>
                 <title>{comic.title ? comic.title+" 漫画详情":"漫画详情"} - 动漫汪</title>
                 <meta name="description" content={comic.title ? `《${comic.title}》, 《${comic.title}》全集,${comic.description}` :""}/>
-                <link rel="canonical" href={WebHost + "comic/" + comic_id}/>
+                <link rel="canonical" href={`${WebHost}comic/${comic_id}`}/>
             </Helmet>
             <DetailStruct>
                 <TopNavPanel>

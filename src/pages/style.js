@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import {gif_finn, img_back} from "../resource";
-import {NavigationTab} from "./hall/navigation/style";
+import {gif_finn} from "../resource";
 
 export const ScrollType = styled.div`
     overflow-y: scroll;
@@ -54,32 +53,6 @@ export const DetailStruct = styled.div`
     @media (min-width: 1024px) {
         width: 1024px;
     }
-`;
-
-export const TopNavPanel = styled.div`
-    display:flex;
-    height: 40px;
-    align-items: center;
-    justify-content: space-around;
-    background:white;
-    padding:0 10px 0 10px;
-    
-    & > a {
-        display: flex;
-        align-items: center;
-        height: 32px;
-    }
-`;
-
-export const BackIcon = styled.img.attrs({
-    src:`${img_back}`
-})`
-    width:24px;
-`;
-
-export const HomeIcon = styled(NavigationTab)`
-    transform: scale(0.48);
-    background-position: 0 -10px;
 `;
 
 export const ComicBox = styled.div`

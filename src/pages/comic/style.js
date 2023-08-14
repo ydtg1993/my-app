@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import {ScrollType} from "../style";
+import {img_back} from "../../resource";
+import {NavigationTab} from "../hall/navigation/style";
 
 export const TitleBox = styled.div`
-    width: 100%;
+    width: 70%;
     padding: 5px;
     display: flex;
     align-items: center;
@@ -15,6 +17,34 @@ export const TitleBox = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
     }
+`;
+
+export const TopNavPanel = styled.div`
+    display:flex;
+    height: 40px;
+    align-items: center;
+    justify-content: space-around;
+    background:white;
+    padding:0 10px 0 10px;
+    
+    & > a {
+        display: flex;
+        align-items: center;
+        height: 32px;
+        width:45px;
+    }
+`;
+
+export const BackIcon = styled.img.attrs({
+    src:`${img_back}`
+})`
+    width:24px;
+    padding: 0 10px;
+`;
+
+export const HomeIcon = styled(NavigationTab)`
+    transform: scale(0.48);
+    background-position: -20px -10px;
 `;
 
 export const ComicInfoBox = styled.div`
