@@ -15,6 +15,8 @@ import gif_finn from "../../../resource/pics/finn.gif";
 import {useHistory} from "react-router-dom";
 import {WebHost} from "../../../index";
 import {Helmet} from "react-helmet";
+import ErrorFallback from "../../Err/errorBoundary";
+import {ErrorBoundary} from "react-error-boundary";
 
 const Search = (props) => {
     const {searchResult, searchPage, searchWords, setCurrentPosition, getSearchResult} = props;
@@ -77,7 +79,7 @@ const Search = (props) => {
             return (<EmptyBox/>)
         }
         return (
-            <>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
                 {searchResult.map((comic) => (
                     <React.Fragment key={comic.id}>
                         <ComicInfoBox onClick={() => handleComicClick(comic.id)}>
@@ -96,7 +98,7 @@ const Search = (props) => {
                         </ComicInfoBox>
                     </React.Fragment>
                 ))}
-            </>
+            </ErrorBoundary>
         );
     };
 

@@ -12,6 +12,8 @@ import {RecordReadHistory} from "../hall/ibook/store/actions";
 import {DetailStruct} from "../style";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../index";
+import ErrorFallback from "../Err/errorBoundary";
+import {ErrorBoundary} from "react-error-boundary";
 
 const Chapter = (props) => {
     const {chapter_id} = useParams();
@@ -67,25 +69,25 @@ const Chapter = (props) => {
 
 
     return (
-        <>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Helmet>
                 <title>{chapter.get('comic_title') + " " + chapter.get('title')} - 动漫汪</title>
                 <meta name="description" content={`《${chapter.get('comic_title')}》全集,${chapter.get('comic_title')}`}/>
                 <link rel="canonical" href={`${WebHost}comic/${chapter.get('comic_id')}/${chapter.get('id')}`}/>
             </Helmet>
-        <ReaderStruct>
-            <TopNavPanel>
-                <BackIcon onClick={handleGoBack}/>
-                <TitleBox><span>{chapter.get('title')}</span></TitleBox>
-                <Link to="/"><HomeIcon/></Link>
-            </TopNavPanel>
-            <ChapterImageList>
-                {chapter.get('source') ? chapter.get('source').map((img, index) => (
-                    SetImg(img, index)
-                )) : ''}
-            </ChapterImageList>
-        </ReaderStruct>
-        </>
+            <ReaderStruct>
+                <TopNavPanel>
+                    <BackIcon onClick={handleGoBack}/>
+                    <TitleBox><span>{chapter.get('title')}</span></TitleBox>
+                    <Link to="/"><HomeIcon/></Link>
+                </TopNavPanel>
+                <ChapterImageList>
+                    {chapter.get('source') ? chapter.get('source').map((img, index) => (
+                        SetImg(img, index)
+                    )) : ''}
+                </ChapterImageList>
+            </ReaderStruct>
+        </ErrorBoundary>
     );
 };
 

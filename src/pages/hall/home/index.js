@@ -6,7 +6,7 @@ import BodyComponent from "../body";
 import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 import {ComicBox} from "../../style"
-import { SeriesLabel, SeriesList} from "./style";
+import {SeriesLabel, SeriesList} from "./style";
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -14,6 +14,8 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {GetHomeSeries} from "./store/actions";
 import {Link} from 'react-router-dom';
+import {ErrorBoundary} from "react-error-boundary";
+import ErrorFallback from "../../Err/errorBoundary";
 
 const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
@@ -82,12 +84,14 @@ const Home = (props) => {
     };
 
     return (
-        <HallStruct>
-            <BodyComponent loadMoreData={loadMoreData} loadMorePage={seriesPage}>
-                {isLoading ? loadingAnimation() : loadedContent()}
-            </BodyComponent>
-            <NavComponent/>
-        </HallStruct>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <HallStruct>
+                <BodyComponent loadMoreData={loadMoreData} loadMorePage={seriesPage}>
+                    {isLoading ? loadingAnimation() : loadedContent()}
+                </BodyComponent>
+                <NavComponent/>
+            </HallStruct>
+        </ErrorBoundary>
     );
 };
 

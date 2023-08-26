@@ -20,6 +20,8 @@ import Button from '@mui/material/Button';
 import {DetailStruct} from "../style";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../index";
+import ErrorFallback from "../Err/errorBoundary";
+import {ErrorBoundary} from "react-error-boundary";
 
 const Comic = (props) => {
     const {comic_id} = useParams();
@@ -112,7 +114,7 @@ const Comic = (props) => {
         }
 
         return (
-            <>
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
                 <Tabs
                     value={tab}
                     onChange={handleTabChange}
@@ -132,7 +134,7 @@ const Comic = (props) => {
                         </Button>
                     ))}
                 </ChapterList>
-            </>
+            </ErrorBoundary>
         );
     };
 

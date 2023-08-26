@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './store';
 import ImagePreloader from './pages/component/ImagePreloader';
-import NoFound from "./pages/404";
+import NoFound from "./pages/Err";
 
 const Home = lazy(() => import('./pages/hall/home/'));
 const Menu = lazy(() => import('./pages/hall/menu/'));
@@ -55,7 +55,7 @@ const App = () => {
                         <Route exact path="/me" component={Me}/>
                         <Route exact path="/comic/:comic_id" component={Comic}/>
                         <Route exact path="/comic/:comic_id/:chapter_id" component={Chapter}/>
-                        <Route path="*" component={NoFound}/>
+                        <Route path="*" render={(props) => <NoFound title="404 Not Found" message="The page you are looking for does not exist." />} />
                     </Switch>
                 </Suspense>
             </Router>
