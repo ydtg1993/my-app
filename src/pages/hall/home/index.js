@@ -10,8 +10,6 @@ import {SeriesLabel, SeriesList} from "./style";
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
-import {LazyLoadImage} from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import {GetHomeSeries} from "./store/actions";
 import {Link} from 'react-router-dom';
 import {ErrorBoundary} from "react-error-boundary";
@@ -68,7 +66,7 @@ const Home = (props) => {
                                 <ComicBox key={data.id + "-" + comic.id}>
                                     <Link to={`/comic/${comic.id}`}>
                                         <div className={'imgBox'}>
-                                            <LazyLoadImage src={comic.cover} alt={comic.title} effect="blur"/>
+                                            <img src={comic.cover} alt={comic.title} />
                                         </div>
                                         <div className={'titleBox'}>
                                             <span>{comic.title}</span>

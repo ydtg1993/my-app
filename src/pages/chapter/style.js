@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import {ScrollType} from "../style";
+import {dog_sleep} from "../../resource";
 
 export const ReaderStruct = styled.div`
     height: 100%;  
@@ -26,6 +27,9 @@ export const ImageBox = styled.div`
     width:100%;
     display: flex;
     justify-content: center;
+    background-image: url(${dog_sleep});
+    background-repeat: no-repeat;
+    background-position: center center; 
     & > span {
         width:100%;
     }

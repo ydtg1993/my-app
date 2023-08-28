@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {gif_finn} from "../resource";
+import {dog_sleep} from "../resource";
 
 export const ScrollType = styled.div`
     overflow-y: scroll;
@@ -77,7 +77,7 @@ export const ComicBox = styled.div`
         width: 100%;
         aspect-ratio: 3/4;
         background-color:white;
-        background-image: url(${gif_finn});
+        background-image: url(${dog_sleep});
         background-repeat: no-repeat;
         background-position: center center; 
     }
@@ -138,7 +138,7 @@ export const CoverPart = styled.div`
     box-shadow: rgba(0,0,0,0.2) 0px 4px 2px -2px, rgba(0,0,0,0.14) 0px 2px 2px 1px, rgba(0,0,0,0.12) 0px 2px 5px 1px;
     margin:0 3px 0 3px;
     background-color:white;
-    background-image: url(${gif_finn});
+    background-image: url(${dog_sleep});
     background-repeat: no-repeat;
     background-position: center center;
     

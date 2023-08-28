@@ -9,7 +9,6 @@ import {ComicInfoBox, CoverPart, InfoPart} from '../../style';
 import {SearchButton, SearchIcon, SearchInput, TopPanel, EmptyBox} from './style';
 import {GetSearch} from "./store/actions";
 import debounce from 'lodash/debounce';
-import {LazyLoadImage} from "react-lazy-load-image-component";
 import 'react-loading-skeleton/dist/skeleton.css'
 import gif_finn from "../../../resource/pics/finn.gif";
 import {useHistory} from "react-router-dom";
@@ -84,8 +83,7 @@ const Search = (props) => {
                     <React.Fragment key={comic.id}>
                         <ComicInfoBox onClick={() => handleComicClick(comic.id)}>
                             <CoverPart>
-                                <LazyLoadImage src={comic.cover} alt={comic.title} effect="blur"
-                                               placeholderSrc={gif_finn}/>
+                                <img src={comic.cover} alt={comic.title} />
                             </CoverPart>
                             <InfoPart>
                                 <li className={"title"}>{comic.title}</li>

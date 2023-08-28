@@ -3,11 +3,9 @@ import {connect} from 'react-redux';
 import * as actions from './store/actions';
 /*component*/
 import NavComponent from '../navigation'
-import BodyComponent from "../body";
 import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 import {GetReadHistoryList} from "./store/actions";
-import {LazyLoadImage} from "react-lazy-load-image-component";
 import gif_finn from "../../../resource/pics/finn.gif";
 import {useHistory} from "react-router-dom";
 import {ComicInfoBox, CoverPart} from '../../style';
@@ -41,8 +39,7 @@ const IBook = (props) => {
                 <React.Fragment key={record.comic_id}>
                     <ComicInfoBox>
                         <CoverPart onClick={() => handleComicClick(record.comic_id)}>
-                            <LazyLoadImage src={record.comic_cover} alt={record.comic_title} effect="blur"
-                                           placeholderSrc={gif_finn}/>
+                            <img src={record.comic_cover} alt={record.comic_title} />
                         </CoverPart>
                         <InfoPart>
                             <li className={"title"}>{record.comic_title}</li>

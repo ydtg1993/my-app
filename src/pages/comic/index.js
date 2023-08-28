@@ -9,8 +9,6 @@ import {
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
-import {LazyLoadImage} from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {ClearComic, GetComic} from "./store/actions";
 import gif_finn from "../../resource/pics/finn.gif";
@@ -61,8 +59,7 @@ const Comic = (props) => {
             <>
                 <ComicInfoBox>
                     <CoverPart>
-                        <LazyLoadImage src={comic.cover} alt="Image" effect="blur"
-                                       placeholderSrc={gif_finn}/>
+                        <img src={comic.cover} alt="Image" />
                     </CoverPart>
                     <InfoPart>
                         <li className={"title"}>{comic.title}</li>

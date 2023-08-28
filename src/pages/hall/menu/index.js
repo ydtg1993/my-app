@@ -15,7 +15,6 @@ import {WebHost} from "../../../index";
 import {ChangeMenuList, GetMenuList} from "./store/actions";
 import {ComicBox} from "../../style";
 import {Link} from "react-router-dom";
-import {LazyLoadImage} from "react-lazy-load-image-component";
 import ErrorFallback from "../../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
 
@@ -131,7 +130,7 @@ const Menu = (props) => {
                         <ComicBox key={tagTab + "-" + comic.id}>
                             <Link to={`/comic/${comic.id}`}>
                                 <div className={'imgBox'}>
-                                    <LazyLoadImage src={comic.cover} alt={comic.title} effect="blur"/>
+                                    <img src={comic.cover} alt={comic.title} />
                                 </div>
                                 <div className={'titleBox'}>
                                     <span>{comic.title}</span>

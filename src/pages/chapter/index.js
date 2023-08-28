@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 /*other component*/
-import {LazyLoadImage, trackWindowScroll} from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {BackIcon, HomeIcon, TitleBox, TopNavPanel} from "../comic/style";
 import {ClearChapter, GetChapter} from "./store/actions";
 import {ChapterImageList, ImageBox, ReaderStruct} from "./style";
-import gif_finn from "../../resource/pics/finn.gif";
 import {RecordReadHistory} from "../hall/ibook/store/actions";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../index";
@@ -16,7 +13,7 @@ import {ErrorBoundary} from "react-error-boundary";
 
 const Chapter = (props) => {
     const {chapter_id} = useParams();
-    const {chapter, getChapter, clearChapter, recordReadHistory, scrollPosition} = props;
+    const {chapter, getChapter, clearChapter, recordReadHistory} = props;
     const [containerWidth, setContainerWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -55,17 +52,10 @@ const Chapter = (props) => {
         height = `${width / rate - 2}`;
         return (
             <ImageBox key={index} style={{width: width + "px", height: height + "px"}}>
-                <LazyLoadImage
-                    src={img.s}
-                    effect="blur"
-                    alt={chapter.get('title')}
-                    placeholderSrc={gif_finn}
-                    scrollPosition={scrollPosition}
-                />
+                <img src={img.s} alt={chapter.get('title')}/>
             </ImageBox>
         );
     };
-
 
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
@@ -126,4 +116,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(trackWindowScroll(Chapter));
+export default connect(mapStateToProps, mapDispatchToProps)(Chapter);
