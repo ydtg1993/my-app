@@ -9,7 +9,6 @@ import {ClearChapter, GetChapter} from "./store/actions";
 import {ChapterImageList, ImageBox, ReaderStruct} from "./style";
 import gif_finn from "../../resource/pics/finn.gif";
 import {RecordReadHistory} from "../hall/ibook/store/actions";
-import {DetailStruct} from "../style";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../index";
 import ErrorFallback from "../Err/errorBoundary";

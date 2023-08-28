@@ -139,7 +139,7 @@ const Comic = (props) => {
     };
 
     return (
-        <>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Helmet>
                 <title>{comic.title ? comic.title+" 漫画详情":"漫画详情"} - 动漫汪</title>
                 <meta name="description" content={comic.title ? `《${comic.title}》, 《${comic.title}》全集,${comic.description}` :""}/>
@@ -154,7 +154,7 @@ const Comic = (props) => {
                 {comic.title ? loadedComic(true) : loadedComic(false)}
                 {comic.title ? loadedChapter(true) : loadedChapter(false)}
             </DetailStruct>
-        </>
+        </ErrorBoundary>
     );
 };
 

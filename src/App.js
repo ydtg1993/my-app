@@ -16,7 +16,7 @@ const Chapter = lazy(() => import('./pages/chapter'));
 
 const App = () => {
     useEffect(() => {
-        const preventGestureStart = (e) => {
+       /* const preventGestureStart = (e) => {
             e.preventDefault();
         };
 
@@ -38,7 +38,7 @@ const App = () => {
             document.removeEventListener('gesturestart', preventGestureStart);
             document.removeEventListener('contextmenu', preventContextMenu);
             document.removeEventListener('keydown', preventF12KeyPress);
-        };
+        };*/
     }, []);
 
     return (
