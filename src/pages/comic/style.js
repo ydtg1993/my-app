@@ -4,7 +4,7 @@ import {img_back} from "../../resource";
 import {NavigationTab} from "../hall/navigation/style";
 
 export const TitleBox = styled.div`
-    width: 70%;
+    width: 80%;
     padding: 5px;
     display: flex;
     align-items: center;

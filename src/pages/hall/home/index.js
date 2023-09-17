@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {connect} from 'react-redux';
 /*component*/
 import NavComponent from '../navigation'
@@ -14,6 +14,8 @@ import {GetHomeSeries} from "./store/actions";
 import {Link} from 'react-router-dom';
 import {ErrorBoundary} from "react-error-boundary";
 import ErrorFallback from "../../Err/errorBoundary";
+import {img_blank} from "../../../resource";
+import ImageLazy from "../../component/ImageLazy";
 
 const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
@@ -62,18 +64,19 @@ const Home = (props) => {
                             <b>{data.title}</b>
                         </SeriesLabel>
                         <SeriesList>
-                            {data.comics.map((comic) => (
-                                <ComicBox key={data.id + "-" + comic.id}>
-                                    <Link to={`/comic/${comic.id}`}>
-                                        <div className={'imgBox'}>
-                                            <img src={comic.cover} alt={comic.title} />
-                                        </div>
-                                        <div className={'titleBox'}>
-                                            <span>{comic.title}</span>
-                                        </div>
-                                    </Link>
-                                </ComicBox>
-                            ))}
+                            {data.comics.map((comic) => {
+                                return (
+                                    <ComicBox key={data.id + "-" + comic.id}>
+                                        <Link to={`/comic/${comic.id}`}>
+                                            <div className={'imgBox'}>
+                                                <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
+                                            </div>
+                                            <div className={'titleBox'}>
+                                                <span>{comic.title}</span>
+                                            </div>
+                                        </Link>
+                                    </ComicBox>)
+                            })}
                         </SeriesList>
                     </React.Fragment>
                 ))}

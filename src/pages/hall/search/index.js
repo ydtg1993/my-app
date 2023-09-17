@@ -16,6 +16,8 @@ import {WebHost} from "../../../index";
 import {Helmet} from "react-helmet";
 import ErrorFallback from "../../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
+import {img_blank} from "../../../resource";
+import ImageLazy from "../../component/ImageLazy";
 
 const Search = (props) => {
     const {searchResult, searchPage, searchWords, setCurrentPosition, getSearchResult} = props;
@@ -83,7 +85,7 @@ const Search = (props) => {
                     <React.Fragment key={comic.id}>
                         <ComicInfoBox onClick={() => handleComicClick(comic.id)}>
                             <CoverPart>
-                                <img src={comic.cover} alt={comic.title} />
+                                <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
                             </CoverPart>
                             <InfoPart>
                                 <li className={"title"}>{comic.title}</li>

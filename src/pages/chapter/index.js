@@ -10,6 +10,8 @@ import {Helmet} from "react-helmet";
 import {WebHost} from "../../index";
 import ErrorFallback from "../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
+import ImageLazy from "../component/ImageLazy";
+import {img_blank} from "../../resource";
 
 const Chapter = (props) => {
     const {chapter_id} = useParams();
@@ -40,7 +42,7 @@ const Chapter = (props) => {
         history.goBack();
     };
 
-    const SetImg = (img, index) => {
+    const SetImgBox = (img, index) => {
         let height;
         let width;
         let rate = Math.round(img.w / img.h * 1000) / 1000;
@@ -52,7 +54,7 @@ const Chapter = (props) => {
         height = `${width / rate - 2}`;
         return (
             <ImageBox key={index} style={{width: width + "px", height: height + "px"}}>
-                <img src={img.s} alt={chapter.get('title')}/>
+                <ImageLazy src={img_blank} data-src={img.s} alt={chapter.get('title')} options={{rootMargin: "0px 0px 100px 0px"}}/>
             </ImageBox>
         );
     };
@@ -72,7 +74,7 @@ const Chapter = (props) => {
                 </TopNavPanel>
                 <ChapterImageList>
                     {chapter.get('source') ? chapter.get('source').map((img, index) => (
-                        SetImg(img, index)
+                        SetImgBox(img, index)
                     )) : ''}
                 </ChapterImageList>
             </ReaderStruct>

@@ -13,6 +13,8 @@ import {Section, InfoPart, EmptyBox} from "./style";
 import Button from '@mui/material/Button';
 import ErrorFallback from "../../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
+import {img_blank} from "../../../resource";
+import ImageLazy from "../../component/ImageLazy";
 
 const IBook = (props) => {
     const {readHistoryList, getReadHistory, setCurrentPosition} = props;
@@ -39,7 +41,7 @@ const IBook = (props) => {
                 <React.Fragment key={record.comic_id}>
                     <ComicInfoBox>
                         <CoverPart onClick={() => handleComicClick(record.comic_id)}>
-                            <img src={record.comic_cover} alt={record.comic_title} />
+                            <ImageLazy src={img_blank} data-src={record.comic_cover} alt={record.comic_title} options={{ threshold: 0.1 }}/>
                         </CoverPart>
                         <InfoPart>
                             <li className={"title"}>{record.comic_title}</li>

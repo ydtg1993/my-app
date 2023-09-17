@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "eslint": "^7.32.0",
     "immutable": "^4.0.0-rc.12",
+    "intersection-observer": "^0.12.2",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "react": "^17.0.2",

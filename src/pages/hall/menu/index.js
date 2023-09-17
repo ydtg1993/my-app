@@ -17,6 +17,8 @@ import {ComicBox} from "../../style";
 import {Link} from "react-router-dom";
 import ErrorFallback from "../../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
+import {img_blank} from "../../../resource";
+import ImageLazy from "../../component/ImageLazy";
 
 const Menu = (props) => {
     const {genreList, genrePage, setCurrentPosition, getMenuList, changeMenuList} = props;
@@ -130,7 +132,7 @@ const Menu = (props) => {
                         <ComicBox key={tagTab + "-" + comic.id}>
                             <Link to={`/comic/${comic.id}`}>
                                 <div className={'imgBox'}>
-                                    <img src={comic.cover} alt={comic.title} />
+                                    <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
                                 </div>
                                 <div className={'titleBox'}>
                                     <span>{comic.title}</span>

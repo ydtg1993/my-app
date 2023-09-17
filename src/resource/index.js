@@ -8,6 +8,8 @@ import dog_issue from './pics/dog-issue.png';
 import dog_record from './pics/dog-record.png';
 import dog_funny from './pics/dog-funny.png';
 import dog_sleep from './pics/dog-sleep.png';
+
+let img_blank = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 /*home export*/
 export {
     svg_loading,
@@ -19,4 +21,5 @@ export {
     dog_issue,
     dog_record,
     dog_funny,
+    img_blank,
 }
