@@ -49,7 +49,7 @@ const App = () => {
                 <Suspense fallback={<div style={{display: 'flex', justifyContent: 'center'}}>...LOADING...</div>}>
                     <Switch>
                         <Route exact path="/" component={Home}/>
-                        <Route exact path="/menu" component={Menu}/>
+                        <Route exact path="/menu/:path*" component={Menu}/>
                         <Route exact path="/search" component={Search}/>
                         <Route exact path="/ibook" component={IBook}/>
                         <Route exact path="/me" component={Me}/>

@@ -55,12 +55,7 @@ export const Option = styled.div`
     font-weight: bold;
     transition: all .3s ease;
     
-    &:hover{
-        color: white;
-        background-color: #a2b0ff;
-    }
-    
-    &:active{
+    &:hover,&.active,&:active{
         color: white;
         background-color: #a2b0ff;
     }
@@ -71,12 +66,7 @@ export const OptionX = styled(Option)`
     margin: 10px 5px 10px;
     padding: 5px;
     
-    &:hover{
-        color: #443f75;
-        background: #c3c3c3;
-    }
-    
-    &:active{
+    &:hover,&:active{
         color: #443f75;
         background: #c3c3c3;
     }

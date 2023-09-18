@@ -10,7 +10,7 @@ import {Helmet} from "react-helmet";
 import {WebHost} from "../../../index";
 import {ChangeMenuList, GetMenuList} from "./store/actions";
 import {ComicBox} from "../../style";
-import {Link} from "react-router-dom";
+import {Link,useParams} from "react-router-dom";
 import ErrorFallback from "../../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
 import {img_blank} from "../../../resource";
@@ -21,9 +21,13 @@ const Menu = (props) => {
     const {genreList, genrePage, setCurrentPosition, getMenuList, changeMenuList} = props;
     const [isLoading, setIsLoading] = useState(true);
     const [selectedTab, setSelectedTab] = useState(null);
+    const [selectedNav, setSelectedNav] = useState([0,0,0,0]);
+    const { path } = useParams();
 
     useEffect(() => {
         setCurrentPosition('menu');
+        const pathArray = path.split('-').map(Number);
+        setSelectedNav(pathArray);
     }, []);
 
     useEffect(() => {
@@ -91,7 +95,7 @@ const Menu = (props) => {
                         <TabNav>
                             <Options>
                                 {navCategory.map((val)=>
-                                    <Option key={val.id}>{val.title}</Option>
+                                    <Option key={val.id} className={selectedNav[0] === val.id ? 'active':''}>{val.title}</Option>
                                 )}
                             </Options>
                             <OptionX onClick={handleTabSelect}> ▲ 关 闭 ▲ </OptionX>
@@ -100,8 +104,8 @@ const Menu = (props) => {
                     <TabWithOptions label="地区" selectedTab={selectedTab} onSelectTab={handleTabSelect}>
                         <TabNav>
                             <Options>
-                                {navCountry.map((val,index)=>
-                                    <Option key={index}>{val}</Option>
+                                {navCountry.map((val)=>
+                                    <Option key={val.id} className={selectedNav[1] === val.id ? 'active':''}>{val.title}</Option>
                                 )}
                             </Options>
                             <OptionX onClick={handleTabSelect}> ▲ 关 闭 ▲ </OptionX>
@@ -110,8 +114,8 @@ const Menu = (props) => {
                     <TabWithOptions label="状态" selectedTab={selectedTab} onSelectTab={handleTabSelect}>
                         <TabNav>
                             <Options>
-                                {navStatus.map((val,index)=>
-                                    <Option key={index}>{val}</Option>
+                                {navStatus.map((val)=>
+                                    <Option key={val.id} className={selectedNav[2] === val.id ? 'active':''}>{val.title}</Option>
                                 )}
                             </Options>
                             <OptionX onClick={handleTabSelect}> ▲ 关 闭 ▲ </OptionX>
@@ -120,8 +124,8 @@ const Menu = (props) => {
                     <TabWithOptions label="排序" selectedTab={selectedTab} onSelectTab={handleTabSelect}>
                         <TabNav>
                             <Options>
-                                {navSort.map((val,index)=>
-                                    <Option key={index}>{val}</Option>
+                                {navSort.map((val)=>
+                                    <Option key={val.id} className={selectedNav[3] === val.id ? 'active':''}>{val.title}</Option>
                                 )}
                             </Options>
                             <OptionX onClick={handleTabSelect}> ▲ 关 闭 ▲ </OptionX>
