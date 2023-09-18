@@ -25,10 +25,10 @@ export const RecordReadHistory = (item) => {
             if (existingIndex !== -1) {
                 data[existingIndex] = item;
             } else {
-                if (data.length >= 200) {
-                    data.shift();
+                if (data.length >= 300) {
+                    data.pop();
                 }
-                data.push(item);
+                data.unshift(item);
             }
             await localForage.setItem(READ_HISTORY_LIST, data);
 

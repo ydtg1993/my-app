@@ -36,4 +36,4 @@ const ImageLazy = (props) => {
     );
 };
 
-export default ImageLazy;
+export default React.memo(ImageLazy);

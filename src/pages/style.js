@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import {dog_sleep} from "../resource";
 
 export const ScrollType = styled.div`
@@ -220,5 +220,23 @@ export const InfoPart = styled.ul`
         scrollbar-width: thin;
         scrollbar-color: transparent;
     }
+`;
+
+export const fadeIn = keyframes`
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+`;
+
+export const fadeOut = keyframes`
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 `;
 
