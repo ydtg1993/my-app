@@ -8,32 +8,35 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../../index";
-import {ChangeMenuList, GetMenuList} from "./store/actions";
+import {GetMenuList} from "./store/actions";
 import {ComicBox} from "../../style";
 import {Link,useParams} from "react-router-dom";
 import ErrorFallback from "../../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
 import {img_blank} from "../../../resource";
 import ImageLazy from "../../component/ImageLazy";
-import {navCategory, navCountry, navSort, navStatus} from "./nav";
+import {navCategory, navRegion, navSort, navStatus} from "./nav";
 
 const Menu = (props) => {
-    const {genreList, genrePage, setCurrentPosition, getMenuList, changeMenuList} = props;
+    const {genreList, genrePage, setCurrentPosition, getMenuList} = props;
     const [isLoading, setIsLoading] = useState(true);
     const [selectedTab, setSelectedTab] = useState(null);
     const [selectedNav, setSelectedNav] = useState([0,0,0,0]);
-    const { path } = useParams();
+    const {path} = useParams();
 
     useEffect(() => {
         setCurrentPosition('menu');
-        const pathArray = path.split('-').map(Number);
-        setSelectedNav(pathArray);
     }, []);
 
     useEffect(() => {
         if (genrePage === 0) {
             (async () => {
-                await getMenuList(genrePage, 0);
+                let pathArray = [0,0,0,0];
+                if(path){
+                    pathArray = path.split('-').map(Number);
+                    setSelectedNav(pathArray);
+                }
+                await getMenuList(genrePage, pathArray);
                 setTimeout(() => setIsLoading(false), 300);
             })();
         } else {
@@ -45,9 +48,14 @@ const Menu = (props) => {
         setSelectedTab(tabLabel);
     };
 
+    const handleNavClick = (index,id) => {
+        selectedNav[index] = id;
+        window.location.href = `/menu/`+selectedNav.join('-');
+    };
+
     const loadMoreData = async () => {
         if (genrePage > -1) {
-            await getMenuList(genrePage);
+            await getMenuList(genrePage, selectedNav);
         }
     };
 
@@ -95,7 +103,7 @@ const Menu = (props) => {
                         <TabNav>
                             <Options>
                                 {navCategory.map((val)=>
-                                    <Option key={val.id} className={selectedNav[0] === val.id ? 'active':''}>{val.title}</Option>
+                                    <Option key={val.id} className={selectedNav[0] === val.id ? 'active':''} onClick={()=>handleNavClick(0,val.id)}>{val.title}</Option>
                                 )}
                             </Options>
                             <OptionX onClick={handleTabSelect}> ▲ 关 闭 ▲ </OptionX>
@@ -104,8 +112,8 @@ const Menu = (props) => {
                     <TabWithOptions label="地区" selectedTab={selectedTab} onSelectTab={handleTabSelect}>
                         <TabNav>
                             <Options>
-                                {navCountry.map((val)=>
-                                    <Option key={val.id} className={selectedNav[1] === val.id ? 'active':''}>{val.title}</Option>
+                                {navRegion.map((val)=>
+                                    <Option key={val.id} className={selectedNav[1] === val.id ? 'active':''} onClick={()=>handleNavClick(1,val.id)}>{val.title}</Option>
                                 )}
                             </Options>
                             <OptionX onClick={handleTabSelect}> ▲ 关 闭 ▲ </OptionX>
@@ -115,7 +123,7 @@ const Menu = (props) => {
                         <TabNav>
                             <Options>
                                 {navStatus.map((val)=>
-                                    <Option key={val.id} className={selectedNav[2] === val.id ? 'active':''}>{val.title}</Option>
+                                    <Option key={val.id} className={selectedNav[2] === val.id ? 'active':''} onClick={()=>handleNavClick(2,val.id)}>{val.title}</Option>
                                 )}
                             </Options>
                             <OptionX onClick={handleTabSelect}> ▲ 关 闭 ▲ </OptionX>
@@ -125,7 +133,7 @@ const Menu = (props) => {
                         <TabNav>
                             <Options>
                                 {navSort.map((val)=>
-                                    <Option key={val.id} className={selectedNav[3] === val.id ? 'active':''}>{val.title}</Option>
+                                    <Option key={val.id} className={selectedNav[3] === val.id ? 'active':''} onClick={()=>handleNavClick(3,val.id)}>{val.title}</Option>
                                 )}
                             </Options>
                             <OptionX onClick={handleTabSelect}> ▲ 关 闭 ▲ </OptionX>
@@ -170,11 +178,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getMenuList: async (p, category) => {
-            await dispatch(GetMenuList(p, category));
-        },
-        changeMenuList: async (category) => {
-            await dispatch(ChangeMenuList(category));
+        getMenuList: async (p, params) => {
+            await dispatch(GetMenuList(p, params));
         },
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };

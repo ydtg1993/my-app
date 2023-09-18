@@ -40,7 +40,14 @@ export const Options = styled(ScrollType)`
     max-height:240px;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    
+    @media (min-width: 400px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    @media (min-width: 540px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    }
 `;
 
 export const Option = styled.div`

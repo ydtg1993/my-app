@@ -132,7 +132,7 @@ let navCategory = [
     }
 ];
 
-let navCountry = [
+let navRegion= [
     {
         "id": 0,
         "title": "全部"
@@ -183,7 +183,7 @@ let navSort = [
 
 export {
     navCategory,
-    navCountry,
+    navRegion,
     navStatus,
     navSort
 }

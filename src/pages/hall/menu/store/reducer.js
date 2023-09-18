@@ -16,10 +16,6 @@ export default (state = defaultState, action) => {
                     .set('genrePage',action.page)
                     .set('genreList',state.get('genreList').concat(action.data.comics));
             }
-        case Actions.CHANGE_MENU_LIST:
-            return state
-                .set('genrePage',action.page)
-                .set('genreList',action.data.comics);
         default:
             return state
     }
