@@ -26,6 +26,9 @@ const Menu = (props) => {
 
     useEffect(() => {
         setCurrentPosition('menu');
+        return () => {
+            getMenuList(0, [0,0,0,0]);
+        };
     }, []);
 
     useEffect(() => {
@@ -49,6 +52,7 @@ const Menu = (props) => {
     };
 
     const handleNavClick = (index,id) => {
+        if(selectedNav[index] === id)return;
         selectedNav[index] = id;
         window.location.href = `/menu/`+selectedNav.join('-');
     };
