@@ -62,14 +62,14 @@ const Chapter = (props) => {
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Helmet>
-                <title>{chapter.get('comic_title') + " " + chapter.get('title')} - 动漫汪</title>
+                <title>{chapter.get('comic_title') + " " + chapter.get('title')} - 漫画汪</title>
                 <meta name="description" content={`《${chapter.get('comic_title')}》全集,${chapter.get('comic_title')}`}/>
                 <link rel="canonical" href={`${WebHost}comic/${chapter.get('comic_id')}/${chapter.get('id')}`}/>
             </Helmet>
             <ReaderStruct>
                 <TopNavPanel>
                     <BackIcon onClick={handleGoBack}/>
-                    <TitleBox><span>{chapter.get('title')}</span></TitleBox>
+                    <TitleBox><h1>{chapter.get('title')}</h1></TitleBox>
                     <Link to="/"><HomeIcon/></Link>
                 </TopNavPanel>
                 <ChapterImageList>

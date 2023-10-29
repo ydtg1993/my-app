@@ -84,7 +84,7 @@ const Menu = (props) => {
                                     <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
                                 </div>
                                 <div className={'titleBox'}>
-                                    <span>{comic.title}</span>
+                                    <h3>{comic.title}</h3>
                                 </div>
                             </Link>
                         </ComicBox>
@@ -97,7 +97,7 @@ const Menu = (props) => {
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Helmet>
-                <title>分类页 - 动漫汪</title>
+                <title>分类页 - 漫画汪</title>
                 <meta name="description" content="搜索在线漫画,日漫,韩漫,国漫,漫画图片,漫画头像,二次元,同人漫画,漫画推荐,漫画排行榜,条漫大赛,漫画小说"/>
                 <link rel="canonical" href={WebHost + "menu"}/>
             </Helmet>

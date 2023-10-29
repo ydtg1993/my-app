@@ -3,10 +3,9 @@ import {connect} from 'react-redux';
 /*component*/
 import NavComponent from '../navigation'
 import BodyComponent from "../body";
-import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 import {ComicBox} from "../../style"
-import {SeriesLabel, SeriesList} from "./style";
+import {MainStruct, SeriesLabel, SeriesList, TopTitle} from "./style";
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -14,7 +13,7 @@ import {GetHomeSeries} from "./store/actions";
 import {Link} from 'react-router-dom';
 import {ErrorBoundary} from "react-error-boundary";
 import ErrorFallback from "../../Err/errorBoundary";
-import {img_blank} from "../../../resource";
+import {dog_home, img_blank} from "../../../resource";
 import ImageLazy from "../../component/ImageLazy";
 
 const Home = (props) => {
@@ -61,7 +60,7 @@ const Home = (props) => {
                 {series.map((data) => (
                     <React.Fragment key={data.id}>
                         <SeriesLabel>
-                            <b>{data.title}</b>
+                            <h2>{data.title}</h2>
                         </SeriesLabel>
                         <SeriesList>
                             {data.comics.map((comic) => {
@@ -72,7 +71,7 @@ const Home = (props) => {
                                                 <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
                                             </div>
                                             <div className={'titleBox'}>
-                                                <span>{comic.title}</span>
+                                                <h3>{comic.title}</h3>
                                             </div>
                                         </Link>
                                     </ComicBox>)
@@ -86,12 +85,16 @@ const Home = (props) => {
 
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <HallStruct>
+            <MainStruct>
+                <TopTitle>
+                    <h1><img src={dog_home}></img> 漫画汪 免费看漫画</h1>
+                    <span>所有內容均來源互聯網</span>
+                </TopTitle>
                 <BodyComponent loadMoreData={loadMoreData} loadMorePage={seriesPage}>
                     {isLoading ? loadingAnimation() : loadedContent()}
                 </BodyComponent>
                 <NavComponent/>
-            </HallStruct>
+            </MainStruct>
         </ErrorBoundary>
     );
 };

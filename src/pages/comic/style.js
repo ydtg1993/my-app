@@ -10,8 +10,9 @@ export const TitleBox = styled.div`
     align-items: center;
     justify-content: center;
     
-    & > span{
-        font-weight: 400;
+    & > h1{
+        margin:0;
+        font-weight: 600;
         font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -95,7 +96,9 @@ export const InfoPart = styled.ul`
         white-space: nowrap;   
     }
     
-    & > li.title{
+    & > li > h2{
+        margin:0;
+        font-weight: 500;
         font-size: 14px;
         color: #ffebd1;
     }
@@ -163,7 +166,10 @@ export const ChapterList = styled(ScrollType)`
         max-height:45px;
     } 
     
-    & > button>span{
+    & > button> h3{
+        margin:0;
+        font-weight: 400;
+        font-size: 14px;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;

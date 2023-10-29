@@ -88,7 +88,7 @@ const Search = (props) => {
                                 <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
                             </CoverPart>
                             <InfoPart>
-                                <li className={"title"}>{comic.title}</li>
+                                <li className={"title"}><h3>{comic.title}</h3></li>
                                 <li><label>作 者</label><span style={{color:'black'}}>{comic.author}</span></li>
                                 <li><label>热 度</label><span style={{color:'rgb(68 63 117)'}}>{comic.popularity}</span></li>
                                 <li><label>标 签</label>{Object.entries(comic.label).map(([id, value]) => (
@@ -105,7 +105,7 @@ const Search = (props) => {
     return (
         <>
             <Helmet>
-                <title>搜索页 - 动漫汪</title>
+                <title>搜索页 - 漫画汪</title>
                 <meta name="description" content="搜索在线漫画,日漫,韩漫,国漫,漫画图片,漫画头像,二次元,同人漫画,漫画推荐,漫画排行榜,条漫大赛,漫画小说"/>
                 <link rel="canonical" href={WebHost + "search"}/>
             </Helmet>

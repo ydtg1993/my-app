@@ -33,8 +33,8 @@ export const HallStruct = styled.div`
     grid-template-columns:100%;
     background: #faefde;
  
-    @media (min-width: 1024px) {
-        width: 1024px;
+    @media (min-width: 1240px) {
+        width: 1240px;
     }
 `;
 
@@ -99,7 +99,7 @@ export const ComicBox = styled.div`
         justify-content: center;
     }
     
-    & .titleBox > span{
+    & .titleBox > h3{
         font-weight: 400;
         font-size: 12px;
         overflow: hidden;
@@ -112,7 +112,7 @@ export const ComicBox = styled.div`
     }
     
     @media (min-width: 760px) {
-        width:16.3%;
+        width:16%;
     }
 `;
 
@@ -175,7 +175,8 @@ export const InfoPart = styled.ul`
         margin:0 0 0 5px;
     }
     
-    & > li.title{
+    & > li.title > h3{
+        margin:0;
         font-size: 14px;
         font-weight:600;
         color: #444444;

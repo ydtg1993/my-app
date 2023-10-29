@@ -8,6 +8,7 @@ import dog_issue from './pics/dog-issue.png';
 import dog_record from './pics/dog-record.png';
 import dog_funny from './pics/dog-funny.png';
 import dog_sleep from './pics/dog-sleep.png';
+import dog_home from './pics/dog-home.png';
 
 let img_blank = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 /*home export*/
@@ -22,4 +23,5 @@ export {
     dog_record,
     dog_funny,
     img_blank,
+    dog_home,
 }

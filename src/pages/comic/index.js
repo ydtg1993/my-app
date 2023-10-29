@@ -11,7 +11,6 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {Link, useHistory, useParams} from 'react-router-dom';
 import {ClearComic, GetComic} from "./store/actions";
-import gif_finn from "../../resource/pics/finn.gif";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from '@mui/material/Button';
@@ -62,7 +61,7 @@ const Comic = (props) => {
                         <img src={comic.cover} alt="Image" />
                     </CoverPart>
                     <InfoPart>
-                        <li className={"title"}>{comic.title}</li>
+                        <li><h2>{comic.title}</h2></li>
                         <li><label>作 者</label>{comic.author}</li>
                         <li><label>热 度</label>{comic.popularity}</li>
                         <li><label>标 签</label>{Object.entries(comic.label).map(([id, value]) => (
@@ -127,7 +126,7 @@ const Comic = (props) => {
                 <ChapterList>
                     {newPaginatedChapters[tab].map((chapter) => (
                         <Button key={chapter.id} variant="outlined" onClick={() => handleChapterClick(chapter.id)}>
-                            <span>{chapter.title}</span>
+                            <h3>{chapter.title}</h3>
                         </Button>
                     ))}
                 </ChapterList>
@@ -138,15 +137,15 @@ const Comic = (props) => {
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Helmet>
-                <title>{comic.title ? comic.title+" 漫画详情":"漫画详情"} - 动漫汪</title>
+                <title>{comic.title ? comic.title+" 漫画详情":"漫画详情"} - 漫画汪</title>
                 <meta name="description" content={comic.title ? `《${comic.title}》, 《${comic.title}》全集,${comic.description}` :""}/>
                 <link rel="canonical" href={`${WebHost}comic/${comic_id}`}/>
             </Helmet>
             <DetailStruct>
                 <TopNavPanel>
                     <BackIcon onClick={handleGoBack}/>
-                    <TitleBox><span>{comic.title}</span></TitleBox>
-                    <Link to="/"><HomeIcon/></Link>
+                    <TitleBox><h1>{comic.title}</h1></TitleBox>
+                    <Link to="/" alt={comic.title}><HomeIcon/></Link>
                 </TopNavPanel>
                 {comic.title ? loadedComic(true) : loadedComic(false)}
                 {comic.title ? loadedChapter(true) : loadedChapter(false)}
