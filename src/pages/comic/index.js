@@ -10,7 +10,7 @@ import {
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {Link, useHistory, useParams} from 'react-router-dom';
-import {ClearComic, GetComic} from "./store/actions";
+import {ClearComic, GetChapters, GetComic} from "./store/actions";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from '@mui/material/Button';
@@ -25,7 +25,7 @@ import {Section} from "../hall/body/style";
 
 const Comic = (props) => {
     const {comic_id} = useParams();
-    const {comic, getComic, clearComic} = props;
+    const {comic, getComic, clearComic, chapters, getChapters} = props;
     const [tab, setTab] = useState(0);
 
     useEffect(() => {
@@ -35,6 +35,12 @@ const Comic = (props) => {
             clearComic();
         };
     }, [comic_id, getComic, clearComic]);
+
+    useEffect(() => {
+        if(comic.chapters === null){
+            getChapters(comic_id);
+        }
+    }, [comic]);
 
     const history = useHistory();
     const handleGoBack = () => {
@@ -49,8 +55,8 @@ const Comic = (props) => {
         setTab(newValue);
     };
 
-    const loadedComic = (loaded) => {
-        if (loaded === false) {
+    const loadedComic = () => {
+        if (!comic.title) {
             return (
                 <>
                     <Skeleton variant="rect" height={200}/>
@@ -79,8 +85,8 @@ const Comic = (props) => {
         );
     };
 
-    const loadedRecommendComic = (loaded) => {
-        if (loaded === false) {
+    const loadedRecommendComic = () => {
+        if (!comic.title) {
             return (
                 <>
                     <Skeleton variant="rect" height={135}/>
@@ -114,8 +120,8 @@ const Comic = (props) => {
         )
     };
 
-    const loadedChapter = (loaded) => {
-        if (loaded === false) {
+    const loadedChapter = () => {
+        if (chapters.size === 0) {
             return (
                 <>
                     <Skeleton variant="rect" height={50}/>
@@ -133,13 +139,13 @@ const Comic = (props) => {
         }
 
         const itemsPerPage = 20;
-        const totalPages = Math.ceil(comic.chapters.length / itemsPerPage);
+        const totalPages = Math.ceil(chapters.length / itemsPerPage);
 
         const newPaginatedChapters = [];
         for (let i = 0; i < totalPages; i++) {
             const startIndex = i * itemsPerPage;
             const endIndex = startIndex + itemsPerPage;
-            const pageChapters = [...comic.chapters].slice(startIndex, endIndex);
+            const pageChapters = [...chapters].slice(startIndex, endIndex);
             newPaginatedChapters.push(pageChapters);
         }
 
@@ -163,9 +169,11 @@ const Comic = (props) => {
                 </Tabs>
                 <ChapterList>
                     {newPaginatedChapters[tab].map((chapter) => (
-                        <Button key={chapter.id} variant="outlined" onClick={() => handleChapterClick(chapter.id)}>
-                            <h3>{chapter.title}</h3>
-                        </Button>
+                        <div key={chapter.id}>
+                            <Button variant="outlined" onClick={() => handleChapterClick(chapter.id)}>
+                                <h3>{chapter.title}</h3>
+                            </Button>
+                        </div>
                     ))}
                 </ChapterList>
             </ErrorBoundary>
@@ -187,9 +195,9 @@ const Comic = (props) => {
                     <Link to="/" alt={comic.title}><HomeIcon/></Link>
                 </TopNavPanel>
                 <Section>
-                    {comic.title ? loadedComic(true) : loadedComic(false)}
-                    {comic.title ? loadedChapter(true) : loadedChapter(false)}
-                    {comic.title ? loadedRecommendComic(true) : loadedRecommendComic(false)}
+                    {loadedComic()}
+                    {loadedChapter()}
+                    {loadedRecommendComic()}
                 </Section>
             </DetailStruct>
         </ErrorBoundary>
@@ -199,6 +207,7 @@ const Comic = (props) => {
 const mapStateToProps = (state) => {
     return {
         comic: state.comic.get('comic'),
+        chapters: state.comic.get('chapters'),
     };
 };
 
@@ -206,6 +215,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getComic: async (id) => {
             await dispatch(GetComic(id));
+        },
+        getChapters: async (id) => {
+            await dispatch(GetChapters(id));
         },
         clearComic: () => dispatch(ClearComic())
     };

@@ -148,26 +148,27 @@ export const ChapterList = styled(ScrollType)`
     margin:3px;
     border-radius: 5px;
     background:#ffe2b4;
-    padding:0;
-    display: flex;
-    flex-direction: column;
     padding:7px;
-    min-height:350px;
-    max-height:485px;
-    flex-basis: max-content;
+    max-height:420px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     
-    & > button {
+    & > div {
+        padding:3px;
+    }
+    
+    & button {
+        width:100%;
+        height:40px;
         background: #faefde;
-        margin: 0 0 5px 0;
         font-size: 14px;
         color: #000000;
         border: solid 1px #85c9f6;
         border-radius: 2px;
         align-items: center;
-        max-height:45px;
     } 
     
-    & > button> h3{
+    & button> h3{
         margin:0;
         font-weight: 400;
         font-size: 14px;
@@ -176,26 +177,12 @@ export const ChapterList = styled(ScrollType)`
         white-space: nowrap;
     }
     
-    @media (min-width: 540px) {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      & > button {
-         margin: 0 7px 7px 0;
-         width: 48%;
-      }
+    @media (max-width: 540px) {
+      grid-template-columns: 1fr;
     }
     
     @media (min-width: 1024px) {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: start;
-      & > button {
-         margin: 0 9px 9px 0;
-         width: 23%;
-      }
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 `;
 
