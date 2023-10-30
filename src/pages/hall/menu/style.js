@@ -78,10 +78,3 @@ export const OptionX = styled(Option)`
         background: #c3c3c3;
     }
 `;
-
-export const MenuList = styled.div`
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom:14px;
-`;

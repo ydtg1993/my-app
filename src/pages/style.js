@@ -55,8 +55,26 @@ export const DetailStruct = styled.div`
     }
 `;
 
+export const RangeList = styled.div`
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-bottom:15px;
+    
+    &>div{
+        padding:3px;
+        overflow: hidden;
+    }
+    @media (max-width: 320px) {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    @media (min-width: 760px) {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    }
+`;
+
 export const ComicBox = styled.div`
-    width:32%;
+    width:100%;
     background-color: rgb(255 255 255 / 64%);
     color: rgba(0, 0, 0, 0.87);
     transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
@@ -106,14 +124,6 @@ export const ComicBox = styled.div`
         text-overflow: ellipsis;
         white-space: nowrap;
     }
-    
-    @media (max-width: 320px) {
-        width:48%;
-    }
-    
-    @media (min-width: 760px) {
-        width:16%;
-    }
 `;
 
 export const ComicInfoBox = styled.div`
@@ -122,10 +132,9 @@ export const ComicInfoBox = styled.div`
     align-items: flex-start;
     align-items: center;
     justify-content: flex-start;
-    width: 100%;
     padding:3px 0 3px 0;
+    margin: 0 5px 5px;
     border-radius:3px;
-    margin-bottom:5px;
     background: #dbcb7263;
 `;
 

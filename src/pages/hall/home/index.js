@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import NavComponent from '../navigation'
 import BodyComponent from "../body";
 import {SetCurrentPosition} from "../store/actions";
-import {ComicBox, HallStruct} from "../../style"
-import {BottomSection, SeriesLabel, SeriesList, TopTitle} from "./style";
+import {ComicBox, HallStruct, RangeList} from "../../style"
+import {BottomSection, SeriesLabel, TopTitle} from "./style";
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -15,6 +15,8 @@ import {ErrorBoundary} from "react-error-boundary";
 import ErrorFallback from "../../Err/errorBoundary";
 import {dog_home, img_blank} from "../../../resource";
 import ImageLazy from "../../component/ImageLazy";
+import {WebHost} from "../../../index";
+import {Helmet} from "react-helmet";
 
 const Home = (props) => {
     const {series, seriesPage, setCurrentPosition, getHomeSeries} = props;
@@ -62,9 +64,10 @@ const Home = (props) => {
                         <SeriesLabel>
                             <h2>{data.title}</h2>
                         </SeriesLabel>
-                        <SeriesList>
+                        <RangeList>
                             {data.comics.map((comic) => {
                                 return (
+                                    <div>
                                     <ComicBox key={data.id + "-" + comic.id}>
                                         <Link to={`/comic/${comic.id}`}>
                                             <div className={'imgBox'}>
@@ -74,9 +77,10 @@ const Home = (props) => {
                                                 <h3>{comic.title}</h3>
                                             </div>
                                         </Link>
-                                    </ComicBox>)
+                                    </ComicBox>
+                                    </div>)
                             })}
-                        </SeriesList>
+                        </RangeList>
                     </React.Fragment>
                 ))}
             </>
@@ -85,6 +89,11 @@ const Home = (props) => {
 
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
+            <Helmet>
+                <title>主页 - 漫画汪</title>
+                <meta name="description" content="搜索在线漫画,日漫,韩漫,国漫,漫画图片,漫画头像,二次元,同人漫画,漫画推荐,漫画排行榜,条漫大赛,漫画小说"/>
+                <link rel="canonical" href={WebHost}/>
+            </Helmet>
             <HallStruct>
                 <BodyComponent loadMoreData={loadMoreData} loadMorePage={seriesPage}>
                     <TopTitle>

@@ -46,6 +46,8 @@ export const ToolbarPanel = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     animation: ${fadeIn} .2s ease-in-out;
+    border: 1px solid rgb(0 0 0 / 78%);
+    border-radius: 3px;
 `;
 
 export const NavPanel = styled.div`

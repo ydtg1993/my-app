@@ -20,13 +20,6 @@ export const SeriesLabel = styled.div`
     }
 `;
 
-export const SeriesList = styled.div`
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom:14px;
-`;
-
 export const TopTitle = styled.div`
      & > h1 {
         margin:0;

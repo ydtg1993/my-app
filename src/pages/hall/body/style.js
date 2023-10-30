@@ -3,7 +3,7 @@ import {svg_loading} from "../../../resource";
 import {ScrollType} from "../../style";
 
 export const Section = styled(ScrollType)`
-   padding: 5px;
+   padding: 5px 0;
 `;
 
 const rotateAnimation = keyframes`

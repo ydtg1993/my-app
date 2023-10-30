@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {MenuList, MenuStruct, Tabs, Tab, Option, TabNav, Options, OptionX} from './style';
+import {MenuStruct, Tabs, Tab, Option, TabNav, Options, OptionX} from './style';
 import {SetCurrentPosition} from '../store/actions';
 import NavComponent from '../navigation';
 import BodyComponent from '../body';
@@ -9,7 +9,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../../index";
 import {GetMenuList} from "./store/actions";
-import {ComicBox} from "../../style";
+import {ComicBox, RangeList} from "../../style";
 import {Link,useParams} from "react-router-dom";
 import ErrorFallback from "../../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
@@ -66,9 +66,9 @@ const Menu = (props) => {
     const loadingAnimation = () => {
         return (
             <>
-                <Skeleton variant="rect" height={135}/>
-                <Skeleton variant="rect" height={135}/>
-                <Skeleton variant="rect" height={135}/>
+                <div style={{padding:'0 5px'}}><Skeleton variant="rect" height={135}/></div>
+                <div style={{padding:'0 5px'}}><Skeleton variant="rect" height={135}/></div>
+                <div style={{padding:'0 5px'}}><Skeleton variant="rect" height={135}/></div>
             </>
         );
     };
@@ -76,8 +76,9 @@ const Menu = (props) => {
     const loadedContent = () => {
         return (
             <>
-                <MenuList>
+                <RangeList>
                     {genreList.map((comic) => (
+                        <div>
                         <ComicBox key={comic.id}>
                             <Link to={`/comic/${comic.id}`}>
                                 <div className={'imgBox'}>
@@ -88,8 +89,9 @@ const Menu = (props) => {
                                 </div>
                             </Link>
                         </ComicBox>
+                        </div>
                     ))}
-                </MenuList>
+                </RangeList>
             </>
         );
     };

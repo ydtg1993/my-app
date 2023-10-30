@@ -68,9 +68,9 @@ const Search = (props) => {
     const loadingAnimation = () => {
         return (
             <>
-                <Skeleton variant="rect" height={135}/>
-                <Skeleton variant="rect" height={135}/>
-                <Skeleton variant="rect" height={135}/>
+                <div style={{padding:'0 5px'}}><Skeleton variant="rect" height={135}/></div>
+                <div style={{padding:'0 5px'}}><Skeleton variant="rect" height={135}/></div>
+                <div style={{padding:'0 5px'}}><Skeleton variant="rect" height={135}/></div>
             </>
         );
     };
