@@ -147,13 +147,13 @@ export const InfoPart = styled.ul`
 export const ChapterList = styled(ScrollType)`
     margin:3px;
     border-radius: 5px;
-    height: 100%;
     background:#ffe2b4;
     padding:0;
     display: flex;
     flex-direction: column;
     padding:7px;
-    height:300px;
+    min-height:350px;
+    max-height:485px;
     flex-basis: max-content;
     
     & > button {
@@ -196,5 +196,25 @@ export const ChapterList = styled(ScrollType)`
          margin: 0 9px 9px 0;
          width: 23%;
       }
+    }
+`;
+
+export const SubTitle = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding:0 5px;
+    margin-top:10px;
+    &>span{
+        font-size:15px;
+        width:85px;
+        text-align: center;
+    }
+    &::before,&::after{
+        content: '';               
+        width:0;
+        flex-grow: 1;
+        background: #85cbf8; 
+        height: 1px;
     }
 `;

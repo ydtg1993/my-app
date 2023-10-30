@@ -4,7 +4,7 @@ import {
     TitleBox,
     ChapterList,
     TopNavPanel, BackIcon, HomeIcon,
-    ComicInfoBox, CoverPart, InfoPart
+    ComicInfoBox, CoverPart, InfoPart, SubTitle
 } from './style';
 /*other component*/
 import Skeleton from "react-loading-skeleton";
@@ -14,11 +14,14 @@ import {ClearComic, GetComic} from "./store/actions";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Button from '@mui/material/Button';
-import {DetailStruct} from "../style";
+import {ComicBox, DetailStruct, RangeList} from "../style";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../index";
 import ErrorFallback from "../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
+import ImageLazy from "../component/ImageLazy";
+import {img_blank} from "../../resource";
+import {Section} from "../hall/body/style";
 
 const Comic = (props) => {
     const {comic_id} = useParams();
@@ -31,7 +34,7 @@ const Comic = (props) => {
         return () => {
             clearComic();
         };
-    }, [comic_id,getComic,clearComic]);
+    }, [comic_id, getComic, clearComic]);
 
     const history = useHistory();
     const handleGoBack = () => {
@@ -58,7 +61,7 @@ const Comic = (props) => {
             <>
                 <ComicInfoBox>
                     <CoverPart>
-                        <img src={comic.cover} alt="Image" />
+                        <img src={comic.cover} alt="Image"/>
                     </CoverPart>
                     <InfoPart>
                         <li><h2>{comic.title}</h2></li>
@@ -74,6 +77,41 @@ const Comic = (props) => {
                 </ComicInfoBox>
             </>
         );
+    };
+
+    const loadedRecommendComic = (loaded) => {
+        if (loaded === false) {
+            return (
+                <>
+                    <Skeleton variant="rect" height={135}/>
+                    <Skeleton variant="rect" height={135}/>
+                </>
+            );
+        }
+
+        return (
+            <>
+                <SubTitle><span>猜你喜欢</span></SubTitle>
+                <RangeList>
+                    {comic.recommend.map((r) => {
+                        return (
+                            <div key={r.id}>
+                                <ComicBox>
+                                    <Link to={`/comic/${r.id}`}>
+                                        <div className={'imgBox'}>
+                                            <ImageLazy src={img_blank} data-src={r.cover} alt={r.title}
+                                                       options={{threshold: 0.1}}/>
+                                        </div>
+                                        <div className={'titleBox'}>
+                                            <h3>{r.title}</h3>
+                                        </div>
+                                    </Link>
+                                </ComicBox>
+                            </div>)
+                    })}
+                </RangeList>
+            </>
+        )
     };
 
     const loadedChapter = (loaded) => {
@@ -137,8 +175,9 @@ const Comic = (props) => {
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Helmet>
-                <title>{comic.title ? comic.title+" 漫画详情":"漫画详情"} - 漫画汪</title>
-                <meta name="description" content={comic.title ? `《${comic.title}》, 《${comic.title}》全集,${comic.description}` :""}/>
+                <title>{comic.title ? comic.title + " 漫画详情" : "漫画详情"} - 漫画汪</title>
+                <meta name="description"
+                      content={comic.title ? `《${comic.title}》, 《${comic.title}》全集,${comic.description}` : ""}/>
                 <link rel="canonical" href={`${WebHost}comic/${comic_id}`}/>
             </Helmet>
             <DetailStruct>
@@ -147,8 +186,11 @@ const Comic = (props) => {
                     <TitleBox><h1>{comic.title}</h1></TitleBox>
                     <Link to="/" alt={comic.title}><HomeIcon/></Link>
                 </TopNavPanel>
-                {comic.title ? loadedComic(true) : loadedComic(false)}
-                {comic.title ? loadedChapter(true) : loadedChapter(false)}
+                <Section>
+                    {comic.title ? loadedComic(true) : loadedComic(false)}
+                    {comic.title ? loadedChapter(true) : loadedChapter(false)}
+                    {comic.title ? loadedRecommendComic(true) : loadedRecommendComic(false)}
+                </Section>
             </DetailStruct>
         </ErrorBoundary>
     );
