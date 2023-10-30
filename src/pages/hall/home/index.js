@@ -67,17 +67,18 @@ const Home = (props) => {
                         <RangeList>
                             {data.comics.map((comic) => {
                                 return (
-                                    <div>
-                                    <ComicBox key={data.id + "-" + comic.id}>
-                                        <Link to={`/comic/${comic.id}`}>
-                                            <div className={'imgBox'}>
-                                                <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
-                                            </div>
-                                            <div className={'titleBox'}>
-                                                <h3>{comic.title}</h3>
-                                            </div>
-                                        </Link>
-                                    </ComicBox>
+                                    <div key={data.id + "-" + comic.id}>
+                                        <ComicBox>
+                                            <Link to={`/comic/${comic.id}`}>
+                                                <div className={'imgBox'}>
+                                                    <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title}
+                                                               options={{threshold: 0.1}}/>
+                                                </div>
+                                                <div className={'titleBox'}>
+                                                    <h3>{comic.title}</h3>
+                                                </div>
+                                            </Link>
+                                        </ComicBox>
                                     </div>)
                             })}
                         </RangeList>
