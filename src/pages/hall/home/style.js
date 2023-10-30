@@ -1,9 +1,4 @@
 import styled from 'styled-components';
-import {HallStruct} from "../../style";
-
-export const MainStruct = styled(HallStruct)`
-    grid-template-rows:55px auto 60px;
-`;
 
 export const SeriesLabel = styled.div`
     display:flex;
@@ -45,6 +40,16 @@ export const TopTitle = styled.div`
         width:42px;
     }
     
+    & > span{
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        color: rgba(0, 0, 0, 0.65);
+    }
+`;
+
+export const BottomSection = styled.div`
     & > span{
         font-size: 12px;
         display: flex;

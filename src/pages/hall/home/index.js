@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import NavComponent from '../navigation'
 import BodyComponent from "../body";
 import {SetCurrentPosition} from "../store/actions";
-import {ComicBox} from "../../style"
-import {MainStruct, SeriesLabel, SeriesList, TopTitle} from "./style";
+import {ComicBox, HallStruct} from "../../style"
+import {BottomSection, SeriesLabel, SeriesList, TopTitle} from "./style";
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -85,16 +85,18 @@ const Home = (props) => {
 
     return (
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-            <MainStruct>
-                <TopTitle>
-                    <h1><img src={dog_home}></img> 漫画汪 免费看漫画</h1>
-                    <span>所有內容均來源互聯網</span>
-                </TopTitle>
+            <HallStruct>
                 <BodyComponent loadMoreData={loadMoreData} loadMorePage={seriesPage}>
+                    <TopTitle>
+                        <h1>漫画汪 <img src={dog_home}></img> 看漫画</h1>
+                    </TopTitle>
                     {isLoading ? loadingAnimation() : loadedContent()}
+                    <BottomSection>
+                        <span>所有內容均來源互聯網</span>
+                    </BottomSection>
                 </BodyComponent>
                 <NavComponent/>
-            </MainStruct>
+            </HallStruct>
         </ErrorBoundary>
     );
 };
