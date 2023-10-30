@@ -8,7 +8,7 @@ import {
     BtnPanel,
     ChapterImageList,
     ImageBox,
-    LastIcon,
+    PreviousIcon,
     NavPanel,
     NextIcon,
     ReaderStruct,
@@ -80,6 +80,13 @@ const Chapter = (props) => {
         history.goBack();
     };
 
+    const handlePreviousNext = (index) => {
+        if(Array.isArray(chapter.get('previous_next'))){
+            let id = chapter.get('previous_next')[index];
+            if(id > 0) history.push(`/comic/${chapter.get('comic_id')}/${id}`);
+        }
+    };
+
     const SetImgBox = (img, index) => {
         let height;
         let width;
@@ -114,11 +121,11 @@ const Chapter = (props) => {
                             <BackIcon/>
                             <span>返回</span>
                         </Btn>
-                        <Btn>
-                            <LastIcon/>
+                        <Btn onClick={()=>handlePreviousNext(0)}>
+                            <PreviousIcon/>
                             <span>上章</span>
                         </Btn>
-                        <Btn>
+                        <Btn onClick={()=>handlePreviousNext(1)}>
                             <NextIcon/>
                             <span>下章</span>
                         </Btn>

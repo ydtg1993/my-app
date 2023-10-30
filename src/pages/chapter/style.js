@@ -100,7 +100,7 @@ export const BackIcon = styled(Icon).attrs({
     width:25px;
 `;
 
-export const LastIcon = styled(Icon).attrs({
+export const PreviousIcon = styled(Icon).attrs({
     src:`${dog_last}`
 })``;
 
