@@ -8,7 +8,7 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../../index";
-import {GetMenuList} from "./store/actions";
+import {ClearMenuList, GetMenuList} from "./store/actions";
 import {ComicBox, RangeList} from "../../style";
 import {Link,useParams} from "react-router-dom";
 import ErrorFallback from "../../Err/errorBoundary";
@@ -18,7 +18,7 @@ import ImageLazy from "../../component/ImageLazy";
 import {navCategory, navRegion, navSort, navStatus} from "./nav";
 
 const Menu = (props) => {
-    const {genreList, genrePage, setCurrentPosition, getMenuList} = props;
+    const {genreList, genrePage, setCurrentPosition, getMenuList, clearMenuList} = props;
     const [isLoading, setIsLoading] = useState(true);
     const [selectedTab, setSelectedTab] = useState(null);
     const [selectedNav, setSelectedNav] = useState([0,0,0,0]);
@@ -27,7 +27,8 @@ const Menu = (props) => {
     useEffect(() => {
         setCurrentPosition('menu');
         return () => {
-            getMenuList(0, [0,0,0,0]);
+            setSelectedNav([0,0,0,0]);
+            clearMenuList();
         };
     }, []);
 
@@ -78,17 +79,17 @@ const Menu = (props) => {
             <>
                 <RangeList>
                     {genreList.map((comic) => (
-                        <div>
-                        <ComicBox key={comic.id}>
-                            <Link to={`/comic/${comic.id}`}>
-                                <div className={'imgBox'}>
-                                    <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
-                                </div>
-                                <div className={'titleBox'}>
-                                    <h3>{comic.title}</h3>
-                                </div>
-                            </Link>
-                        </ComicBox>
+                        <div key={comic.id}>
+                            <ComicBox>
+                                <Link to={`/comic/${comic.id}`}>
+                                    <div className={'imgBox'}>
+                                        <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
+                                    </div>
+                                    <div className={'titleBox'}>
+                                        <h3>{comic.title}</h3>
+                                    </div>
+                                </Link>
+                            </ComicBox>
                         </div>
                     ))}
                 </RangeList>
@@ -187,6 +188,7 @@ const mapDispatchToProps = (dispatch) => {
         getMenuList: async (p, params) => {
             await dispatch(GetMenuList(p, params));
         },
+        clearMenuList:()=>dispatch(ClearMenuList()),
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };
 };

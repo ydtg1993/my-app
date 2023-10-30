@@ -16,6 +16,10 @@ export default (state = defaultState, action) => {
                     .set('genrePage',action.page)
                     .set('genreList',state.get('genreList').concat(action.data.comics));
             }
+        case Actions.MENU_CLEAR:
+            return state
+                .set('genrePage',0)
+                .set('genreList',List());
         default:
             return state
     }

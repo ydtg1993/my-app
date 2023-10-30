@@ -3,6 +3,7 @@ import {Host} from "../../../../index";
 import Toast from "../../../component/toast";
 
 export const MENU_LIST = 'menu_list';
+export const MENU_CLEAR = 'menu_clear';
 
 export const GetMenuList = (p,params)=>{
     return async (dispatch) => {
@@ -24,7 +25,9 @@ export const GetMenuList = (p,params)=>{
     };
 };
 
-
+export const ClearMenuList = ()=>({
+    type:MENU_CLEAR
+});
 
 
 
