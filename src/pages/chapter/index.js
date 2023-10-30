@@ -1,10 +1,22 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {connect} from 'react-redux';
 /*other component*/
 import {Link, useHistory, useParams} from 'react-router-dom';
-import {BackIcon, HomeIcon, TitleBox, TopNavPanel} from "../comic/style";
+import {TitleBox} from "../comic/style";
 import {ClearChapter, GetChapter} from "./store/actions";
-import {ChapterImageList, ImageBox, ReaderStruct} from "./style";
+import {
+    BtnPanel,
+    ChapterImageList,
+    ImageBox,
+    LastIcon,
+    NavPanel,
+    NextIcon,
+    ReaderStruct,
+    ToolbarPanel,
+    BackIcon,
+    HomeIcon,
+    Btn
+} from "./style";
 import {RecordReadHistory} from "../hall/ibook/store/actions";
 import {Helmet} from "react-helmet";
 import {WebHost} from "../../index";
@@ -17,12 +29,38 @@ const Chapter = (props) => {
     const {chapter_id} = useParams();
     const {chapter, getChapter, clearChapter, recordReadHistory} = props;
     const [containerWidth, setContainerWidth] = useState(window.innerWidth);
+    const chapterListRef = useRef(null);
+    const toolbarRef = useRef(null);
 
     useEffect(() => {
         const handleResize = () => {
             setContainerWidth(window.innerWidth);
         };
         window.addEventListener('resize', handleResize);
+        let lastScrollTop = 0;
+        const scrollToolbarInOut = () => {
+            let currentScrollTop = chapterListRef.current.pageYOffset || chapterListRef.current.scrollTop;
+            if (currentScrollTop > lastScrollTop) {
+                if (toolbarRef.current.style.display !== "none"){
+                    toolbarRef.current.style.display = "none";
+                }
+            }else {
+                //scroll up
+                if (toolbarRef.current.style.display === "none"){
+                    toolbarRef.current.style.display = "unset";
+                }
+            }
+            lastScrollTop = currentScrollTop;
+        };
+        chapterListRef.current.addEventListener('scroll', scrollToolbarInOut);
+        const clickToolbarInOut = () => {
+            if (toolbarRef.current.style.display !== "none"){
+                toolbarRef.current.style.display = "none";
+            }else {
+                toolbarRef.current.style.display = "unset";
+            }
+        };
+        chapterListRef.current.addEventListener('click', clickToolbarInOut);
         getChapter(chapter_id);
 
         return () => {
@@ -67,12 +105,27 @@ const Chapter = (props) => {
                 <link rel="canonical" href={`${WebHost}comic/${chapter.get('comic_id')}/${chapter.get('id')}`}/>
             </Helmet>
             <ReaderStruct>
-                <TopNavPanel>
-                    <BackIcon onClick={handleGoBack}/>
-                    <TitleBox><h1>{chapter.get('title')}</h1></TitleBox>
-                    <Link to="/"><HomeIcon/></Link>
-                </TopNavPanel>
-                <ChapterImageList>
+                <ToolbarPanel ref={toolbarRef}>
+                    <NavPanel>
+                        <TitleBox><h1>{chapter.get('title')}</h1></TitleBox>
+                    </NavPanel>
+                    <BtnPanel>
+                        <Btn onClick={handleGoBack}>
+                            <BackIcon/>
+                            <span>返回</span>
+                        </Btn>
+                        <Btn>
+                            <LastIcon/>
+                            <span>上章</span>
+                        </Btn>
+                        <Btn>
+                            <NextIcon/>
+                            <span>下章</span>
+                        </Btn>
+                        <Link to="/"><HomeIcon/></Link>
+                    </BtnPanel>
+                </ToolbarPanel>
+                <ChapterImageList ref={chapterListRef}>
                     {chapter.get('source') ? chapter.get('source').map((img, index) => (
                         SetImgBox(img, index)
                     )) : ''}
