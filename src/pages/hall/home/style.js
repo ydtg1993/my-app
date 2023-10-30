@@ -30,7 +30,7 @@ export const SeriesList = styled.div`
 export const TopTitle = styled.div`
      & > h1 {
         margin:0;
-        font-size: 24px;
+        font-size: 20px;
         display: flex;
         align-items: center;
         justify-content: center;
