@@ -83,7 +83,8 @@ export const CoverPart = styled.div`
 `;
 
 export const InfoPart = styled.ul`
-    flex:0.96;
+    width:0;
+    flex-grow: 1;
     color:white;
     font-size:12px;
     margin: 0;
@@ -91,7 +92,7 @@ export const InfoPart = styled.ul`
     overflow: hidden;
     
     & > li {
-        margin:5px 0 5px 0;
+        margin:5px 5px 5px 0;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;   
@@ -104,44 +105,34 @@ export const InfoPart = styled.ul`
         color: #ffebd1;
     }
     
-    & > li > label{
-        padding: 2px;
-        background: #151515eb;
-        display: inline-flex;
-        border-radius: 2px;
-        align-items: center;
-        justify-content: center;
-        margin-right: 5px;
+    & .btn{
+        text-align: right;
     }
     
-    & > li > .tag{
-        padding: 2px;
-        margin-right: 4px;
-        background: rgb(146 17 87 / 40%);
-        display: inline-flex;
-        border-radius: 2px;
-        align-items: center;
-        justify-content: center;
+    & .btn span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
-    
-     & > li > .description{
-        overflow-y: scroll;
-        height: 60px;
-        white-space: normal;
-        &::-webkit-scrollbar {
-            width: 0;
-        }
-        &::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
-        &::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0);
-        }
-        scrollbar-width: thin;
-        scrollbar-color: transparent transparent;
-        scrollbar-width: thin;
-        scrollbar-color: transparent;
-    }
+`;
+
+export const Label = styled.div`
+    padding: 2px;
+    background: #151515eb;
+    display: inline-flex;
+    border-radius: 2px;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+`;
+
+export const Tag = styled(Label)`
+    background: rgb(146 17 87 / 40%);
+`;
+
+export const Description = styled(ScrollType)`
+    height: 60px;
+    white-space: normal;
 `;
 
 export const ChapterList = styled(ScrollType)`
@@ -155,6 +146,7 @@ export const ChapterList = styled(ScrollType)`
     
     & > div {
         padding:3px;
+        overflow:hidden;
     }
     
     & button {
@@ -182,7 +174,7 @@ export const ChapterList = styled(ScrollType)`
     }
     
     @media (min-width: 1024px) {
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 `;
 

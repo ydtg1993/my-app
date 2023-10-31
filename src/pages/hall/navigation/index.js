@@ -25,9 +25,9 @@ const NavComponent = React.memo(({ currentPosition }) => {
                 <NavLink to="/ibook" exact style={navStyle}>
                     <NavigationTab className={currentPosition === 'ibook' ? 'ibook-in' : 'ibook'} />
                 </NavLink>
-                <NavLink to="/me" exact style={navStyle}>
+                {/*<NavLink to="/me" exact style={navStyle}>
                     <NavigationTab className={currentPosition === 'me' ? 'me-in' : 'me'} />
-                </NavLink>
+                </NavLink>*/}
             </Bottom>
         </BottomFloor>
     );

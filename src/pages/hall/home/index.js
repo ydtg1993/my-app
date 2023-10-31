@@ -68,7 +68,7 @@ const Home = (props) => {
                             {data.comics.map((comic) => {
                                 return (
                                     <div key={data.id + "-" + comic.id}>
-                                        <ComicBox>
+                                        <ComicBox title={comic.title}>
                                             <Link to={`/comic/${comic.id}`}>
                                                 <div className={'imgBox'}>
                                                     <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title}

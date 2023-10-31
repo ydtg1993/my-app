@@ -107,3 +107,22 @@ export const PreviousIcon = styled(Icon).attrs({
 export const NextIcon = styled(Icon).attrs({
     src:`${dog_next}`
 })``;
+
+export const BottomTip = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    margin:30px 90px;
+    & span{
+        font-size:15px;
+        width:120px;
+        text-align: center;
+    }
+    &::before,&::after{
+        content: '';               
+        width:0;
+        flex-grow: 1;
+        background: #5e5e5e; 
+        height: 1px;
+    }
+`;

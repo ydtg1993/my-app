@@ -16,6 +16,35 @@ export const GetReadHistoryList = () => {
     };
 };
 
+export const GetReadComicRecord = async (comic_id) => {
+    let result = null;
+    try {
+        let data = await localForage.getItem(READ_HISTORY_LIST) || [];
+        const existingIndex = data.findIndex((entry) => entry.comic_id === comic_id);
+        if (existingIndex !== -1) result = data[existingIndex];
+    } catch (error) {
+        console.error(`Error setting ${READ_HISTORY_LIST} in localForage`, error);
+    }
+    return result;
+};
+
+export const RemoveReadHistory = (comic_id) => {
+    return async (dispatch) => {
+        try {
+            let data = await localForage.getItem(READ_HISTORY_LIST) || [];
+            const existingIndex = data.findIndex((entry) => entry.comic_id === comic_id);
+            if (existingIndex !== -1) data.splice(existingIndex, 1);
+            await localForage.setItem(READ_HISTORY_LIST, data);
+            dispatch({
+                type: READ_HISTORY_LIST,
+                data: data,
+            });
+        } catch (error) {
+            console.error(`Error setting ${READ_HISTORY_LIST} in localForage`, error);
+        }
+    };
+};
+
 export const RecordReadHistory = (item) => {
     return async (dispatch) => {
         try {

@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import * as actions from './store/actions';
 /*component*/
@@ -15,9 +15,10 @@ import ErrorFallback from "../../Err/errorBoundary";
 import {ErrorBoundary} from "react-error-boundary";
 import {img_blank} from "../../../resource";
 import ImageLazy from "../../component/ImageLazy";
+import {RemoveReadHistory} from "./store/actions";
 
 const IBook = (props) => {
-    const {readHistoryList, getReadHistory, setCurrentPosition} = props;
+    const {readHistoryList, getReadHistory,removeReadHistory, setCurrentPosition} = props;
 
     useEffect(() => {
         setCurrentPosition('ibook');
@@ -33,6 +34,10 @@ const IBook = (props) => {
         history.push(`/comic/${comicId}/${chapterId}`);
     };
 
+    const handleRemoveMemClick = (comicId) => {
+        removeReadHistory(comicId)
+    };
+
     const loadedContent = () => {
         if (readHistoryList.size === 0) return (<EmptyBox/>);
 
@@ -44,11 +49,16 @@ const IBook = (props) => {
                             <ImageLazy src={img_blank} data-src={record.comic_cover} alt={record.comic_title} options={{ threshold: 0.1 }}/>
                         </CoverPart>
                         <InfoPart>
-                            <li className={"title"}>{record.comic_title}</li>
+                            <li className={"title"}><h3>{record.comic_title}</h3></li>
                             <li><label>作 者</label><span style={{color: 'black'}}>{record.comic_author}</span></li>
                             <li><label>书 签</label><span style={{color: '#1b73c0'}}>{record.chapter_title}</span></li>
                             <li><label>时 间</label><span style={{color: '#1b73c0'}}>{record.time}</span></li>
                             <li className={"btn"}>
+                                <Button style={{background: 'rgb(255 0 164)',color:'black', marginRight: '10px'}}
+                                        variant="outlined" size="small" href="#contained-buttons"
+                                        onClick={() => handleRemoveMemClick(record.comic_id)}>
+                                    <span>删除记录</span>
+                                </Button>
                                 <Button style={{background: '#feea9b', marginRight: '5px'}}
                                         variant="outlined" size="small" href="#contained-buttons"
                                         onClick={() => handleChapterClick(record.comic_id, record.chapter_id)}>
@@ -78,6 +88,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         getReadHistory: async () => {
             await dispatch(GetReadHistoryList());
+        },
+        removeReadHistory: async (comic_id) => {
+            await dispatch(RemoveReadHistory(comic_id));
         },
         setCurrentPosition: (position) => dispatch(SetCurrentPosition(position)),
     };

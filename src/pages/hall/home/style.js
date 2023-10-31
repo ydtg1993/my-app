@@ -22,7 +22,7 @@ export const SeriesLabel = styled.div`
 
 export const TopTitle = styled.div`
      & > h1 {
-        margin:0;
+        margin:0 0 15px;;
         font-size: 20px;
         display: flex;
         align-items: center;

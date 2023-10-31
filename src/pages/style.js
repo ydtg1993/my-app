@@ -130,7 +130,6 @@ export const ComicInfoBox = styled.div`
     display:flex;
     flex-wrap: nowrap;
     align-items: flex-start;
-    align-items: center;
     justify-content: flex-start;
     padding:3px 0 3px 0;
     margin: 0 5px 5px;

@@ -15,7 +15,8 @@ import {
     ToolbarPanel,
     BackIcon,
     HomeIcon,
-    Btn
+    Btn,
+    BottomTip
 } from "./style";
 import {RecordReadHistory} from "../hall/ibook/store/actions";
 import {Helmet} from "react-helmet";
@@ -26,7 +27,7 @@ import ImageLazy from "../component/ImageLazy";
 import {img_blank} from "../../resource";
 
 const Chapter = (props) => {
-    const {chapter_id} = useParams();
+    const {comic_id,chapter_id} = useParams();
     const {chapter, getChapter, clearChapter, recordReadHistory} = props;
     const [containerWidth, setContainerWidth] = useState(window.innerWidth);
     const chapterListRef = useRef(null);
@@ -77,13 +78,13 @@ const Chapter = (props) => {
 
     const history = useHistory();
     const handleGoBack = () => {
-        history.goBack();
+        history.push(`/comic/${comic_id}`)
     };
 
     const handlePreviousNext = (index) => {
         if(Array.isArray(chapter.get('previous_next'))){
             let id = chapter.get('previous_next')[index];
-            if(id > 0) history.push(`/comic/${chapter.get('comic_id')}/${id}`);
+            if(id > 0) history.push(`/comic/${comic_id}/${id}`);
         }
     };
 
@@ -136,6 +137,7 @@ const Chapter = (props) => {
                     {chapter.get('source') ? chapter.get('source').map((img, index) => (
                         SetImgBox(img, index)
                     )) : ''}
+                    <BottomTip><span>到底了</span></BottomTip>
                 </ChapterImageList>
             </ReaderStruct>
         </ErrorBoundary>
