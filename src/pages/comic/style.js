@@ -140,7 +140,7 @@ export const ChapterList = styled(ScrollType)`
     border-radius: 5px;
     background:#ffe2b4;
     padding:7px;
-    max-height:420px;
+    max-height:340px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     
@@ -171,10 +171,12 @@ export const ChapterList = styled(ScrollType)`
     
     @media (max-width: 540px) {
       grid-template-columns: 1fr;
+      max-height:300px;
     }
     
     @media (min-width: 1024px) {
       grid-template-columns: 1fr 1fr 1fr 1fr;
+      max-height:420px;
     }
 `;
 

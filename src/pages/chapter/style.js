@@ -41,7 +41,8 @@ export const ImageBox = styled.div`
 
 export const ToolbarPanel = styled.div`
     position: fixed;
-    width: 520px;
+    width:90%;
+    max-width: 520px;
     bottom: 10px;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -115,7 +116,7 @@ export const BottomTip = styled.div`
     margin:30px 90px;
     & span{
         font-size:15px;
-        width:120px;
+        width:100px;
         text-align: center;
     }
     &::before,&::after{

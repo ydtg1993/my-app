@@ -137,7 +137,7 @@ const Chapter = (props) => {
                     {chapter.get('source') ? chapter.get('source').map((img, index) => (
                         SetImgBox(img, index)
                     )) : ''}
-                    <BottomTip><span>到底了</span></BottomTip>
+                    {chapter.get('source') ? <BottomTip><span>到底了</span></BottomTip> : ''}
                 </ChapterImageList>
             </ReaderStruct>
         </ErrorBoundary>
