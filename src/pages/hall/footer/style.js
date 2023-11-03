@@ -31,6 +31,7 @@ export const LinkList = styled.ul`
 export const LinkRow = styled.li`
     font-size: 12px;
     margin-bottom: 5px;
+    color: #cdcdcd;
 `;
 
 export const StateSection = styled.div`

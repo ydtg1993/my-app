@@ -6,7 +6,6 @@ import {TitleBox} from "../comic/style";
 import {ClearChapter, GetChapter} from "./store/actions";
 import {
     BtnPanel,
-    ChapterImageList,
     ImageBox,
     PreviousIcon,
     NavPanel,
@@ -44,11 +43,6 @@ const Chapter = (props) => {
             if (currentScrollTop > lastScrollTop) {
                 if (toolbarRef.current.style.display !== "none"){
                     toolbarRef.current.style.display = "none";
-                }
-            }else {
-                //scroll up
-                if (toolbarRef.current.style.display === "none"){
-                    toolbarRef.current.style.display = "unset";
                 }
             }
             lastScrollTop = currentScrollTop;
@@ -133,12 +127,12 @@ const Chapter = (props) => {
                         <Link to="/"><HomeIcon/></Link>
                     </BtnPanel>
                 </ToolbarPanel>
-                <ChapterImageList ref={chapterListRef}>
+                <div className={'scroll'} ref={chapterListRef}>
                     {chapter.get('source') ? chapter.get('source').map((img, index) => (
                         SetImgBox(img, index)
                     )) : ''}
                     {chapter.get('source') ? <BottomTip><span>到底了</span></BottomTip> : ''}
-                </ChapterImageList>
+                </div>
             </ReaderStruct>
         </ErrorBoundary>
     );

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {fadeIn, fadeOut, ScrollType} from "../style";
+import {fadeIn, fadeOut} from "../style";
 import {dog_last, dog_next, dog_sleep, img_back} from "../../resource";
 import {NavigationTab} from "../hall/navigation/style";
 
@@ -18,10 +18,6 @@ export const ReaderStruct = styled.div`
     @media (min-width: 1024px) {
         width: 1024px;
     }
-`;
-
-export const ChapterImageList = styled(ScrollType)`
-    
 `;
 
 export const ImageBox = styled.div`
