@@ -23,6 +23,7 @@ import ImageLazy from "../component/ImageLazy";
 import {img_blank} from "../../resource";
 import {Section} from "../hall/body/style";
 import {GetReadComicRecord} from "../hall/ibook/store/actions";
+import FooterComponent from "../hall/footer";
 
 const Comic = (props) => {
     const {comic_id} = useParams();
@@ -90,22 +91,22 @@ const Comic = (props) => {
                         <img src={comic.cover} alt="Image"/>
                     </CoverPart>
                     <InfoPart>
-                        <li><h2>{comic.title}</h2></li>
-                        <li><Label>作 者</Label>{comic.author}</li>
-                        <li><Label>热 度</Label>{comic.popularity}</li>
-                        <li><Label>标 签</Label>{Object.entries(comic.label).map(([id, value]) => (
+                        <li className={'trim_text'}><h2 className={'trim_text'}>{comic.title}</h2></li>
+                        <li className={'trim_text'}><Label>作 者</Label>{comic.author}</li>
+                        <li className={'trim_text'}><Label>热 度</Label>{comic.popularity}</li>
+                        <li className={'trim_text'}><Label>标 签</Label>{Object.entries(comic.label).map(([id, value]) => (
                             <Tag key={"tag-" + id}>{value}</Tag>
                         ))}</li>
-                        <li>
-                            <Description>{comic.description}</Description>
+                        <li className={'trim_text'}>
+                            <Description className={'scroll'}>{comic.description}</Description>
                         </li>
-                        <li className={'btn'}>
+                        <li className={'btn trim_text'}>
                             {readComicRecord === null ?
                                 (<Button onClick={handelReadComic} style={{background: '#feea9b'}} variant="outlined"
                                          size="small" href="#contained-buttons"><span>开始阅读</span></Button>) :
                                 (<Button onClick={handelReadComic} style={{background: '#feea9b',maxWidth:'200px'}} variant="outlined"
                                          size="small"
-                                         href="#contained-buttons"><span title={readComicRecord.chapter_title}>继续阅读: {readComicRecord.chapter_title}</span></Button>)
+                                         href="#contained-buttons"><span className={'trim_text'} title={readComicRecord.chapter_title}>继续阅读: {readComicRecord.chapter_title}</span></Button>)
                             }
                         </li>
                     </InfoPart>
@@ -138,7 +139,7 @@ const Comic = (props) => {
                                                        options={{threshold: 0.1}}/>
                                         </div>
                                         <div className={'titleBox'}>
-                                            <h3>{r.title}</h3>
+                                            <h3 className={'trim_text'}>{r.title}</h3>
                                         </div>
                                     </Link>
                                 </ComicBox>
@@ -196,11 +197,11 @@ const Comic = (props) => {
                         <Tab key={index} label={`序${index * itemsPerPage + 1} - ${(index + 1) * itemsPerPage}`}/>
                     ))}
                 </Tabs>
-                <ChapterList>
+                <ChapterList className={'scroll'}>
                     {newPaginatedChapters[tab].map((chapter) => (
                         <div key={chapter.id}>
                             <Button variant="outlined" onClick={() => handleChapterClick(chapter.id)}>
-                                <h3 title={chapter.title}>{chapter.title}</h3>
+                                <h3 title={chapter.title} className={'trim_text'}>{chapter.title}</h3>
                             </Button>
                         </div>
                     ))}
@@ -217,17 +218,20 @@ const Comic = (props) => {
                       content={comic.title ? `《${comic.title}》, 《${comic.title}》全集,${comic.description}` : ""}/>
                 <link rel="canonical" href={`${WebHost}comic/${comic_id}`}/>
             </Helmet>
-            <DetailStruct>
-                <TopNavPanel>
-                    <BackIcon onClick={handleGoBack}/>
-                    <TitleBox><h1>{comic.title}</h1></TitleBox>
-                    <Link to="/" alt={comic.title}><HomeIcon/></Link>
-                </TopNavPanel>
-                <Section>
-                    {loadedComic()}
-                    {loadedChapter()}
-                    {loadedRecommendComic()}
-                </Section>
+            <DetailStruct className={'scroll'} style={{overflowY:'scroll'}}>
+                <div>
+                    <TopNavPanel>
+                        <BackIcon onClick={handleGoBack}/>
+                        <TitleBox><h1 className={'trim_text'}>{comic.title}</h1></TitleBox>
+                        <Link to="/" alt={comic.title}><HomeIcon/></Link>
+                    </TopNavPanel>
+                    <Section>
+                        {loadedComic()}
+                        {loadedChapter()}
+                        {loadedRecommendComic()}
+                    </Section>
+                </div>
+                <FooterComponent/>
             </DetailStruct>
         </ErrorBoundary>
     );

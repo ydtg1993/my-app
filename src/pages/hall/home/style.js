@@ -41,13 +41,3 @@ export const TopTitle = styled.div`
         color: rgba(0, 0, 0, 0.65);
     }
 `;
-
-export const BottomSection = styled.div`
-    & > span{
-        font-size: 12px;
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        color: rgba(0, 0, 0, 0.65);
-    }
-`;

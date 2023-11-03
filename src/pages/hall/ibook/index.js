@@ -6,7 +6,6 @@ import NavComponent from '../navigation'
 import {HallStruct} from "../../style";
 import {SetCurrentPosition} from "../store/actions";
 import {GetReadHistoryList} from "./store/actions";
-import gif_finn from "../../../resource/pics/finn.gif";
 import {useHistory} from "react-router-dom";
 import {ComicInfoBox, CoverPart} from '../../style';
 import {Section, InfoPart, EmptyBox} from "./style";
@@ -49,7 +48,7 @@ const IBook = (props) => {
                             <ImageLazy src={img_blank} data-src={record.comic_cover} alt={record.comic_title} options={{ threshold: 0.1 }}/>
                         </CoverPart>
                         <InfoPart>
-                            <li className={"title"}><h3>{record.comic_title}</h3></li>
+                            <li className={"title"}><h3 className={'trim_text'}>{record.comic_title}</h3></li>
                             <li><label>作 者</label><span style={{color: 'black'}}>{record.comic_author}</span></li>
                             <li><label>书 签</label><span style={{color: '#1b73c0'}}>{record.chapter_title}</span></li>
                             <li><label>时 间</label><span style={{color: '#1b73c0'}}>{record.time}</span></li>

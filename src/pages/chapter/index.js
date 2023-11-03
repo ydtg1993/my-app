@@ -115,7 +115,7 @@ const Chapter = (props) => {
             <ReaderStruct>
                 <ToolbarPanel ref={toolbarRef}>
                     <NavPanel>
-                        <TitleBox><h1>{chapter.get('title')}</h1></TitleBox>
+                        <TitleBox><h1 className={'trim_text'}>{chapter.get('title')}</h1></TitleBox>
                     </NavPanel>
                     <BtnPanel>
                         <Btn onClick={handleGoBack}>

@@ -1,5 +1,6 @@
 import React, {useMemo, useState, useEffect, useRef} from 'react';
 import {LoadingIcon, LoadingSection, Section} from './style';
+import FooterComponent from "../footer";
 
 const BodyComponent = ({children, loadMoreData, loadMorePage}) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -48,8 +49,11 @@ const BodyComponent = ({children, loadMoreData, loadMorePage}) => {
 
     return (
         <Section ref={bodyRef}>
-            {children}
-            {loadingAnimation}
+            <div>
+                {children}
+                {loadingAnimation}
+            </div>
+            <FooterComponent/>
         </Section>
     );
 };

@@ -44,4 +44,27 @@ ul {
     justify-content: center;
     height: calc(100vh);
 }
+.scroll{
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 0;
+    }
+    
+    &::-webkit-scrollbar-track {
+        background-color: transparent;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0);
+    }
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    scrollbar-width: thin;
+    scrollbar-color: transparent;
+}
+.trim_text{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 `;

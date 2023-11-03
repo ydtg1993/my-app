@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import {ScrollType} from "../style";
 import {img_back} from "../../resource";
 import {NavigationTab} from "../hall/navigation/style";
+
 
 export const TitleBox = styled.div`
     width: 0;
@@ -15,15 +15,12 @@ export const TitleBox = styled.div`
         margin:0;
         font-weight: 600;
         font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
 `;
 
 export const TopNavPanel = styled.div`
     display:flex;
-    height: 40px;
+    height: 45px;
     align-items: center;
     justify-content: space-around;
     background:white;
@@ -92,10 +89,7 @@ export const InfoPart = styled.ul`
     overflow: hidden;
     
     & > li {
-        margin:5px 5px 5px 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;   
+        margin:5px 5px 5px 0;  
     }
     
     & > li > h2{
@@ -109,10 +103,8 @@ export const InfoPart = styled.ul`
         text-align: right;
     }
     
-    & .btn span {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    & .btn>a{
+        max-width:160px;
     }
 `;
 
@@ -130,12 +122,12 @@ export const Tag = styled(Label)`
     background: rgb(146 17 87 / 40%);
 `;
 
-export const Description = styled(ScrollType)`
+export const Description = styled.div`
     height: 60px;
     white-space: normal;
 `;
 
-export const ChapterList = styled(ScrollType)`
+export const ChapterList = styled.div`
     margin:3px;
     border-radius: 5px;
     background:#ffe2b4;
@@ -164,9 +156,6 @@ export const ChapterList = styled(ScrollType)`
         margin:0;
         font-weight: 400;
         font-size: 14px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
     
     @media (max-width: 540px) {

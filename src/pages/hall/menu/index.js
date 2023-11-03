@@ -86,7 +86,7 @@ const Menu = (props) => {
                                         <ImageLazy src={img_blank} data-src={comic.cover} alt={comic.title} options={{ threshold: 0.1 }}/>
                                     </div>
                                     <div className={'titleBox'}>
-                                        <h3>{comic.title}</h3>
+                                        <h3 className={'trim_text'}>{comic.title}</h3>
                                     </div>
                                 </Link>
                             </ComicBox>

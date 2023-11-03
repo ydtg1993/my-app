@@ -3,7 +3,12 @@ import {svg_loading} from "../../../resource";
 import {ScrollType} from "../../style";
 
 export const Section = styled(ScrollType)`
-   padding: 5px 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   &>div:first-child{
+        flex:1;
+   }
 `;
 
 const rotateAnimation = keyframes`

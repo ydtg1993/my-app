@@ -5,7 +5,7 @@ import NavComponent from '../navigation'
 import BodyComponent from "../body";
 import {SetCurrentPosition} from "../store/actions";
 import {ComicBox, HallStruct, RangeList} from "../../style"
-import {BottomSection, SeriesLabel, TopTitle} from "./style";
+import {SeriesLabel, TopTitle} from "./style";
 /*other component*/
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
@@ -75,7 +75,7 @@ const Home = (props) => {
                                                                options={{threshold: 0.1}}/>
                                                 </div>
                                                 <div className={'titleBox'}>
-                                                    <h3>{comic.title}</h3>
+                                                    <h3 className={'trim_text'}>{comic.title}</h3>
                                                 </div>
                                             </Link>
                                         </ComicBox>
@@ -101,9 +101,6 @@ const Home = (props) => {
                         <h1>漫画汪 <img src={dog_home}></img> 看漫画</h1>
                     </TopTitle>
                     {isLoading ? loadingAnimation() : loadedContent()}
-                    <BottomSection>
-                        <span>所有內容均來源互聯網</span>
-                    </BottomSection>
                 </BodyComponent>
                 <NavComponent/>
             </HallStruct>

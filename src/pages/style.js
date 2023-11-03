@@ -49,7 +49,9 @@ export const DetailStruct = styled.div`
     display: flex;
     flex-direction: column;
     background: #faefde;
- 
+    &>div:first-child{
+        flex:1;
+    }
     @media (min-width: 1024px) {
         width: 1024px;
     }
@@ -120,9 +122,6 @@ export const ComicBox = styled.div`
     & .titleBox > h3{
         font-weight: 400;
         font-size: 12px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
     }
 `;
 
@@ -211,23 +210,9 @@ export const InfoPart = styled.ul`
     }
     
     & > li > .description{
-        overflow-y: scroll;
         height: 60px;
         white-space: normal;
         color: #1c006f;
-        &::-webkit-scrollbar {
-            width: 0;
-        }
-        &::-webkit-scrollbar-track {
-            background-color: transparent;
-        }
-        &::-webkit-scrollbar-thumb {
-            background-color: rgba(0, 0, 0, 0);
-        }
-        scrollbar-width: thin;
-        scrollbar-color: transparent transparent;
-        scrollbar-width: thin;
-        scrollbar-color: transparent;
     }
 `;
 
