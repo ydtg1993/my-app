@@ -78,7 +78,10 @@ const Chapter = (props) => {
     const handlePreviousNext = (index) => {
         if(Array.isArray(chapter.get('previous_next'))){
             let id = chapter.get('previous_next')[index];
-            if(id > 0) history.push(`/comic/${comic_id}/${id}`);
+            if(id > 0) {
+                history.push(`/comic/${comic_id}/${id}`);
+                window.location.reload();
+            }
         }
     };
 
