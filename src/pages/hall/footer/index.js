@@ -18,6 +18,7 @@ const links = [
         title: '友情鏈接',
         items: [
             {text: '学习强国', url: 'https://taery.cn'},
+            {text: 'Komiic漫畫', url:'https://komiic.com'},
             {text: 'ACG喵导航', url: 'https://www.miaoaaa.com/tougao-fankui'},
             {text: 'ACG次元窗导航', url: 'https://www.acgcyc.com'},
             {text: 'ACG导航网', url: 'https://www.acgdh.cc/wangzhanshoulu'},
