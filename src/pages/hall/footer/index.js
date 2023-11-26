@@ -19,9 +19,8 @@ const links = [
         items: [
             {text: '学习强国', url: 'https://taery.cn'},
             {text: 'Komiic漫畫', url:'https://komiic.com'},
-            {text: 'ACG喵导航', url: 'https://www.miaoaaa.com/tougao-fankui'},
             {text: 'ACG次元窗导航', url: 'https://www.acgcyc.com'},
-            {text: 'ACG导航网', url: 'https://www.acgdh.cc/wangzhanshoulu'},
+            {text: 'ACG导航网', url: 'https://www.acgdh.cc'},
             {text: 'ACG御宅世界导航', url: 'https://www.acgyzsj.top/'}
         ]
     },
@@ -30,7 +29,8 @@ const links = [
         items: [
             {text: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61550319385473'},
             {text: 'Twitter', url: 'https://twitter.com/shaoerlele'},
-            {text: 'SITEMAP', url: 'https://www.dmwon.com/sitemap.xml'}
+            {text: 'Telegram', url: 'https://t.me/dmwong'},
+            {text: 'SITEMAP', url: 'https://www.dmwon.com/sitemap.xml'},
         ]
     },
     {
