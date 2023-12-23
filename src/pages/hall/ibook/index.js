@@ -53,7 +53,7 @@ const IBook = (props) => {
                             <li><label>书 签</label><span style={{color: '#1b73c0'}}>{record.chapter_title}</span></li>
                             <li><label>时 间</label><span style={{color: '#1b73c0'}}>{record.time}</span></li>
                             <li className={"btn"}>
-                                <Button style={{background: 'rgb(255 0 164)',color:'black', marginRight: '10px'}}
+                                <Button style={{background: 'rgb(102 12 70)',color:'#e6e6e6', marginRight: '10px'}}
                                         variant="outlined" size="small" href="#contained-buttons"
                                         onClick={() => handleRemoveMemClick(record.comic_id)}>
                                     <span>删除记录</span>
